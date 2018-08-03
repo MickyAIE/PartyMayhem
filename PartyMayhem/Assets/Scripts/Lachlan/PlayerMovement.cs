@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 200;
     public float speedMod;
 
+    public string playerNumber;
+
     public float turnSpeed;
 
     Rigidbody2D playerRigid;
@@ -21,18 +23,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 newPosition = new Vector2(Input.GetAxis("P1 Horizontal"), Input.GetAxis("P1 Vertical"));
+        Vector3 newPosition = new Vector2(Input.GetAxis("P" + playerNumber + " Horizontal"), Input.GetAxis("P" + playerNumber + " Vertical"));
 
         playerRigid.velocity = newPosition * speed * speedMod;
-
-        //Vector3 newPosition = new Vector3();
-        //newPosition.x = (Input.GetAxis("P1 Horizontal") * speed) * Time.deltaTime;
-        //newPosition.y = (Input.GetAxis("P1 Vertical") * speed) * Time.deltaTime;
-        //transform.Translate(newPosition);
     }
     private void FixedUpdate()
     {
-        if ((Input.GetAxis("P1 Horizontal") > 0.1 || Input.GetAxis("P1 Horizontal") < -0.1) && (Input.GetAxis("P1 Vertical") > 0.1 || Input.GetAxis("P1 Vertical") < -0.1))
+        if ((Input.GetAxis("P" + playerNumber + " Horizontal") > 0.1 || Input.GetAxis("P" + playerNumber + " Horizontal") < -0.1) && (Input.GetAxis("P" + playerNumber + " Vertical") > 0.1 || Input.GetAxis("P" + playerNumber + " Vertical") < -0.1))
         {
             speedMod = 0.75f;
         }
