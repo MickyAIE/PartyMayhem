@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MSPLACEHOLDER : MonoBehaviour {
+public class MSPlaceHolder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
