@@ -6,23 +6,26 @@ public class MenuManager : MonoBehaviour {
 
     public Animator anim;
 
-    private void Start()
+    public void Start()
     {
-        anim = GetComponent<Animator>();
-
-        anim.SetBool("goDown", false);
+        anim.SetBool("goToSettings", false);
     }
+
 
     public void OnStartButtonPress()
     {
-        anim.SetBool("goDown", true);
         Debug.Log("Start");
     }
 
     public void OnSettingsButtonPress()
     {
-        anim.SetBool("goDown", false);
+        anim.SetBool("goToSettings", true);
         Debug.Log("Settings");
+    }
+
+    public void OnSettingsBackPress()
+    {
+        anim.SetBool("goToSettings", false);
     }
 
     public void OnCreditsButtonPress()
