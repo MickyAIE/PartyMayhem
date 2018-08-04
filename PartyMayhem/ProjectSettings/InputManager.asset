@@ -22,6 +22,8 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
+<<<<<<< HEAD
+=======
     m_Name: P1 Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
@@ -38,6 +40,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
+>>>>>>> parent of f2bd061... Increased controller dead zone
     m_Name: P2 Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
@@ -102,6 +105,8 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
+<<<<<<< HEAD
+=======
     m_Name: P1 Vertical
     descriptiveName: 
     descriptiveNegativeName: 
@@ -118,6 +123,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
+>>>>>>> parent of f2bd061... Increased controller dead zone
     m_Name: P2 Vertical
     descriptiveName: 
     descriptiveNegativeName: 
@@ -179,22 +185,6 @@ InputManager:
     snap: 1
     invert: 0
     type: 0
-    axis: 3
-    joyNum: 1
-  - serializedVersion: 3
-    m_Name: P1 Aim Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 3
-    dead: 0.2
-    sensitivity: 3
-    snap: 1
-    invert: 0
-    type: 2
     axis: 3
     joyNum: 1
   - serializedVersion: 3
@@ -262,22 +252,6 @@ InputManager:
     axis: 4
     joyNum: 1
   - serializedVersion: 3
-    m_Name: P1 Aim Vertical
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: down
-    positiveButton: up
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 3
-    dead: 0.2
-    sensitivity: 3
-    snap: 1
-    invert: 1
-    type: 2
-    axis: 4
-    joyNum: 1
-  - serializedVersion: 3
     m_Name: P2 Aim Vertical
     descriptiveName: 
     descriptiveNegativeName: 
@@ -340,22 +314,6 @@ InputManager:
     invert: 0
     type: 0
     axis: 0
-    joyNum: 1
-  - serializedVersion: 3
-    m_Name: P1 Punch
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick 1 button 5
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.2
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 9
     joyNum: 1
   - serializedVersion: 3
     m_Name: P2 Punch
@@ -529,7 +487,7 @@ InputManager:
     dead: 0.19
     sensitivity: 1
     snap: 0
-    invert: 1
+    invert: 0
     type: 2
     axis: 1
     joyNum: 0
