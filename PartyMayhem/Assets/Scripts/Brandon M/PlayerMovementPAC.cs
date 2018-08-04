@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MPLACEHOLDER : MonoBehaviour {
+public class PlayerMovementPAC : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:PartyMayhem/Assets/Sprites/Character.meta
 guid: 3eb9f13a4d6d63941b9df81776cd8ba7
+=======
+<<<<<<< HEAD
+guid: 8160606e5261ff14a8f9aab3aed9381e
+=======
+guid: 70ac57c66aa6dce47acc7a72c90d60ca
+>>>>>>> 769ef2d056e82ce3e425346a8fb0562cc55cbff4
+>>>>>>> b0bb8cbee73ae442c384cf6b6174677c43ec69cc:PartyMayhem/Assets/Scenes/Minigame Scenes.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
