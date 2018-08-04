@@ -10,6 +10,10 @@ public class MenuManager : MonoBehaviour {
     public AudioSource music;
     public float musicVolume;
 
+    public GameObject _Main;
+    public GameObject _Settings;
+    public GameObject _Credits;
+
     public void Start()
     {
         anim.SetBool("goToSettings", false);
