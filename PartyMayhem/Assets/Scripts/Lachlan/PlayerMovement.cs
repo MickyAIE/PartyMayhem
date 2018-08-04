@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 200;
-    public float speedMod;
-
     public string playerNumber;
-
-    public float turnSpeed;
 
     Rigidbody2D playerRigid;
 
-    public AudioClip punchSound1;
-    public AudioClip punchSound2;
+    public AudioClip punchSound1; public AudioClip punchSound2;
+
+    [HideInInspector] public float speed = 300;
+    [HideInInspector] public float speedMod;
+
+    [HideInInspector] public float turnSpeed;
+
+    [HideInInspector] private float punchCooldown;
 
     public void Start()
     {
@@ -23,12 +24,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Move();
+
+        if (Input.GetButton("P" + playerNumber + " Punch"))
+        {
+            Punch();
+        }
+        punchCooldown--;
+    }
+
+    public void Move()
+    {
         Vector3 newPosition = new Vector2(Input.GetAxis("P" + playerNumber + " Horizontal"), Input.GetAxis("P" + playerNumber + " Vertical"));
 
         playerRigid.velocity = newPosition * speed * speedMod;
-    }
-    private void FixedUpdate()
-    {
+
         if ((Input.GetAxis("P" + playerNumber + " Horizontal") > 0.1 || Input.GetAxis("P" + playerNumber + " Horizontal") < -0.1) && (Input.GetAxis("P" + playerNumber + " Vertical") > 0.1 || Input.GetAxis("P" + playerNumber + " Vertical") < -0.1))
         {
             speedMod = 0.75f;
@@ -36,6 +46,15 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             speedMod = 1;
+        }
+    }
+
+    public void Punch()
+    {
+        if (punchCooldown <= 0)
+        {
+            Debug.Log("PUNCH " + playerNumber);
+            punchCooldown = 30;
         }
     }
 }
