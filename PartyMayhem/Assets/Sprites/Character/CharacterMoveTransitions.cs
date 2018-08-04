@@ -6,34 +6,57 @@ public class CharacterMoveTransitions : MonoBehaviour
 {
     private Animator animator;
 
+    //named ints for easier reading
+    readonly int down = 0;
+    readonly int up = 1;
+    readonly int left = 2;
+    readonly int right = 3;
+
+    private int playerNumber;
+    private float verticalInput;
+    private float horizontalInput;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
+        playerNumber = 1; //TO DO: write script to differenciate players and take number from there
     }
 
     private void Update()
     {
+        DetermineInput();
         CheckDirection();
         CheckMovement();
     }
 
-    public void CheckDirection() //0 = down/forward, 1 = up/backwards, 2 = left, 3 = right
+    public void DetermineInput() //takes player number to create input shorthand
     {
-        if (Input.GetKey("down"))
-            animator.SetInteger("direction", 0);
-        else if (Input.GetKey("up"))
-            animator.SetInteger("direction", 1);
-        else if (Input.GetKey("left"))
-            animator.SetInteger("direction", 2);
-        else if (Input.GetKey("right"))
-            animator.SetInteger("direction", 3);
+        verticalInput = Input.GetAxis("P" + playerNumber + " Vertical");
+        horizontalInput = Input.GetAxis("P" + playerNumber + " Horizontal");
     }
 
-    public void CheckMovement()
+    //TO DO: make it better
+    public void CheckDirection() //tells the animation controller what direction the player is facing
     {
-        if (Input.GetKey("down") != true && Input.GetKey("up") != true && Input.GetKey("left") != true && Input.GetKey("right") != true)
-            animator.SetBool("isRunning", false);
-        else
+        if (horizontalInput < 0)
+            animator.SetInteger("direction", left);
+
+        else if (horizontalInput > 0)
+            animator.SetInteger("direction", right);
+
+        if (verticalInput < 0)
+            animator.SetInteger("direction", down);
+
+        else if (verticalInput > 0)
+            animator.SetInteger("direction", up);
+    }
+
+    public void CheckMovement() //tells the animation controller if player is running or not
+    {
+        if (verticalInput != 0 || horizontalInput != 0)
             animator.SetBool("isRunning", true);
+
+        else
+            animator.SetBool("isRunning", false);
     }
 }

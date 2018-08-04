@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioClip punchSound1; public AudioClip punchSound2;
 
-    [HideInInspector] public float speed = 300;
+    public float speed = 300;
     [HideInInspector] public float speedMod;
 
     [HideInInspector] public float turnSpeed;
