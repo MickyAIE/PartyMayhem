@@ -21,22 +21,6 @@ InputManager:
     sensitivity: 3
     snap: 1
     invert: 0
-    type: 2
-    axis: 0
-    joyNum: 1
-  - serializedVersion: 3
-    m_Name: P1 Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: d
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 3
-    dead: 0.2
-    sensitivity: 3
-    snap: 1
-    invert: 0
     type: 0
     axis: 0
     joyNum: 1
@@ -89,11 +73,15 @@ InputManager:
 <<<<<<< HEAD
     type: 0
     axis: 0
+<<<<<<< HEAD
     joyNum: 0
 =======
     type: 2
     axis: 1
     joyNum: 1
+=======
+    joyNum: 4
+>>>>>>> parent of cac20d8... HOPEFULLY INPUT IS NOW FIXED
   - serializedVersion: 3
     m_Name: P1 Vertical
     descriptiveName: 
@@ -181,22 +169,6 @@ InputManager:
     sensitivity: 3
     snap: 1
     invert: 0
-    type: 2
-    axis: 3
-    joyNum: 1
-  - serializedVersion: 3
-    m_Name: P1 Aim Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 3
-    dead: 0.2
-    sensitivity: 3
-    snap: 1
-    invert: 0
     type: 0
     axis: 3
     joyNum: 1
@@ -261,22 +233,6 @@ InputManager:
     sensitivity: 3
     snap: 1
     invert: 0
-    type: 2
-    axis: 4
-    joyNum: 1
-  - serializedVersion: 3
-    m_Name: P1 Aim Vertical
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: down
-    positiveButton: up
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 3
-    dead: 0.2
-    sensitivity: 3
-    snap: 1
-    invert: 0
     type: 0
     axis: 4
     joyNum: 1
@@ -328,22 +284,6 @@ InputManager:
     type: 2
     axis: 4
     joyNum: 4
-  - serializedVersion: 3
-    m_Name: P1 Punch
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick 1 button 5
-    altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.2
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 1
   - serializedVersion: 3
     m_Name: P1 Punch
     descriptiveName: 
