@@ -13,15 +13,25 @@ public class MenuManager : MonoBehaviour {
     public GameObject _Main;
     public GameObject _Settings;
     public GameObject _Credits;
+    public GameObject _Modes;
+
+    public bool hoverBoard = false;
+    public bool hoverTournament = false;
+    public bool hoverFreeplay = false;
 
     public void Start()
     {
         anim.SetBool("goToSettings", false);
         anim.SetBool("goToCredits", false);
+        anim.SetBool("goToModes", false);
         anim.SetBool("startScreen", true);
 
         musicVolume = 1f;
-    }
+
+        hoverBoard = false;
+        hoverTournament = false;
+        hoverFreeplay = false;
+}
 
     public void Update()
     {
@@ -35,11 +45,33 @@ public class MenuManager : MonoBehaviour {
                 pressSpace = true;
             }
         }
+
+        if(hoverBoard == true)
+        {
+            Debug.Log("Board");
+        }
+
+        if (hoverTournament == true)
+        {
+            Debug.Log("Tournament");
+        }
+
+        if (hoverFreeplay == true)
+        {
+            Debug.Log("Freeplay");
+        }
     }
 
     public void OnStartButtonPress()
     {
+        anim.SetBool("goToModes", true);
         Debug.Log("Start");
+    }
+
+    public void OnModesBackPress()
+    {
+        anim.SetBool("goToModes", false);
+        Debug.Log("Back");
     }
 
     public void OnSettingsButtonPress()
@@ -70,5 +102,35 @@ public class MenuManager : MonoBehaviour {
     {
         Application.Quit();
         Debug.Log("Quit");
+    }
+
+    public void HoverBoard()
+    {
+        hoverBoard = true;
+    }
+
+    public void NotHoverBoard()
+    {
+        hoverBoard = false;
+    }
+
+    public void HoverTournament()
+    {
+        hoverTournament = true;
+    }
+
+    public void NotHoverTournament()
+    {
+        hoverTournament = false;
+    }
+
+    public void HoverFreeplay()
+    {
+        hoverFreeplay = true;
+    }
+
+    public void NotHoverFreeplay()
+    {
+        hoverFreeplay = false;
     }
 }
