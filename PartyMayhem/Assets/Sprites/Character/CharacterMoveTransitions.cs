@@ -15,6 +15,7 @@ public class CharacterMoveTransitions : MonoBehaviour
     private int playerNumber;
     private float verticalInput;
     private float horizontalInput;
+    private bool punchInput;
 
     private void Start()
     {
@@ -27,12 +28,14 @@ public class CharacterMoveTransitions : MonoBehaviour
         DetermineInput();
         CheckDirection();
         CheckMovement();
+        Punch();
     }
 
     public void DetermineInput() //takes player number to create input shorthand
     {
         verticalInput = Input.GetAxis("P" + playerNumber + " Vertical");
         horizontalInput = Input.GetAxis("P" + playerNumber + " Horizontal");
+        punchInput = Input.GetButtonDown("P" + playerNumber + " Punch");
     }
 
     //TO DO: make it better
@@ -58,5 +61,15 @@ public class CharacterMoveTransitions : MonoBehaviour
 
         else
             animator.SetBool("isRunning", false);
+    }
+
+    //TO DO: make less jank (can't punch again without moving)
+    public void Punch()
+    {
+        if (punchInput)
+            animator.SetBool("isPunching", true);
+
+        if (animator.GetBool("isPunching") == true && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= animator.GetCurrentAnimatorStateInfo(0).length)
+            animator.SetBool("isPunching", false);
     }
 }
