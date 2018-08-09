@@ -30,14 +30,14 @@ public class PlayerMovement : MonoBehaviour
         {
             Punch();
         }
-        punchCooldown--;
+        punchCooldown -= Time.deltaTime;
     }
 
     public void Move()
     {
         Vector3 newPosition = new Vector2(Input.GetAxis("P" + playerNumber + " Horizontal"), Input.GetAxis("P" + playerNumber + " Vertical"));
 
-        playerRigid.velocity = newPosition * speed * speedMod;
+        playerRigid.velocity = newPosition * speed * speedMod * Time.deltaTime;
 
         if ((Input.GetAxis("P" + playerNumber + " Horizontal") > 0.1 || Input.GetAxis("P" + playerNumber + " Horizontal") < -0.1) && (Input.GetAxis("P" + playerNumber + " Vertical") > 0.1 || Input.GetAxis("P" + playerNumber + " Vertical") < -0.1))
         {
@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         if (punchCooldown <= 0)
         {
             Debug.Log("PUNCH " + playerNumber);
-            punchCooldown = 30;
+            punchCooldown = 0.5f;
         }
     }
 }

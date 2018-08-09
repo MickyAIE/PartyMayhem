@@ -204,12 +204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605c7adaeaaf98b42ae202935dbde587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
-  speedMod: 0
   playerNumber: 2
-  turnSpeed: 0
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
+  speed: 15000
+  speedMod: 0
+  turnSpeed: 0
 --- !u!4 &800726208
 Transform:
   m_ObjectHideFlags: 0
@@ -379,12 +379,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605c7adaeaaf98b42ae202935dbde587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
-  speedMod: 0
   playerNumber: 1
-  turnSpeed: 0
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
+  speed: 15000
+  speedMod: 0
+  turnSpeed: 0
 --- !u!4 &1778931662
 Transform:
   m_ObjectHideFlags: 0
