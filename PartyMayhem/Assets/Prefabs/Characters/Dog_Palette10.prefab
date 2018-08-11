@@ -162,7 +162,7 @@ MonoBehaviour:
   playerNumber: 1
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
-  speed: 5
+  speed: 150
   speedMod: 0
   turnSpeed: 0
 --- !u!212 &212458261851568370

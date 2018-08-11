@@ -63,13 +63,9 @@ public class CharacterMoveTransitions : MonoBehaviour
             animator.SetBool("isRunning", false);
     }
 
-    //TO DO: make less jank (can't punch again without moving)
     public void Punch()
     {
         if (punchInput)
-            animator.SetBool("isPunching", true);
-
-        if (animator.GetBool("isPunching") == true && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= animator.GetCurrentAnimatorStateInfo(0).length)
-            animator.SetBool("isPunching", false);
+            animator.SetTrigger("punch");
     }
 }
