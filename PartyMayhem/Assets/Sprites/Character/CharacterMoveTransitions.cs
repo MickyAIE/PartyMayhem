@@ -63,7 +63,7 @@ public class CharacterMoveTransitions : MonoBehaviour
             animator.SetBool("isRunning", false);
     }
 
-    public void Punch()
+    public void Punch() //sets punch trigger when punch input is pressed
     {
         if (punchInput)
             animator.SetTrigger("punch");
