@@ -13,19 +13,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isRunning
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: punch
-    m_Type: 9
+    m_Controller: {fileID: 0}
+  - m_Name: isPunching
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -69,7 +69,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: isPunching
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102419818190574418}
   m_Solo: 0
@@ -182,7 +185,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102149419073890724}
@@ -206,7 +209,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102149419073890724}
@@ -252,7 +255,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: isPunching
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102556389236182930}
   m_Solo: 0
@@ -297,7 +303,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: isPunching
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102460201587720754}
   m_Solo: 0
@@ -464,7 +473,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102956388271232144}
@@ -696,7 +705,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: isPunching
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102136514122508384}
   m_Solo: 0
@@ -788,7 +800,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102760683750220788}
@@ -812,7 +824,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102030929089196382}
@@ -836,7 +848,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102760683750220788}
@@ -860,7 +872,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102030929089196382}
@@ -884,7 +896,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: punch
+    m_ConditionEvent: isPunching
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102956388271232144}
@@ -927,7 +939,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Front
+  m_Name: Punch_Front
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -953,7 +965,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Front
+  m_Name: Run_Front
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -983,7 +995,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Left
+  m_Name: Idle_Left
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1010,7 +1022,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Right
+  m_Name: Punch_Right
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1036,7 +1048,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Front
+  m_Name: Idle_Front
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1063,7 +1075,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Right
+  m_Name: Run_Right
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1093,7 +1105,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Back
+  m_Name: Idle_Back
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1120,7 +1132,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Right
+  m_Name: Idle_Right
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1172,7 +1184,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Back
+  m_Name: Punch_Back
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1198,7 +1210,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Back
+  m_Name: Run_Back
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1228,7 +1240,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Left
+  m_Name: Run_Left
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1258,7 +1270,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Left
+  m_Name: Punch_Left
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1300,35 +1312,35 @@ AnimatorStateMachine:
     m_Position: {x: 120, y: 156, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102460201587720754}
-    m_Position: {x: -24, y: 264, z: 0}
+    m_Position: {x: 120, y: 252, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102136514122508384}
-    m_Position: {x: -156, y: 132, z: 0}
+    m_Position: {x: -336, y: -36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102441048974381326}
-    m_Position: {x: 264, y: 48, z: 0}
+    m_Position: {x: 396, y: 48, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102556389236182930}
-    m_Position: {x: 528, y: 48, z: 0}
+    m_Position: {x: 516, y: 156, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102030929089196382}
-    m_Position: {x: 348, y: -204, z: 0}
+    m_Position: {x: 432, y: -96, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102956388271232144}
-    m_Position: {x: -432, y: 84, z: 0}
+    m_Position: {x: -156, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102149419073890724}
-    m_Position: {x: 420, y: 132, z: 0}
+    m_Position: {x: 396, y: 252, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102760683750220788}
-    m_Position: {x: 216, y: 264, z: 0}
+    m_Position: {x: -192, y: 204, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 48, y: -264, z: 0}
+  m_AnyStatePosition: {x: -120, y: -192, z: 0}
   m_EntryPosition: {x: 132, y: -216, z: 0}
-  m_ExitPosition: {x: 228, y: -264, z: 0}
+  m_ExitPosition: {x: 396, y: -192, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102419818190574418}

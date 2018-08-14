@@ -927,7 +927,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Front
+  m_Name: Punch_Front
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -953,7 +953,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Front
+  m_Name: Run_Front
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -983,7 +983,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Left
+  m_Name: Idle_Left
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1010,7 +1010,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Right
+  m_Name: Punch_Right
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1036,7 +1036,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Front
+  m_Name: Idle_Front
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1063,7 +1063,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Right
+  m_Name: Run_Right
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1093,7 +1093,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Back
+  m_Name: Idle_Back
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1120,7 +1120,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Idle_Right
+  m_Name: Idle_Right
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1172,7 +1172,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Back
+  m_Name: Punch_Back
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1198,7 +1198,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Back
+  m_Name: Run_Back
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1228,7 +1228,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Run_Left
+  m_Name: Run_Left
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1258,7 +1258,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dog_P10_Punch_Left
+  m_Name: Punch_Left
   m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions:
@@ -1315,7 +1315,7 @@ AnimatorStateMachine:
     m_Position: {x: 348, y: -204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102956388271232144}
-    m_Position: {x: -432, y: 84, z: 0}
+    m_Position: {x: -396, y: 84, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102149419073890724}
     m_Position: {x: 420, y: 132, z: 0}
