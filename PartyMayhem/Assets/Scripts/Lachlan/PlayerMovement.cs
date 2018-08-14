@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private CharacterMoveTransitions scrAnimations;
     public string playerNumber;
-
-    Rigidbody2D playerRigid;
-
+    private Rigidbody2D playerRigid;
+    public GameObject sPunch;
     public AudioClip punchSound1; public AudioClip punchSound2;
 
-    public float speed = 300;
+    public float speed;
     [HideInInspector] public float speedMod;
-
     [HideInInspector] public float turnSpeed;
 
     [HideInInspector] private float punchCooldown;
+    [HideInInspector] public bool isPunching;
+
+    [HideInInspector] public float axisX;
+    [HideInInspector] public float axisY;
+    [HideInInspector] public float angle;
 
     public void Start()
     {
         playerRigid = GetComponent<Rigidbody2D>();
+        isPunching = false;
     }
 
     private void Update()
     {
+        if(isPunching == true)
+        {
+            sPunch.SetActive(true);
+        }
+        else
+        {
+            sPunch.SetActive(false);
+        }
+
+        Aim();
+
         Move();
 
         if (Input.GetButton("P" + playerNumber + " Punch"))
@@ -31,6 +47,20 @@ public class PlayerMovement : MonoBehaviour
             Punch();
         }
         punchCooldown -= Time.deltaTime;
+
+        if(punchCooldown <= 0.4f)
+        {
+            isPunching = false;
+        }
+    }
+
+    public void Aim()
+    {
+        axisX = Input.GetAxis("P" + playerNumber + " Aim Horizontal");
+        axisY = Input.GetAxis("P" + playerNumber + " Aim Vertical");
+
+        angle = Mathf.Atan2(axisY, axisX) * Mathf.Rad2Deg;
+
     }
 
     public void Move()
@@ -53,7 +83,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (punchCooldown <= 0)
         {
-            Debug.Log("PUNCH " + playerNumber);
+            isPunching = true;
+            //scrAnimations.Punch();
+
+            Debug.Log("PUNCH " + playerNumber + " " + angle);
             punchCooldown = 0.5f;
         }
     }

@@ -117,7 +117,8 @@ QualitySettings:
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
     resolutionScalingFixedDPIFactor: 1
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - tvOS
   - serializedVersion: 2
     name: Very High
     pixelLightCount: 3
