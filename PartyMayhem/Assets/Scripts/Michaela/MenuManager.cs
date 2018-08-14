@@ -10,16 +10,24 @@ public class MenuManager : MonoBehaviour {
     public AudioSource music;
     public float musicVolume;
 
+    /*
     public GameObject _Main;
     public GameObject _Settings;
     public GameObject _Credits;
-    public GameObject _Modes;
+    public GameObject _Modes;*/
 
     public bool hoverBoard = false;
     public bool hoverTournament = false;
     public bool hoverFreeplay = false;
 
-    public void Start()
+    public GameObject boardModeInfo;
+    public GameObject tournamentModeInfo;
+    public GameObject freeplayModeInfo;
+    public GameObject hoverGuideText;
+
+    public bool hoveringOverSomething = false;
+
+    public void Awake()
     {
         anim.SetBool("goToSettings", false);
         anim.SetBool("goToCredits", false);
@@ -31,7 +39,12 @@ public class MenuManager : MonoBehaviour {
         hoverBoard = false;
         hoverTournament = false;
         hoverFreeplay = false;
-}
+
+        boardModeInfo.SetActive(false);
+        tournamentModeInfo.SetActive(false);
+        freeplayModeInfo.SetActive(false);
+        hoverGuideText.SetActive(false);
+    }
 
     public void Update()
     {
@@ -46,20 +59,93 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
-        if(hoverBoard == true)
+        if((hoverBoard == false && hoverTournament == false) && hoverFreeplay == false)
+        {
+            hoverGuideText.SetActive(true);
+        }
+        else
+        {
+            hoverGuideText.SetActive(false);
+        }
+
+        /*
+        if (hoveringOverSomething == false)
+        {
+            Debug.Log("NOT HOVERING");
+            hoverGuideText.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("HOVERING");
+            hoverGuideText.SetActive(false);
+        }*/
+
+
+        if(hoverBoard == true && (hoverTournament == false && hoverFreeplay == false))
+        {
+            boardModeInfo.SetActive(true);
+        }
+        else if (hoverBoard == false)
+        {
+            boardModeInfo.SetActive(false);
+        }
+
+        if (hoverTournament == true && (hoverBoard == false && hoverFreeplay == false))
+        {
+            tournamentModeInfo.SetActive(true);
+        }
+        else if(hoverTournament == false)
+        {
+            tournamentModeInfo.SetActive(false);
+        }
+
+        if (hoverFreeplay == true && (hoverBoard == false && hoverTournament == false))
+        {
+            freeplayModeInfo.SetActive(true);
+        }
+        else if (hoverFreeplay == false)
+        {
+            freeplayModeInfo.SetActive(false);
+        }
+
+       /* if (hoverBoard == true)
         {
             Debug.Log("Board");
+            hoveringOverSomething = true;
+            boardModeInfo.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("NOT Board");
+            hoveringOverSomething = false;
+            boardModeInfo.SetActive(false);
         }
 
         if (hoverTournament == true)
         {
             Debug.Log("Tournament");
+            hoveringOverSomething = true;
+            tournamentModeInfo.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("NOT Tournament");
+            hoveringOverSomething = false;
+            tournamentModeInfo.SetActive(false);
         }
 
         if (hoverFreeplay == true)
         {
             Debug.Log("Freeplay");
+            hoveringOverSomething = true;
+            freeplayModeInfo.SetActive(true);
         }
+        else
+        {
+            Debug.Log("NOT Freeplay");
+            hoveringOverSomething = false;
+            freeplayModeInfo.SetActive(false);
+        }*/
     }
 
     public void OnStartButtonPress()
