@@ -146,7 +146,7 @@ MonoBehaviour:
   playerNumber: 1
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
-  speed: 50
+  speed: 1000
   speedMod: 0
   turnSpeed: 0
 --- !u!212 &293007894
@@ -309,7 +309,7 @@ MonoBehaviour:
   playerNumber: 3
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
-  speed: 50
+  speed: 1000
   speedMod: 0
   turnSpeed: 0
 --- !u!212 &515027544
@@ -1964,7 +1964,7 @@ MonoBehaviour:
   playerNumber: 4
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
-  speed: 50
+  speed: 1000
   speedMod: 0
   turnSpeed: 0
 --- !u!212 &1454225415
@@ -2157,7 +2157,7 @@ MonoBehaviour:
   playerNumber: 2
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
-  speed: 50
+  speed: 1000
   speedMod: 0
   turnSpeed: 0
 --- !u!212 &1826706801
