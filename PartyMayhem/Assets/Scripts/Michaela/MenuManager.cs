@@ -59,6 +59,16 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
+        if((hoverBoard == false && hoverTournament == false) && hoverFreeplay == false)
+        {
+            hoverGuideText.SetActive(true);
+        }
+        else
+        {
+            hoverGuideText.SetActive(false);
+        }
+
+        /*
         if (hoveringOverSomething == false)
         {
             Debug.Log("NOT HOVERING");
@@ -68,10 +78,37 @@ public class MenuManager : MonoBehaviour {
         {
             Debug.Log("HOVERING");
             hoverGuideText.SetActive(false);
+        }*/
+
+
+        if(hoverBoard == true && (hoverTournament == false && hoverFreeplay == false))
+        {
+            boardModeInfo.SetActive(true);
+        }
+        else if (hoverBoard == false)
+        {
+            boardModeInfo.SetActive(false);
         }
 
+        if (hoverTournament == true && (hoverBoard == false && hoverFreeplay == false))
+        {
+            tournamentModeInfo.SetActive(true);
+        }
+        else if(hoverTournament == false)
+        {
+            tournamentModeInfo.SetActive(false);
+        }
 
-        if (hoverBoard == true)
+        if (hoverFreeplay == true && (hoverBoard == false && hoverTournament == false))
+        {
+            freeplayModeInfo.SetActive(true);
+        }
+        else if (hoverFreeplay == false)
+        {
+            freeplayModeInfo.SetActive(false);
+        }
+
+       /* if (hoverBoard == true)
         {
             Debug.Log("Board");
             hoveringOverSomething = true;
@@ -108,7 +145,7 @@ public class MenuManager : MonoBehaviour {
             Debug.Log("NOT Freeplay");
             hoveringOverSomething = false;
             freeplayModeInfo.SetActive(false);
-        }
+        }*/
     }
 
     public void OnStartButtonPress()
