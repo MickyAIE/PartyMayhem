@@ -55,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isPunching = false;
         }
+
+
     }
 
     public void Aim()
@@ -63,7 +65,6 @@ public class PlayerMovement : MonoBehaviour
         axisY = Input.GetAxis("P" + playerNumber + " Aim Vertical");
 
         angle = Mathf.Atan2(axisY, axisX) * Mathf.Rad2Deg;
-
     }
 
     public void Move()
@@ -91,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.Log("PUNCH " + playerNumber + " " + angle);
             punchCooldown = 0.5f;
+
+            sPunch.transform.eulerAngles = new Vector3(sPunch.transform.rotation.x, sPunch.transform.rotation.y, angle);
         }
     }
 }
