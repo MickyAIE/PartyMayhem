@@ -29,13 +29,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(isPunching == true)
+        if(sPunch != null)
         {
-            sPunch.SetActive(true);
-        }
-        else
-        {
-            sPunch.SetActive(false);
+            if (isPunching == true)
+            {
+                sPunch.SetActive(true);
+            }
+            else
+            {
+                sPunch.SetActive(false);
+            }
         }
 
         Aim();
