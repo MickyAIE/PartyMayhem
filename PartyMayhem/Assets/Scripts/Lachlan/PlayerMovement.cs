@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterMoveTransitions scrAnimations;
     public string playerNumber;
     private Rigidbody2D playerRigid;
+    public GameObject sRotate;
     public GameObject sPunch;
     public AudioClip punchSound1; public AudioClip punchSound2;
 
@@ -39,6 +40,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 sPunch.SetActive(false);
             }
+        }
+        else
+        {
+            Debug.Log("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | sPunch |");
         }
 
         Aim();
@@ -93,7 +98,14 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("PUNCH " + playerNumber + " " + angle);
             punchCooldown = 0.5f;
 
-            sPunch.transform.eulerAngles = new Vector3(sPunch.transform.rotation.x, sPunch.transform.rotation.y, angle);
+            if(sRotate != null)
+            {
+                sRotate.transform.eulerAngles = new Vector3(sPunch.transform.rotation.x, sPunch.transform.rotation.y, angle + 270);
+            }
+            else
+            {
+                Debug.Log("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | sRotate |");
+            }
         }
     }
 }
