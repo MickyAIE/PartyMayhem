@@ -7,28 +7,38 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour {
 
     public Animator anim;
-    public bool pressSpace = false;
 
+    public AudioMixer audioMixer;
     public AudioSource music;
     public AudioSource click;
 
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+
+    [HideInInspector]
     public bool hoverBoard = false;
+    [HideInInspector]
     public bool hoverTournament = false;
+    [HideInInspector]
     public bool hoverFreeplay = false;
+
+    [HideInInspector]
+    public bool hoveringOverSomething = false;
+
+    [HideInInspector]
+    public bool pressSpace = false;
+
 
     public GameObject boardModeInfo;
     public GameObject tournamentModeInfo;
     public GameObject freeplayModeInfo;
+
     public GameObject hoverGuideText;
 
-    public bool hoveringOverSomething = false;
-
-    public AudioMixer audioMixer;
 
     Resolution[] resolutions;
-
     public Dropdown resolutionDropdown;
-
 
 
     public void Start()
@@ -47,6 +57,10 @@ public class MenuManager : MonoBehaviour {
         tournamentModeInfo.SetActive(false);
         freeplayModeInfo.SetActive(false);
         hoverGuideText.SetActive(false);
+
+        musicSlider.value = -15f;
+        sfxSlider.value = -15f;
+
 
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -71,34 +85,6 @@ public class MenuManager : MonoBehaviour {
         resolutionDropdown.RefreshShownValue();
     }
 
-    public void SetMusicVolume(float volume)
-    {
-        audioMixer.SetFloat("musicVolume", volume);
-    }
-
-    public void SetSFXVolume(float volume)
-    {
-        audioMixer.SetFloat("sfxVolume", volume);
-    }
-
-    public void SetQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-        Debug.Log("Quality Level: " + qualityIndex);
-    }
-
-    public void SetFullscreen(bool isFullscreen)
-    {
-        Screen.fullScreen = isFullscreen;
-        Debug.Log("Is fullscreen: " + isFullscreen);
-    }
-
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        Debug.Log("Resolution: " + resolution);
-    }
 
     public void Update()
     {
@@ -150,6 +136,37 @@ public class MenuManager : MonoBehaviour {
 
     }
 
+
+    public void SetMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("musicVolume", volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        audioMixer.SetFloat("sfxVolume", volume);
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+        Debug.Log("Quality Level: " + qualityIndex);
+    }
+
+    public void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+        Debug.Log("Is fullscreen: " + isFullscreen);
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        Debug.Log("Resolution: " + resolution);
+    }
+
+
     public void OnStartButtonPress()
     {
         click.Play();
@@ -198,6 +215,21 @@ public class MenuManager : MonoBehaviour {
         Application.Quit();
         Debug.Log("Quit");
     }
+
+    public void OnModeSelected()
+    {
+        click.Play();
+        anim.SetBool("goToMinigames", true);
+        Debug.Log("Minigame Select");
+    }
+
+    public void OnBackToModes()
+    {
+        click.Play();
+        anim.SetBool("goToMinigames", false);
+        Debug.Log("Mode Select");
+    }
+
 
     public void HoverBoard()
     {
