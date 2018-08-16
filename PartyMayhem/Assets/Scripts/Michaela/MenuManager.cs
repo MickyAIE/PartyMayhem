@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MenuManager : MonoBehaviour {
 
@@ -9,12 +10,7 @@ public class MenuManager : MonoBehaviour {
 
     public AudioSource music;
     public float musicVolume;
-
-    /*
-    public GameObject _Main;
-    public GameObject _Settings;
-    public GameObject _Credits;
-    public GameObject _Modes;*/
+    public AudioSource click;
 
     public bool hoverBoard = false;
     public bool hoverTournament = false;
@@ -26,6 +22,18 @@ public class MenuManager : MonoBehaviour {
     public GameObject hoverGuideText;
 
     public bool hoveringOverSomething = false;
+
+    public AudioMixer audioMixer;
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
+
+    public void SetQuality (int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
 
     public void Awake()
     {
@@ -68,18 +76,6 @@ public class MenuManager : MonoBehaviour {
             hoverGuideText.SetActive(false);
         }
 
-        /*
-        if (hoveringOverSomething == false)
-        {
-            Debug.Log("NOT HOVERING");
-            hoverGuideText.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("HOVERING");
-            hoverGuideText.SetActive(false);
-        }*/
-
 
         if(hoverBoard == true && (hoverTournament == false && hoverFreeplay == false))
         {
@@ -108,84 +104,53 @@ public class MenuManager : MonoBehaviour {
             freeplayModeInfo.SetActive(false);
         }
 
-       /* if (hoverBoard == true)
-        {
-            Debug.Log("Board");
-            hoveringOverSomething = true;
-            boardModeInfo.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("NOT Board");
-            hoveringOverSomething = false;
-            boardModeInfo.SetActive(false);
-        }
-
-        if (hoverTournament == true)
-        {
-            Debug.Log("Tournament");
-            hoveringOverSomething = true;
-            tournamentModeInfo.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("NOT Tournament");
-            hoveringOverSomething = false;
-            tournamentModeInfo.SetActive(false);
-        }
-
-        if (hoverFreeplay == true)
-        {
-            Debug.Log("Freeplay");
-            hoveringOverSomething = true;
-            freeplayModeInfo.SetActive(true);
-        }
-        else
-        {
-            Debug.Log("NOT Freeplay");
-            hoveringOverSomething = false;
-            freeplayModeInfo.SetActive(false);
-        }*/
     }
 
     public void OnStartButtonPress()
     {
+        click.Play();
         anim.SetBool("goToModes", true);
         Debug.Log("Start");
     }
 
     public void OnModesBackPress()
     {
+        click.Play();
         anim.SetBool("goToModes", false);
         Debug.Log("Back");
     }
 
     public void OnSettingsButtonPress()
     {
+        click.Play();
         anim.SetBool("goToSettings", true);
         Debug.Log("Settings");
     }
 
     public void OnSettingsBackPress()
     {
+        click.Play();
         anim.SetBool("goToSettings", false);
         Debug.Log("Back");
     }
 
     public void OnCreditsButtonPress()
     {
+        click.Play();
         anim.SetBool("goToCredits", true);
         Debug.Log("Credits");
     }
 
     public void OnCreditsBackPress()
     {
+        click.Play();
         anim.SetBool("goToCredits", false);
         Debug.Log("Back");
     }
 
     public void OnQuitButtonPress()
     {
+        click.Play();
         Application.Quit();
         Debug.Log("Quit");
     }
