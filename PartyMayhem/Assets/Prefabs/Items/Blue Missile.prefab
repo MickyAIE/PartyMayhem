@@ -108,13 +108,13 @@ MonoBehaviour:
   missile: {fileID: 0}
   lockOnRange: {fileID: 0}
   player: {fileID: 0}
-  speed: 10
-  turnSpeed: 50
+  speed: 400
+  turnSpeed: 2000
   isLockedOn: 0
+  maxTurnAngle: 90
+  originalRotation: 0
   lowerRotLimit: 0
   upperRotLimit: 0
-  originalRotation: 0
-  maxTurnAngle: 90
 --- !u!212 &212279502256348752
 SpriteRenderer:
   m_ObjectHideFlags: 1

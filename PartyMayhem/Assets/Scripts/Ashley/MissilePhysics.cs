@@ -12,10 +12,10 @@ public class MissilePhysics : MonoBehaviour
     public float turnSpeed;
     public bool isLockedOn = false;
 
-    public float lowerRotLimit;
-    public float upperRotLimit;
-    public float originalRotation;
-    public float maxTurnAngle = 90;
+    public float maxTurnAngle = 90; //limits how much a missile can turn before it loses focus
+    public float originalRotation; //angle that missile spawns at
+    public float lowerRotLimit; //left rotation limit relative to original rotation
+    public float upperRotLimit; //same, but other way
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class MissilePhysics : MonoBehaviour
 
     private void Update()
     {
-        missile.velocity = transform.up * speed;
+        missile.velocity = transform.up * speed * Time.deltaTime; //missile gooooo
 
         if (isLockedOn)
             RotateToTarget();
@@ -42,7 +42,7 @@ public class MissilePhysics : MonoBehaviour
             missile.angularVelocity = 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) //locks on to player within circle collider, only locks on once
+    private void OnTriggerEnter2D(Collider2D collision) //locks-on to first player that enters lockOnRange
     {
         if (player == null && collision.tag == "Player")
         {
@@ -51,22 +51,23 @@ public class MissilePhysics : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) //resumes regular movement on player's exit from lockOnRange
     {
         if (player != null)
         {
             if (collision.transform == player)
-                isLockedOn = false;
+                isLockedOn = false; //prevents locking on to more than one player during missile's lifetime
         }
     }
 
+    //TO DO: test if the turn limit is really necessary/what it should be set at
     private void RotateToTarget() //points missile toward player up until a max turning point
     {
         Vector2 targetDirection = player.position - transform.position;
         targetDirection.Normalize();
 
         float rotateAmount = Vector3.Cross(targetDirection, transform.up).z;
-        missile.angularVelocity = -rotateAmount * turnSpeed;
+        missile.angularVelocity = -rotateAmount * turnSpeed * Time.deltaTime;
 
         if (missile.rotation <= lowerRotLimit || missile.rotation >= upperRotLimit)
             isLockedOn = false;
