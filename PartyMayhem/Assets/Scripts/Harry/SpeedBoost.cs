@@ -26,7 +26,7 @@ public class SpeedBoost : MonoBehaviour {
         {
             SpeedCollision.GetComponent<PlayerMovement>().speed = BoostedSpeed;
 
-            Debug.Log("Collision Detected With Player");          
+            //Debug.Log("Collision Detected With Player");          
         }
     }
     public void OnTriggerExit2D(Collider2D SpeedCollisionExit)
