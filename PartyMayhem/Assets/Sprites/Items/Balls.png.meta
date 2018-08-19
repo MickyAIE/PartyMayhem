@@ -1,15 +1,10 @@
 fileFormatVersion: 2
-guid: 12ad6ff202a07cf4eafa3999a51241fe
+guid: 1e5b62108473eb2438ff62f7ee27b94a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: DrumsAlt_0
-    21300002: DrumsAlt_1
-    21300004: DrumsAlt_2
-    21300006: DrumsAlt_3
-    21300008: DrumsAlt_4
-    21300010: DrumsAlt_5
-    21300012: DrumsAlt_6
-    21300014: DrumsAlt_7
+    21300000: Balls_0
+    21300002: Balls_1
+    21300004: Balls_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -87,69 +82,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DrumsAlt_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 20
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DrumsAlt_1
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 20
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DrumsAlt_2
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 20
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DrumsAlt_3
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 20
-        width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DrumsAlt_4
+      name: Balls_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 20
-        height: 20
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,13 +96,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DrumsAlt_5
+      name: Balls_1
       rect:
         serializedVersion: 2
         x: 20
         y: 0
         width: 20
-        height: 20
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,27 +110,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: DrumsAlt_6
+      name: Balls_2
       rect:
         serializedVersion: 2
         x: 40
         y: 0
         width: 20
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: DrumsAlt_7
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 20
-        height: 20
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
