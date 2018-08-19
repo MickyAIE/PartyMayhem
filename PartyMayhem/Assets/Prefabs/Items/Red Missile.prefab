@@ -109,9 +109,10 @@ MonoBehaviour:
   lockOnRange: {fileID: 0}
   player: {fileID: 0}
   speed: 200
-  turnSpeed: 4000
+  turnSpeed: 8000
+  lifeTime: 10
   isLockedOn: 0
-  maxTurnAngle: 120
+  maxTurnAngle: 240
   originalRotation: 0
   lowerRotLimit: 0
   upperRotLimit: 0

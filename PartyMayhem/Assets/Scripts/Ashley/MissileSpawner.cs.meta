@@ -3,7 +3,10 @@ guid: 9219ea5efd09c794e8f6656bf78fd110
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - redMissile: {instanceID: 0}
+  - blueMissile: {instanceID: 0}
+  - bottomPanel: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

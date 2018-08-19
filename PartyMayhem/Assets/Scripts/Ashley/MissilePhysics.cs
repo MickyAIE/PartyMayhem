@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class MissilePhysics : MonoBehaviour
 {
+    private MissileMadness manager;
+
     public Rigidbody2D missile;
     public CircleCollider2D lockOnRange;
     public Transform player;
 
     public float speed;
     public float turnSpeed;
+    public float lifeTime; //how long a missile stays alive before exploding itself
     public bool isLockedOn = false;
 
     public float maxTurnAngle = 90; //limits how much a missile can turn before it loses focus
@@ -19,6 +22,7 @@ public class MissilePhysics : MonoBehaviour
 
     private void Awake()
     {
+        manager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MissileMadness>();
         missile = GetComponent<Rigidbody2D>();
         lockOnRange = GetComponent<CircleCollider2D>();
 
@@ -35,11 +39,15 @@ public class MissilePhysics : MonoBehaviour
     private void Update()
     {
         missile.velocity = transform.up * speed * Time.deltaTime; //missile gooooo
+        lifeTime -= Time.deltaTime;
 
         if (isLockedOn)
             RotateToTarget();
         else
             missile.angularVelocity = 0;
+
+        if (lifeTime <= 0 || manager.gameInProgress == false)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //locks-on to first player that enters lockOnRange
@@ -60,7 +68,6 @@ public class MissilePhysics : MonoBehaviour
         }
     }
 
-    //TO DO: test if the turn limit is really necessary/what it should be set at
     private void RotateToTarget() //points missile toward player up until a max turning point
     {
         Vector2 targetDirection = player.position - transform.position;
