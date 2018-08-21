@@ -15,6 +15,8 @@ public class MenuManager : MonoBehaviour {
     public Slider musicSlider;
     public Slider sfxSlider;
 
+    public Text modeText;
+
 
     [HideInInspector]
     public bool hoverBoard = false;
@@ -29,6 +31,22 @@ public class MenuManager : MonoBehaviour {
     [HideInInspector]
     public bool pressSpace = false;
 
+    [HideInInspector]
+    public bool boardMode;
+    [HideInInspector]
+    public bool tournamentMode;
+    [HideInInspector]
+    public bool freeplayMode;
+
+    public enum Mode
+    {
+        Board,
+        Tournament,
+        Freeplay,
+        NotChosen
+    };
+
+    private Mode mode;
 
     public GameObject boardModeInfo;
     public GameObject tournamentModeInfo;
@@ -60,6 +78,13 @@ public class MenuManager : MonoBehaviour {
 
         musicSlider.value = -15f;
         sfxSlider.value = -15f;
+
+
+        boardMode = false;
+        tournamentMode = false;
+        freeplayMode = false;
+
+        mode = Mode.NotChosen;
 
 
         resolutions = Screen.resolutions;
@@ -97,7 +122,29 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
-        if((hoverBoard == false && hoverTournament == false) && hoverFreeplay == false)
+
+        if((boardMode == false && tournamentMode == false) && freeplayMode == false)
+        {
+            mode = Mode.NotChosen;
+        }
+
+        if(boardMode == true && (tournamentMode == false && freeplayMode == false))
+        {
+            mode = Mode.Board;
+        }
+
+        if (tournamentMode == true && (boardMode == false && freeplayMode == false))
+        {
+            mode = Mode.Tournament;
+        }
+
+        if (freeplayMode == true && (tournamentMode == false && boardMode == false))
+        {
+            mode = Mode.Freeplay;
+        }
+
+
+        if ((hoverBoard == false && hoverTournament == false) && hoverFreeplay == false)
         {
             hoverGuideText.SetActive(true);
         }
@@ -134,6 +181,27 @@ public class MenuManager : MonoBehaviour {
             freeplayModeInfo.SetActive(false);
         }
 
+
+        switch (mode)
+        {
+            case Mode.Board:
+
+                break;
+
+            case Mode.Tournament:
+
+                break;
+
+            case Mode.Freeplay:
+
+                break;
+
+            case Mode.NotChosen:
+
+                break;
+        }
+
+        modeText.text = ("Mode: " + mode.ToString());
     }
 
 
@@ -216,15 +284,41 @@ public class MenuManager : MonoBehaviour {
         Debug.Log("Quit");
     }
 
-    public void OnModeSelected()
+    public void OnBoardModeSelected()
     {
         click.Play();
         anim.SetBool("goToMinigames", true);
-        Debug.Log("Minigame Select");
+
+        boardMode = true;
+
+        Debug.Log("Minigame Select (board)");
+    }
+
+    public void OnTournamentModeSelected()
+    {
+        click.Play();
+        anim.SetBool("goToMinigames", true);
+
+        tournamentMode = true;
+
+        Debug.Log("Minigame Select (tournament)");
+    }
+
+    public void OnFreeplayModeSelected()
+    {
+        click.Play();
+        anim.SetBool("goToMinigames", true);
+
+        freeplayMode = true;
+
+        Debug.Log("Minigame Select (freeplay)");
     }
 
     public void OnBackToModes()
     {
+        boardMode = false;
+        tournamentMode = false;
+        freeplayMode = false;
         click.Play();
         anim.SetBool("goToMinigames", false);
         Debug.Log("Mode Select");
