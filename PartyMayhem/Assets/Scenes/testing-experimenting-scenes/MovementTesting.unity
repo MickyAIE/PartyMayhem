@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400424343}
   m_Layer: 0
-  m_Name: Rotate
+  m_Name: Rotate 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 671346013}
   - component: {fileID: 671346012}
   m_Layer: 0
-  m_Name: sPunch
+  m_Name: sPunch 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,7 +352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1156883290}
   m_Layer: 0
-  m_Name: Rotate
+  m_Name: Rotate 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 1338199612}
   - component: {fileID: 1338199611}
   m_Layer: 0
-  m_Name: sPunch
+  m_Name: sPunch 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   sRotate: {fileID: 1156883289}
-  sPunch: {fileID: 671346011}
+  sPunch: {fileID: 0}
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
   speed: 15000

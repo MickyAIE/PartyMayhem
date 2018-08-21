@@ -26,13 +26,22 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigid = GetComponent<Rigidbody2D>();
         isPunching = false;
+
+        if (sPunch == null)
+        {
+            Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Punch |");
+        }
+        if(sRotate == null)
+        {
+            Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Rotate |");
+        }
     }
 
     private void Update()
     {
         if(sPunch != null)
         {
-            if (isPunching == true)
+            if(isPunching == true)
             {
                 sPunch.SetActive(true);
             }
@@ -40,10 +49,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 sPunch.SetActive(false);
             }
-        }
-        else
-        {
-            Debug.Log("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | sPunch |");
         }
 
         Aim();
@@ -92,9 +97,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (punchCooldown <= 0)
         {
-            isPunching = true;
-            //scrAnimations.Punch();
-
+            if(sPunch != null)
+            {
+                isPunching = true;
+            }
+            else
+            {
+                Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Punch |");
+            }
+            
             Debug.Log("PUNCH " + playerNumber + " " + angle);
             punchCooldown = 0.5f;
 
@@ -104,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | sRotate |");
+                Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Rotate |");
             }
         }
     }
