@@ -326,9 +326,24 @@ public class MenuManager : MonoBehaviour {
     }
 
 
-    public void GoToMinigame()
+    public void GoToMissileMadness()
     {
         SceneManager.LoadScene("MissileMadness");
+    }
+
+    public void GoToGeochase()
+    {
+        SceneManager.LoadScene("Pacman_Minigame");
+    }
+
+    public void GoToDodgeball()
+    {
+        SceneManager.LoadScene("DodgeballDojo");
+    }
+
+    public void GoToRacing()
+    {
+        SceneManager.LoadScene("Racing_Minigame");
     }
 
     public void HoverBoard()

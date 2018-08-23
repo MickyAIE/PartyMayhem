@@ -614,7 +614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   sRotate: {fileID: 1156883289}
-  sPunch: {fileID: 0}
+  sPunch: {fileID: 671346011}
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
   speed: 15000
