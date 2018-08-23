@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame Scenes/MissileMadness.unity
     guid: b279dc27b30240d47a83c32460a64452
+  - enabled: 1
+    path: Assets/Scenes/Minigame Scenes/Pacman_Minigame.unity
+    guid: 142e6a757159fce489f679e0d8bdda54
