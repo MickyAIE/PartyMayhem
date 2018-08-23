@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
@@ -115,7 +116,7 @@ public class MenuManager : MonoBehaviour {
     {
         if (pressSpace == false)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.anyKeyDown)
             {
                 anim.SetBool("startScreen", false);
                 pressSpace = true;
@@ -239,49 +240,49 @@ public class MenuManager : MonoBehaviour {
     {
         click.Play();
         anim.SetBool("goToModes", true);
-        Debug.Log("Start");
+        //Debug.Log("Start");
     }
 
     public void OnModesBackPress()
     {
         click.Play();
         anim.SetBool("goToModes", false);
-        Debug.Log("Back");
+        //Debug.Log("Back");
     }
 
     public void OnSettingsButtonPress()
     {
         click.Play();
         anim.SetBool("goToSettings", true);
-        Debug.Log("Settings");
+       // Debug.Log("Settings");
     }
 
     public void OnSettingsBackPress()
     {
         click.Play();
         anim.SetBool("goToSettings", false);
-        Debug.Log("Back");
+        //Debug.Log("Back");
     }
 
     public void OnCreditsButtonPress()
     {
         click.Play();
         anim.SetBool("goToCredits", true);
-        Debug.Log("Credits");
+        //Debug.Log("Credits");
     }
 
     public void OnCreditsBackPress()
     {
         click.Play();
         anim.SetBool("goToCredits", false);
-        Debug.Log("Back");
+        //Debug.Log("Back");
     }
 
     public void OnQuitButtonPress()
     {
         click.Play();
         Application.Quit();
-        Debug.Log("Quit");
+        //Debug.Log("Quit");
     }
 
     public void OnBoardModeSelected()
@@ -291,7 +292,7 @@ public class MenuManager : MonoBehaviour {
 
         boardMode = true;
 
-        Debug.Log("Minigame Select (board)");
+        //Debug.Log("Minigame Select (board)");
     }
 
     public void OnTournamentModeSelected()
@@ -301,7 +302,7 @@ public class MenuManager : MonoBehaviour {
 
         tournamentMode = true;
 
-        Debug.Log("Minigame Select (tournament)");
+        //Debug.Log("Minigame Select (tournament)");
     }
 
     public void OnFreeplayModeSelected()
@@ -311,7 +312,7 @@ public class MenuManager : MonoBehaviour {
 
         freeplayMode = true;
 
-        Debug.Log("Minigame Select (freeplay)");
+        //Debug.Log("Minigame Select (freeplay)");
     }
 
     public void OnBackToModes()
@@ -321,9 +322,14 @@ public class MenuManager : MonoBehaviour {
         freeplayMode = false;
         click.Play();
         anim.SetBool("goToMinigames", false);
-        Debug.Log("Mode Select");
+        //Debug.Log("Mode Select");
     }
 
+
+    public void GoToMinigame()
+    {
+        SceneManager.LoadScene("MissileMadness");
+    }
 
     public void HoverBoard()
     {
