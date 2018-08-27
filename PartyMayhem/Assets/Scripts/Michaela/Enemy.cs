@@ -26,6 +26,8 @@ public class Bools
 
     public bool hasMoved = false;
     public bool hasPickedNumber = false;
+
+    public bool hasPickedNumber2 = false;
 }
 
 public class Enemy : MonoBehaviour {
@@ -56,6 +58,7 @@ public class Enemy : MonoBehaviour {
 
         int rand = Random.Range(0, 2);
 
+        //Move either left or right a bit
         onStartMoveDistance = Random.Range(0f, 1.1f);
         if(rand == 0)
         {
@@ -69,6 +72,7 @@ public class Enemy : MonoBehaviour {
 
     private void Update()
     {
+        //If hasn't thrown a ball yet
         if (bools.hasThrownBall == false)
         {
             TurnToTarget();
@@ -76,12 +80,16 @@ public class Enemy : MonoBehaviour {
             bools.hasPickedNumber = false;
             bools.hasMoved = false;
 
+            //If hasn't spawned in a ball yet, spawn one
             if (bools.hasSpawnedBall == false)
             {
                 ball = Instantiate(ballPrefab, ballSpawn.transform.position, ballSpawn.transform.rotation, gameObject.transform);
                 bools.hasSpawnedBall = true;
             }
 
+            PickRandomTime();
+
+            //Throw ball
             timers.throwTimer -= Time.deltaTime;
             if(timers.throwTimer <= 0)
             {
@@ -89,19 +97,22 @@ public class Enemy : MonoBehaviour {
             }
         }
 
+        //If has thrown ball 
         if (bools.hasThrownBall == true)
         {
             bools.hasSpawnedBall = false;
+
             ThrowBall();
             RandomMove();
 
-            timers.waitTimer -= Time.deltaTime;
-            
+            //Wait for a couple seconds before starting the process again
+            timers.waitTimer -= Time.deltaTime;            
             if(timers.waitTimer <= 0)
             {
                 timers.throwTimer = timers.throwStartTime;
                 timers.waitTimer = timers.waitStartTime;
                 timers.waitToMoveTimer = timers.waitToMoveStartTime;
+                bools.hasPickedNumber2 = false;
                 Destroy(ball);
 
                 bools.hasThrownBall = false;
@@ -109,6 +120,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    //Aim at the player
     public void TurnToTarget()
     {
         Vector3 mousePosition = Input.mousePosition;
@@ -122,26 +134,33 @@ public class Enemy : MonoBehaviour {
         transform.up = -direction;
     }
 
+    //Throw the ball
     public void ThrowBall()
     {
-        float rotation = gameObject.transform.rotation.z;
         ball.transform.position += -transform.TransformDirection(Vector3.up) * Time.deltaTime * ballSpeed;
     }
 
+    //Move randomly either up or down
     public void RandomMove()
     {
+        //Wait for a couple seconds before moving (so the ball is thrown first)
         timers.waitToMoveTimer -= Time.deltaTime;
         if(timers.waitToMoveTimer <= 0)
         {
+            //If hasn't picked a number yet, pick a random number
             if (bools.hasPickedNumber == false)
             {
                 randomNumber = Random.Range(0, 2);
                 bools.hasPickedNumber = true;
             }
 
+            //If enemy has not moved yet
             if (bools.hasMoved == false)
             {
+                //Determines how long enemy moves for
                 timers.Movetimer -= Time.deltaTime;
+
+                //If number is 0, move up
                 if (randomNumber == 0)
                 {
                     if (timers.Movetimer > 0)
@@ -154,6 +173,7 @@ public class Enemy : MonoBehaviour {
                         timers.Movetimer = timers.moveStartTime;
                     }
                 }
+                //If number is 1, move down
                 if (randomNumber == 1)
                 {
                     if (timers.Movetimer > 0)
@@ -167,6 +187,19 @@ public class Enemy : MonoBehaviour {
                     }
                 }
             }
+        }
+    }
+
+    //Pick a random number (to determine when to throw ball)
+    public void PickRandomTime()
+    {
+        //If number hasn't been picked yet, pick a random number
+        if(bools.hasPickedNumber2 == false)
+        {
+            timers.throwTimer = Random.Range(1f, 3.1f);
+            timers.throwStartTime = timers.throwTimer;
+
+            bools.hasPickedNumber2 = true;
         }
     }
 }
