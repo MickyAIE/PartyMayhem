@@ -7,7 +7,7 @@ public class RacingGameManager : MonoBehaviour {
     public int Laps;
 
 	void Start () {
-        Laps = GameObject.Find("ThePlayer").GetComponent<LapsCounter>().Lap = Laps;
+        Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap = Laps;
     }
 	
 	void Update () {
