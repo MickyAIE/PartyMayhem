@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour {
     public float rotateSpeed = 3f;
     public float ballSpeed = 6f;
 
+    public float onStartMoveDistance;
+
     public int randomNumber;
 
     public GameObject player;
@@ -45,10 +47,24 @@ public class Enemy : MonoBehaviour {
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         bools.hasThrownBall = false;
         bools.hasSpawnedBall = false;
         bools.hasMoved = false;
         bools.hasPickedNumber = false;
+
+        int rand = Random.Range(0, 2);
+
+        onStartMoveDistance = Random.Range(0f, 1.1f);
+        if(rand == 0)
+        {
+            transform.position += Vector3.left * onStartMoveDistance;
+        }
+        else
+        {
+            transform.position += Vector3.right * onStartMoveDistance;
+        }
     }
 
     private void Update()
