@@ -506,18 +506,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6b8af8b1457434488fa11fdcb1152d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timers:
+    waitToMoveTimer: 2
+    waitToMoveStartTime: 2
+    throwTimer: 2
+    throwStartTime: 2
+    waitTimer: 3
+    waitStartTime: 3
+    Movetimer: 0.5
+    moveStartTime: 0.5
   rotateSpeed: 5
   ballSpeed: 6
+  rand: 0
   player: {fileID: 180185209}
   ballPrefab: {fileID: 1264854513639462, guid: 0eee8a4b7355c0e47a1b73d2d97826a8, type: 2}
   ballSpawn: {fileID: 1330895013}
-  timerToThrow: 2
-  startTimeToThrow: 2
-  timerToWait: 2
-  startTimeToWait: 2
+  ball: {fileID: 0}
   hasThrownBall: 0
   hasSpawnedBall: 0
-  ball: {fileID: 0}
+  hasMoved: 0
+  hasPickedNumber: 0
 --- !u!212 &1274320402
 SpriteRenderer:
   m_ObjectHideFlags: 0
