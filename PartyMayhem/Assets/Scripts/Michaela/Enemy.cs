@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour {
     public float ballSpeed = 6f;
 
     public float onStartMoveDistance;
+    public float randomMoveDistance = 2;
 
     public int randomNumber;
 
@@ -46,6 +47,9 @@ public class Enemy : MonoBehaviour {
     public GameObject ballPrefab;
     public GameObject ballSpawn;
     public GameObject ball;
+
+    public RaycastHit hit;
+    public float rayDistance = 2;
 
     private void Start()
     {
@@ -143,9 +147,43 @@ public class Enemy : MonoBehaviour {
     //Move randomly either up or down
     public void RandomMove()
     {
+        bool shouldMove = true;
+
+        Debug.DrawRay(transform.position, Vector3.up * rayDistance);
+        if (Physics.Raycast(transform.position, Vector3.up, out hit, rayDistance))
+        {
+            timers.Movetimer -= Time.deltaTime;
+            if(timers.Movetimer > 0)
+            {
+                gameObject.transform.position += Vector3.down * Time.deltaTime;
+            }
+            else
+            {
+                shouldMove = false;
+                timers.Movetimer = timers.moveStartTime;
+                bools.hasMoved = true;
+            }
+        }
+
+        Debug.DrawRay(transform.position, Vector3.down * rayDistance);
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayDistance))
+        {
+            timers.Movetimer -= Time.deltaTime;
+            if (timers.Movetimer > 0)
+            {
+                gameObject.transform.position += Vector3.up * Time.deltaTime;
+            }
+            else
+            {
+                shouldMove = false;
+                timers.Movetimer = timers.moveStartTime;
+                bools.hasMoved = true;
+            }
+        }
+
         //Wait for a couple seconds before moving (so the ball is thrown first)
         timers.waitToMoveTimer -= Time.deltaTime;
-        if(timers.waitToMoveTimer <= 0)
+        if(timers.waitToMoveTimer <= 0 && shouldMove == true)
         {
             //If hasn't picked a number yet, pick a random number
             if (bools.hasPickedNumber == false)
