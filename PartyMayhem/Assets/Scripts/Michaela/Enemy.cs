@@ -8,15 +8,19 @@ public class Enemy : MonoBehaviour {
     public float ballSpeed = 6f;
 
     public GameObject player;
-    public GameObject ball;
+    public GameObject ballPrefab;
+    public GameObject ballSpawn;
 
-    public float timer = 2;
-    public float startTime = 2;
+    public float timerToThrow = 2;
+    public float startTimeToThrow = 2;
 
-    public float timer2 = 2;
-    public float startTime2 = 2;
+    public float timerToWait = 2;
+    public float startTimeToWait = 2;
 
     public bool hasThrownBall = false;
+    public bool hasSpawnedBall = false;
+
+    public GameObject ball;
 
     private void Update()
     {
@@ -24,25 +28,34 @@ public class Enemy : MonoBehaviour {
         {
             TurnToTarget();
 
-            timer -= Time.deltaTime;
-            if(timer <= 0)
+            if (hasSpawnedBall == false)
+            {
+                ball = Instantiate(ballPrefab, ballSpawn.transform.position, ballSpawn.transform.rotation, gameObject.transform);
+                hasSpawnedBall = true;
+            }
+
+            timerToThrow -= Time.deltaTime;
+            if(timerToThrow <= 0)
             {
                 hasThrownBall = true;
+
             }
         }
 
-        if(hasThrownBall == true)
+        if (hasThrownBall == true)
         {
+            hasSpawnedBall = false;
             ThrowBall();
-
-            /*
-            timer2 -= Time.deltaTime;
-            if(timer2 <= 0)
+            
+            timerToWait -= Time.deltaTime;
+            if(timerToWait <= 0)
             {
-                timer = startTime;
-                timer2 = startTime2;
+                timerToThrow = startTimeToThrow;
+                timerToWait = startTimeToWait;
+                Destroy(ball);
+
                 hasThrownBall = false;
-            }*/
+            }
         }
     }
 
@@ -57,12 +70,13 @@ public class Enemy : MonoBehaviour {
             );
 
         transform.up = -direction;
+
+
     }
 
     public void ThrowBall()
     {
+        float rotation = gameObject.transform.rotation.z;
         ball.transform.position += Vector3.left * Time.deltaTime * ballSpeed;
-
-        Debug.Log("Thrown Ball");
     }
 }
