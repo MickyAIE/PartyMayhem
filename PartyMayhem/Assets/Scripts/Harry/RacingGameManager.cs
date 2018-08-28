@@ -25,7 +25,7 @@ public class RacingGameManager : MonoBehaviour {
         if (Laps >= 3)
         {
             Time.timeScale = 0.25F;
-            Invoke("ResetTimeScale", 2);
+            Invoke("ResetTimeScale", 0.5f);
         }
     }
     public void ResetTimeScale()
