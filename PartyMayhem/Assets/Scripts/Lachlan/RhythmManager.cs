@@ -20,7 +20,7 @@ public class RhythmManager : MonoBehaviour
     [HideInInspector] public float timerMax;
 
 
-    void Start()
+    public void Start()
     {
         gameSpeed = 500;
         goingUp = true;
@@ -30,15 +30,15 @@ public class RhythmManager : MonoBehaviour
         min = 0;
         timer = 0;
         timerMax = 20;
-	}
+    }
 
-	void Update()
+	public void Update()
     {
         if(timer >= timerMax)
         {
             timer = 0;
             CalculateScore();
-            Debug.Log(award.ToString());
+            //Debug.Log(award.ToString());
         }
         else
         {
@@ -46,7 +46,7 @@ public class RhythmManager : MonoBehaviour
         }
     }
 
-    void CalculateScore()
+    public void CalculateScore()
     {
         if(goingUp == true)
         {
@@ -67,5 +67,10 @@ public class RhythmManager : MonoBehaviour
             beat.Play();
             goingUp = false;
         }
+    }
+
+    public void StateScore()
+    {
+        Debug.Log(award.ToString());
     }
 }

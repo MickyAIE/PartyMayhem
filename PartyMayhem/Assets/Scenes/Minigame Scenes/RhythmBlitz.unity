@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 219318902}
   m_Layer: 0
   m_Name: RhythmManager
-  m_TagString: Untagged
+  m_TagString: Rhythm Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

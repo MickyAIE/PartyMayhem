@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterMoveTransitions scrAnimations;
+    [HideInInspector] public CharacterMoveTransitions scrAnimations;
+    [HideInInspector] public RhythmManager rManager;
+
     public string playerNumber;
     private Rigidbody2D playerRigid;
     public GameObject sRotate;
@@ -26,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigid = GetComponent<Rigidbody2D>();
         scrAnimations = GetComponent<CharacterMoveTransitions>();
+        rManager = GameObject.FindGameObjectWithTag("Rhythm Manager").GetComponent<RhythmManager>();
+
         isPunching = false;
 
         if (sPunch == null)
@@ -62,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         }
         punchCooldown -= Time.deltaTime;
 
-        if(punchCooldown <= 0.4f)
+        if(punchCooldown <= 0.2f)
         {
             isPunching = false;
         }
@@ -98,7 +102,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (punchCooldown <= 0)
         {
-            if(sPunch != null)
+            rManager.StateScore();
+
+            if (sPunch != null)
             {
                 isPunching = true;
             }
@@ -108,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             Debug.Log("PUNCH " + playerNumber + " " + angle);
-            punchCooldown = 0.5f;
+            punchCooldown = 0.3f;
 
             if(sRotate != null)
             {
