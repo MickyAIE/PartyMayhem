@@ -23,7 +23,7 @@ public class SpeedBoost : MonoBehaviour {
         
         if (SpeedCollision.gameObject.tag == "Player") //When a Player collides with the speed pad it triggers a boost in the players speed and sends a Debug Log Message.
         {
-            //Player = SpeedCollision.;
+            Player = GameObject.FindGameObjectsWithTag("Player");
             SpeedCollision.GetComponent<PlayerMovement>().speed = BoostedSpeed;
             //Debug.Log("Collision Detected With Player");          
         }
