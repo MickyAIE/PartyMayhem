@@ -52,12 +52,8 @@ public class Enemy : MonoBehaviour {
 
     public int randomNumber;
 
-
-
     public RaycastHit hit;
     public float rayDistance = 2;
-
-
 
 
     private void Start()

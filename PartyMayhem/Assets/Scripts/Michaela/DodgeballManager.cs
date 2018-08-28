@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class DodgeballManager : MonoBehaviour {
 
@@ -18,6 +19,9 @@ public class DodgeballManager : MonoBehaviour {
     public int enemyCount;
     public int maxEnemies;
 
+    public float gameTime;
+    public Text timerText;
+
     private void Start()
     {
         Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
@@ -30,6 +34,8 @@ public class DodgeballManager : MonoBehaviour {
 
     private void Update()
     {
+        GameTimer();
+
         foreach (GameObject player in players)
         {
             //player.AddComponent<>();
@@ -59,4 +65,15 @@ public class DodgeballManager : MonoBehaviour {
         enemies.Add(enemyPrefab);
     }
 
+    public void GameTimer()
+    {
+        if (gameTime <= 0)
+        {
+            return;
+        }
+
+        gameTime -= Time.deltaTime;
+        int seconds = Mathf.RoundToInt(gameTime);
+        timerText.text = string.Format("{0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
+    }
 }
