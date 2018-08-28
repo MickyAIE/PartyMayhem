@@ -15,27 +15,21 @@ public class SpeedBoost : MonoBehaviour {
         DefaultSpeed = 150;
     }
 
-    void Update() {
-
-    }
-
     public void OnTriggerEnter2D(Collider2D SpeedCollision)
     {
         Player = SpeedCollision.gameObject;
         if (SpeedCollision.gameObject.tag == "Player") //When a Player collides with the speed pad it triggers a boost in the players speed and sends a Debug Log Message.
         {
             SpeedCollision.GetComponent<PlayerMovement>().speed = BoostedSpeed;
-
             //Debug.Log("Collision Detected With Player");          
         }
     }
+
     public void OnTriggerExit2D(Collider2D SpeedCollisionExit)
     {
-        if (SpeedCollisionExit.gameObject.tag == "Player")
-        {
-            Invoke("SetDefaultSpeed", 1);
-        }
+        Invoke("SetDefaultSpeed", 1);
     }
+
     public void SetDefaultSpeed()
     {
         Player.GetComponent<PlayerMovement>().speed = DefaultSpeed;
