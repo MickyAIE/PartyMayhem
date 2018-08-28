@@ -14,3 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigame Scenes/Pacman_Minigame.unity
     guid: 142e6a757159fce489f679e0d8bdda54
+  - enabled: 1
+    path: Assets/Scenes/Minigame Scenes/RhythmBlitz.unity
+    guid: 0828f95e0be14b948be10dbad69fea66
+  - enabled: 1
+    path: Assets/Scenes/Minigame Scenes/DodgeballDojo.unity
+    guid: 07a95e4b407226c48b03321b84a312fa
+  - enabled: 1
+    path: Assets/Scenes/Racing_Minigame.unity
+    guid: a80a8ec31d7683040ae8de75fd523804

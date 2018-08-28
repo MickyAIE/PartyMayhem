@@ -346,6 +346,12 @@ public class MenuManager : MonoBehaviour {
         SceneManager.LoadScene("Racing_Minigame");
     }
 
+    public void GoToRythm()
+    {
+        SceneManager.LoadScene("RhythmBlitz");
+    }
+
+
     public void HoverBoard()
     {
         hoverBoard = true;
