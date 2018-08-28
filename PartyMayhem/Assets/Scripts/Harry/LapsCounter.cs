@@ -23,6 +23,5 @@ public class LapsCounter : MonoBehaviour {
         Lap = currentLap;
         NextCheckpoint = checkPointArray;
         LapCounter.text = Lap + "/3";
-
-    }
+    }    
 }
