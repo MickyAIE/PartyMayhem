@@ -11,10 +11,10 @@ public class RacingGameManager : MonoBehaviour {
 
     void Start() {
         Players = GameObject.FindGameObjectsWithTag("Player");
-        Players[0].AddComponent(typeof(LapsCounter));
-        if (Players.Length >= 0) { Players[1].AddComponent(typeof(LapsCounter)); }
-        if (Players.Length >= 1) { Players[2].AddComponent(typeof(LapsCounter)); }
-        if (Players.Length >= 2) { Players[3].AddComponent(typeof(LapsCounter)); }
+        foreach (GameObject Player in Players)
+        {
+            Player.AddComponent(typeof(LapsCounter));
+        }
         Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
     }
 
