@@ -108,6 +108,7 @@ MonoBehaviour:
   missile: {fileID: 0}
   lockOnRange: {fileID: 0}
   player: {fileID: 0}
+  explosion: {fileID: 1187883872937084, guid: 0586414cb63df7e4e986b99e0bc87abd, type: 2}
   speed: 400
   turnSpeed: 4000
   lifeTime: 10

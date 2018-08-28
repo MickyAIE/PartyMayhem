@@ -4,23 +4,68 @@ using UnityEngine;
 
 public class RhythmManager : MonoBehaviour
 {
-    [HideInInspector] public float scoreAward;
+    public AudioSource beat;
+
+    [HideInInspector] public int gameSpeed;
+
+    [HideInInspector] public bool goingUp;
+
+    [HideInInspector] public int award;
+    [HideInInspector] public int increment;
+
+    [HideInInspector] public int max;
+    [HideInInspector] public int min;
+
+    [HideInInspector] public float timer;
+    [HideInInspector] public float timerMax;
 
 
-	void Start()
+    void Start()
     {
-		
+        gameSpeed = 500;
+        goingUp = true;
+        award = 0;
+        increment = 250;
+        max = 1000;
+        min = 0;
+        timer = 0;
+        timerMax = 20;
 	}
 
 	void Update()
     {
-        CalculateScore();
-	}
+        if(timer >= timerMax)
+        {
+            timer = 0;
+            CalculateScore();
+            Debug.Log(award.ToString());
+        }
+        else
+        {
+            timer += gameSpeed * Time.deltaTime;
+        }
+    }
 
     void CalculateScore()
     {
-        scoreAward = Mathf.Sin(Time.time * 20);
+        if(goingUp == true)
+        {
+            award += increment;
+        }
+        else
+        {
+            award -= increment;
+        }
 
-        Debug.Log(scoreAward.ToString());
+        if(award == min)
+        {
+            goingUp = true;
+        }
+        
+        if(award == max)
+        {
+            beat.Play();
+            goingUp = false;
+        }
     }
 }
