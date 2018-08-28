@@ -25,15 +25,24 @@ public class Bools
     public bool hasSpawnedBall = false;
 
     public bool hasMoved = false;
-    public bool hasPickedNumber = false;
 
+    public bool hasPickedNumber = false;
     public bool hasPickedNumber2 = false;
+
+    public bool hasChosenTarget = false;
 }
 
 public class Enemy : MonoBehaviour {
 
     public Timers timers;
     public Bools bools;
+
+    private DodgeballManager dodgeballManager;
+
+    public GameObject player;
+    public GameObject ballPrefab;
+    public GameObject ballSpawn;
+    public GameObject ball;
 
     public float rotateSpeed = 3f;
     public float ballSpeed = 6f;
@@ -43,17 +52,17 @@ public class Enemy : MonoBehaviour {
 
     public int randomNumber;
 
-    public GameObject player;
-    public GameObject ballPrefab;
-    public GameObject ballSpawn;
-    public GameObject ball;
+
 
     public RaycastHit hit;
     public float rayDistance = 2;
 
+
+
+
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        dodgeballManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<DodgeballManager>();
 
         bools.hasThrownBall = false;
         bools.hasSpawnedBall = false;
@@ -117,6 +126,7 @@ public class Enemy : MonoBehaviour {
                 timers.waitTimer = timers.waitStartTime;
                 timers.waitToMoveTimer = timers.waitToMoveStartTime;
                 bools.hasPickedNumber2 = false;
+                bools.hasChosenTarget = false;
                 Destroy(ball);
 
                 bools.hasThrownBall = false;
@@ -127,6 +137,12 @@ public class Enemy : MonoBehaviour {
     //Aim at the player
     public void TurnToTarget()
     {
+        if (bools.hasChosenTarget == false)
+        {
+            player = dodgeballManager.players[Random.Range(0, dodgeballManager.players.Length)];
+            bools.hasChosenTarget = true;
+        }
+
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 

@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public void Start()
     {
         playerRigid = GetComponent<Rigidbody2D>();
+        scrAnimations = GetComponent<CharacterMoveTransitions>();
         isPunching = false;
 
         if (sPunch == null)
@@ -105,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Punch |");
             }
-            
+
             Debug.Log("PUNCH " + playerNumber + " " + angle);
             punchCooldown = 0.5f;
 
@@ -116,6 +117,11 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Rotate |");
+            }
+
+            if (scrAnimations != null)
+            {
+                scrAnimations.Punch();
             }
         }
     }

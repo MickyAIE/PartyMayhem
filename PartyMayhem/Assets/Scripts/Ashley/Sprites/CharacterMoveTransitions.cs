@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMoveTransitions : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
 
     //named ints for easier reading
     readonly int down = 0;
@@ -27,7 +27,6 @@ public class CharacterMoveTransitions : MonoBehaviour
         DetermineInput();
         CheckDirection();
         CheckMovement();
-        Punch();
     }
 
     public void DetermineInput() //takes player number to create input shorthand
@@ -64,7 +63,6 @@ public class CharacterMoveTransitions : MonoBehaviour
 
     public void Punch() //sets punch trigger when punch input is pressed
     {
-        if (punchInput)
-            animator.SetTrigger("punch");
+        animator.SetTrigger("punch");
     }
 }

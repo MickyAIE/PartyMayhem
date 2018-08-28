@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DodgeballManager : MonoBehaviour {
 
     public GameObject[] enemySpawnPoints;
     public GameObject enemyPrefab;
     public List<GameObject> enemies;
+    public GameObject[] players;
 
     public float timer = 5;
     public float startTime = 5;
@@ -14,6 +16,7 @@ public class DodgeballManager : MonoBehaviour {
     public bool shouldSpawnEnemy = true;
 
     public int enemyCount;
+    public int maxEnemies;
 
     private void Start()
     {
@@ -21,12 +24,19 @@ public class DodgeballManager : MonoBehaviour {
         enemies.Add(enemyPrefab);
 
         shouldSpawnEnemy = true;
+
+        players = GameObject.FindGameObjectsWithTag("Player").OrderBy(go => go.name).ToArray();
     }
 
     private void Update()
     {
+        foreach (GameObject player in players)
+        {
+            //player.AddComponent<>();
+        }
+
         enemyCount = enemies.Count;
-        if(enemyCount >= 5)
+        if(enemyCount >= maxEnemies)
         {
             shouldSpawnEnemy = false;
         }
