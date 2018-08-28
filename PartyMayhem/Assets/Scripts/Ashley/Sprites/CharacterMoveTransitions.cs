@@ -12,15 +12,14 @@ public class CharacterMoveTransitions : MonoBehaviour
     readonly int left = 2;
     readonly int right = 3;
 
-    private int playerNumber;
-    private float verticalInput;
-    private float horizontalInput;
-    private bool punchInput;
+    public int playerNumber = 1;
+    public float verticalInput;
+    public float horizontalInput;
+    public bool punchInput;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        playerNumber = 1; //TO DO: write script to differenciate players and take number from there
     }
 
     private void Update()

@@ -21,7 +21,7 @@ public class MissileSpawner : MonoBehaviour
     {
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer >= spawnDelay && manager.gameInProgress == true)
+        if (spawnTimer >= spawnDelay && manager.State == MissileMadness.GameState.Game)
         {
             SpawnMissile();
             spawnTimer = 0;
