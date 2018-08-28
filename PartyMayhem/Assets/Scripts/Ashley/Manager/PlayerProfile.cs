@@ -10,4 +10,9 @@ public class PlayerProfile : MonoBehaviour
     {
 
     }
+
+    public GameObject Character()
+    {
+        return null;
+    }
 }
