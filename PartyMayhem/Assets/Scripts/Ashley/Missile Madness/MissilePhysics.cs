@@ -9,6 +9,7 @@ public class MissilePhysics : MonoBehaviour
     public Rigidbody2D missile;
     public CircleCollider2D lockOnRange;
     public Transform player;
+    public GameObject explosion;
 
     public float speed;
     public float turnSpeed;
@@ -46,7 +47,7 @@ public class MissilePhysics : MonoBehaviour
         else
             missile.angularVelocity = 0;
 
-        if (lifeTime <= 0 || manager.gameInProgress == false)
+        if (lifeTime <= 0 || manager.State != MissileMadness.GameState.Game)
             Destroy(gameObject);
     }
 
@@ -83,6 +84,15 @@ public class MissilePhysics : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) //destroys missile on collision with player or other missile
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
+        {
             DestroyObject(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.SetActive(false);
+        }
+
+        Instantiate(explosion, transform.position, transform.rotation);
     }
 }
