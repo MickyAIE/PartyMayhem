@@ -19,7 +19,7 @@ public class LapsCounter : MonoBehaviour {
 
     void Start()
     {
-        checkPointArray = GameObject.FindGameObjectsWithTag("CheckPoint").OrderBy (go => go.name ).ToArray(); //this adds the checkpoints to the array and sorts them by name.
+        checkPointArray = GameObject.FindGameObjectsWithTag("CheckPoint").OrderBy (CheckPoints => CheckPoints.name ).ToArray(); //this adds the checkpoints to the array and sorts them by name.
         currentCheckpoint = 0;
         currentLap = 0;
         /*checkPointArray[0] = CheckPoint0;
