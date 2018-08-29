@@ -92,7 +92,6 @@ public class DodgeballManager : MonoBehaviour {
 
             foreach (GameObject enemy in enemies)
             {
-                DestroyObject(enemy);
             }
 
             winMessage.SetActive(false);
