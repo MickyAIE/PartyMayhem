@@ -23,11 +23,23 @@ public class DodgeballManager : MonoBehaviour {
     public Text timerText;
 
     public bool allPlayersHit = false;
+    public bool endGame = false;
+
+    public GameObject winMessage;
+    public GameObject loseMessage;
+
+    public bool playerOneHasBeenHit = false;
+    public bool playerTwoHasBeenHit = false;
+    public bool playerThreeHasBeenHit = false;
+    public bool playerFourHasBeenHit = false;
 
     private void Start()
     {
         Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
         enemies.Add(enemyPrefab);
+
+        winMessage.SetActive(false);
+        loseMessage.SetActive(false);
 
         shouldSpawnEnemy = true;
 
@@ -43,59 +55,93 @@ public class DodgeballManager : MonoBehaviour {
     {
         foreach (GameObject player in players)
         {
-            if(player.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == true)
+            if(playerOneHasBeenHit == true)
             {
-                //players[0].SetActive(false);
+                players[0].SetActive(false);
             }
-            if (player.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == true)
+            if (playerTwoHasBeenHit == true)
             {
                 players[1].SetActive(false);
             }
-            if (player.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == true)
+            if (playerThreeHasBeenHit == true)
             {
                 players[2].SetActive(false);
             }
-            if (player.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == true)
+            if (playerFourHasBeenHit == true)
             {
                 players[3].SetActive(false);
             }
 
-            if (player.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == true && (player.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == true
-                && (player.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == true && player.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == true))) {
+            if ((playerOneHasBeenHit == true && playerTwoHasBeenHit == true)
+                && (playerThreeHasBeenHit == true && playerFourHasBeenHit == true)) {
 
                 allPlayersHit = true;
             }
 
         }
-            GameTimer();
 
-            enemyCount = enemies.Count;
-            if (enemyCount >= maxEnemies)
+        if (allPlayersHit == true)
+        {
+            endGame = true;
+            shouldSpawnEnemy = false;
+
+            foreach (GameObject player in players)
             {
-                shouldSpawnEnemy = false;
-            }
-            else
-            {
-                shouldSpawnEnemy = true;
+                player.SetActive(false);
             }
 
-            timer -= Time.deltaTime;
-            if (timer <= 0 && shouldSpawnEnemy == true)
+            foreach (GameObject enemy in enemies)
             {
-                SpawnEnemy();
-                timer = startTime;
+                DestroyObject(enemy);
             }
+
+            winMessage.SetActive(false);
+            loseMessage.SetActive(true);
+        }
+
+        if (gameTime <= 0 && allPlayersHit == false)
+        {
+            endGame = true;
+            shouldSpawnEnemy = false;
+
+            foreach (GameObject player in players)
+            {
+                player.SetActive(false);
+            }
+
+            winMessage.SetActive(true);
+            loseMessage.SetActive(false);
+        }
+
+        GameTimer();
+
+        enemyCount = enemies.Count;
+        if (enemyCount >= maxEnemies && endGame == false)
+        {
+            shouldSpawnEnemy = false;
+        }
+        else if(enemyCount > maxEnemies && endGame == false)
+        {
+            shouldSpawnEnemy = true;
+        }
+
+        timer -= Time.deltaTime;
+        if (timer <= 0 && shouldSpawnEnemy == true)
+        {
+            SpawnEnemy();
+            timer = startTime;
+        }
     }
 
     public void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
+        Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 5)].transform.position, Quaternion.identity);
         enemies.Add(enemyPrefab);
     }
 
     public void GameTimer()
     {
-        if (gameTime <= 0)
+        if (gameTime <= 0 || endGame == true)
         {
             return;
         }

@@ -83,6 +83,11 @@ public class Enemy : MonoBehaviour {
 
     private void Update()
     {
+        if(dodgeballManager.endGame == true)
+        {
+            return;
+        }
+
         //If hasn't thrown a ball yet
         if (bools.hasThrownBall == false)
         {
@@ -161,38 +166,38 @@ public class Enemy : MonoBehaviour {
 
     public bool CheckTargetIsAlive(GameObject p)
     {
-        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == true)
+        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().dM.playerOneHasBeenHit == true)
         {
-            return true;
+            return false;
         }
-        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == false)
+        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().dM.playerOneHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == true)
+        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().dM.playerTwoHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == false)
+        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().dM.playerTwoHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == true)
+        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().dM.playerThreeHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == false)
+        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().dM.playerThreeHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == true)
+        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().dM.playerFourHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == false)
+        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().dM.playerFourHasBeenHit == false)
         {
             return true;
         }
