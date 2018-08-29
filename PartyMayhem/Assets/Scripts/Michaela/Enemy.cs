@@ -166,38 +166,38 @@ public class Enemy : MonoBehaviour {
 
     public bool CheckTargetIsAlive(GameObject p)
     {
-        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().dM.playerOneHasBeenHit == true)
+        if(p.gameObject.name == "Player" && dodgeballManager.playerOneHasBeenHit == true)
         {
             return false;
         }
-        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().dM.playerOneHasBeenHit == false)
+        if(p.gameObject.name == "Player" && dodgeballManager.playerOneHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().dM.playerTwoHasBeenHit == true)
+        if (p.gameObject.name == "Target1" && dodgeballManager.playerTwoHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().dM.playerTwoHasBeenHit == false)
+        if (p.gameObject.name == "Target1" && dodgeballManager.playerTwoHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().dM.playerThreeHasBeenHit == true)
+        if (p.gameObject.name == "Target2" && dodgeballManager.playerThreeHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().dM.playerThreeHasBeenHit == false)
+        if (p.gameObject.name == "Target2" && dodgeballManager.playerThreeHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().dM.playerFourHasBeenHit == true)
+        if (p.gameObject.name == "Target3" && dodgeballManager.playerFourHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().dM.playerFourHasBeenHit == false)
+        if (p.gameObject.name == "Target3" && dodgeballManager.playerFourHasBeenHit == false)
         {
             return true;
         }

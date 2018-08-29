@@ -28,7 +28,10 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigid = GetComponent<Rigidbody2D>();
         scrAnimations = GetComponent<CharacterMoveTransitions>();
-        rManager = GameObject.FindGameObjectWithTag("Rhythm Manager").GetComponent<RhythmManager>();
+        if(rManager != null)
+        {
+            rManager = GameObject.FindGameObjectWithTag("Rhythm Manager").GetComponent<RhythmManager>();
+        }
 
         isPunching = false;
 
@@ -102,7 +105,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (punchCooldown <= 0)
         {
-            rManager.StateScore();
+            if(rManager != null)
+            {
+                rManager.StateScore();
+            }
 
             if (sPunch != null)
             {
