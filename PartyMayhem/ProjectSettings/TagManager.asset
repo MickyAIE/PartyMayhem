@@ -8,6 +8,7 @@ TagManager:
   - MinigameManager
   - CheckPoint
   - Rhythm Manager
+  - Ball
   layers:
   - Default
   - TransparentFX

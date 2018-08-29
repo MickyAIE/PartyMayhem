@@ -22,6 +22,8 @@ public class DodgeballManager : MonoBehaviour {
     public float gameTime;
     public Text timerText;
 
+    public bool allPlayersHit = false;
+
     private void Start()
     {
         Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
@@ -29,34 +31,60 @@ public class DodgeballManager : MonoBehaviour {
 
         shouldSpawnEnemy = true;
 
-        players = GameObject.FindGameObjectsWithTag("Player").OrderBy(go => go.name).ToArray();
+        players = GameObject.FindGameObjectsWithTag("Player").OrderBy(go => go.name).ToArray();   
+
+        foreach(GameObject player in players)
+        {
+            player.AddComponent<DodgeballPlayerExtra>();
+        }
     }
 
     private void Update()
     {
-        GameTimer();
-
         foreach (GameObject player in players)
         {
-            //player.AddComponent<>();
-        }
+            if(player.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == true)
+            {
+                //players[0].SetActive(false);
+            }
+            if (player.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == true)
+            {
+                players[1].SetActive(false);
+            }
+            if (player.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == true)
+            {
+                players[2].SetActive(false);
+            }
+            if (player.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == true)
+            {
+                players[3].SetActive(false);
+            }
 
-        enemyCount = enemies.Count;
-        if(enemyCount >= maxEnemies)
-        {
-            shouldSpawnEnemy = false;
-        }
-        else
-        {
-            shouldSpawnEnemy = true;
-        }
+            if (player.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == true && (player.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == true
+                && (player.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == true && player.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == true))) {
 
-        timer -= Time.deltaTime;
-        if(timer <= 0 && shouldSpawnEnemy == true)
-        {
-            SpawnEnemy();
-            timer = startTime;
+                allPlayersHit = true;
+            }
+
         }
+            GameTimer();
+
+            enemyCount = enemies.Count;
+            if (enemyCount >= maxEnemies)
+            {
+                shouldSpawnEnemy = false;
+            }
+            else
+            {
+                shouldSpawnEnemy = true;
+            }
+
+            timer -= Time.deltaTime;
+            if (timer <= 0 && shouldSpawnEnemy == true)
+            {
+                SpawnEnemy();
+                timer = startTime;
+            }
     }
 
     public void SpawnEnemy()

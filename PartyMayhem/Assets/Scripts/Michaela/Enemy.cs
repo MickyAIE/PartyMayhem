@@ -30,6 +30,8 @@ public class Bools
     public bool hasPickedNumber2 = false;
 
     public bool hasChosenTarget = false;
+
+    public bool hasBeenHit = false;
 }
 
 public class Enemy : MonoBehaviour {
@@ -100,7 +102,7 @@ public class Enemy : MonoBehaviour {
 
             //Throw ball
             timers.throwTimer -= Time.deltaTime;
-            if(timers.throwTimer <= 0)
+            if (timers.throwTimer <= 0)
             {
                 bools.hasThrownBall = true;
             }
@@ -115,8 +117,8 @@ public class Enemy : MonoBehaviour {
             RandomMove();
 
             //Wait for a couple seconds before starting the process again
-            timers.waitTimer -= Time.deltaTime;            
-            if(timers.waitTimer <= 0)
+            timers.waitTimer -= Time.deltaTime;
+            if (timers.waitTimer <= 0)
             {
                 timers.throwTimer = timers.throwStartTime;
                 timers.waitTimer = timers.waitStartTime;
@@ -128,32 +130,90 @@ public class Enemy : MonoBehaviour {
                 bools.hasThrownBall = false;
             }
         }
+        
     }
 
     //Aim at the player
     public void TurnToTarget()
     {
-        if (bools.hasChosenTarget == false)
-        {
-            player = dodgeballManager.players[Random.Range(0, dodgeballManager.players.Length)];
-            bools.hasChosenTarget = true;
-        }
-
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        Vector2 direction = new Vector2(
-            player.transform.position.x - transform.position.x,
-            player.transform.position.y - transform.position.y
-            );
+        if (bools.hasChosenTarget == false)
+        {
+            player = dodgeballManager.players[Random.Range(0, dodgeballManager.players.Length)];
+            if (CheckTargetIsAlive(player))
+            {
+                bools.hasChosenTarget = true;
+            }
+        }
 
-        transform.up = -direction;
+        if(bools.hasChosenTarget == true)
+        {
+            Vector2 direction = new Vector2(
+                player.transform.position.x - transform.position.x,
+                player.transform.position.y - transform.position.y
+                );
+
+            transform.up = -direction;
+        }
+    }
+
+    public bool CheckTargetIsAlive(GameObject p)
+    {
+        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == true)
+        {
+            return true;
+        }
+        if(p.gameObject.name == "Player" && p.GetComponent<DodgeballPlayerExtra>().playerOneHasBeenHit == false)
+        {
+            return true;
+        }
+
+        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == true)
+        {
+            return false;
+        }
+        if (p.gameObject.name == "Target1" && p.GetComponent<DodgeballPlayerExtra>().playerTwoHasBeenHit == false)
+        {
+            return true;
+        }
+
+        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == true)
+        {
+            return false;
+        }
+        if (p.gameObject.name == "Target2" && p.GetComponent<DodgeballPlayerExtra>().playerThreeHasBeenHit == false)
+        {
+            return true;
+        }
+
+        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == true)
+        {
+            return false;
+        }
+        if (p.gameObject.name == "Target3" && p.GetComponent<DodgeballPlayerExtra>().playerFourHasBeenHit == false)
+        {
+            return true;
+        }
+        else if(dodgeballManager.allPlayersHit == true)
+        {
+            return false;
+        }
+        else
+        {
+            Debug.LogWarning("Couldn't check targeted player");
+            return false;
+        }
     }
 
     //Throw the ball
     public void ThrowBall()
     {
-        ball.transform.position += -transform.TransformDirection(Vector3.up) * Time.deltaTime * ballSpeed;
+        if(ball != null)
+        {
+            ball.transform.position += -transform.TransformDirection(Vector3.up) * Time.deltaTime * ballSpeed;
+        }
     }
 
     //Move randomly either up or down

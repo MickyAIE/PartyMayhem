@@ -20,7 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4667951577886088}
   - component: {fileID: 212450437784619608}
-  m_Layer: 0
+  - component: {fileID: 58151030944353422}
+  m_Layer: 2
   m_Name: Ball(Dodgeball)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +101,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!58 &58151030944353422
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407404876891036}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 9.313226e-10, y: -0.00000047683716}
+  serializedVersion: 2
+  m_Radius: 0.21938659
 --- !u!114 &114387085867576482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,15 +142,17 @@ MonoBehaviour:
     hasMoved: 0
     hasPickedNumber: 0
     hasPickedNumber2: 0
+    hasChosenTarget: 0
+    hasBeenHit: 0
+  player: {fileID: 0}
+  ballPrefab: {fileID: 1264854513639462, guid: 0eee8a4b7355c0e47a1b73d2d97826a8, type: 2}
+  ballSpawn: {fileID: 1559272909509946}
+  ball: {fileID: 0}
   rotateSpeed: 5
   ballSpeed: 6
   onStartMoveDistance: 0.5
   randomMoveDistance: 2
   randomNumber: 0
-  player: {fileID: 0}
-  ballPrefab: {fileID: 1264854513639462, guid: 0eee8a4b7355c0e47a1b73d2d97826a8, type: 2}
-  ballSpawn: {fileID: 1559272909509946}
-  ball: {fileID: 0}
   rayDistance: 1
 --- !u!212 &212077694154350892
 SpriteRenderer:
