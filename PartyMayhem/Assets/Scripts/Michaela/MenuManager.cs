@@ -98,9 +98,6 @@ public class MenuManager : MonoBehaviour {
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(false);
 
-        musicSlider.value = -15f;
-        sfxSlider.value = -15f;
-
         graphicsDropdown.value = 4;
 
         mode = Mode.NotChosen;
