@@ -88,8 +88,8 @@ MonoBehaviour:
     throwStartTime: 2
     waitTimer: 3
     waitStartTime: 3
-    Movetimer: 0.5
-    moveStartTime: 0.5
+    Movetimer: 0.9
+    moveStartTime: 0.9
   bools:
     hasThrownBall: 0
     hasSpawnedBall: 0
@@ -104,10 +104,10 @@ MonoBehaviour:
   ball: {fileID: 0}
   rotateSpeed: 3
   ballSpeed: 6
-  onStartMoveDistance: 0
+  onStartMoveDistance: 1
   randomMoveDistance: 2
   randomNumber: 0
-  rayDistance: 2
+  rayDistance: 1
 --- !u!212 &212948509370815630
 SpriteRenderer:
   m_ObjectHideFlags: 1

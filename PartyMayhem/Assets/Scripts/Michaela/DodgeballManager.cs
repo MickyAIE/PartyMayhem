@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DodgeballManager : MonoBehaviour {
 
@@ -27,6 +28,7 @@ public class DodgeballManager : MonoBehaviour {
 
     public GameObject winMessage;
     public GameObject loseMessage;
+    public GameObject optionButtons;
 
     public bool playerOneHasBeenHit = false;
     public bool playerTwoHasBeenHit = false;
@@ -40,6 +42,7 @@ public class DodgeballManager : MonoBehaviour {
 
         winMessage.SetActive(false);
         loseMessage.SetActive(false);
+        optionButtons.SetActive(false);
 
         shouldSpawnEnemy = true;
 
@@ -96,6 +99,8 @@ public class DodgeballManager : MonoBehaviour {
 
             winMessage.SetActive(false);
             loseMessage.SetActive(true);
+            optionButtons.SetActive(true);
+
         }
 
         if (gameTime <= 0 && allPlayersHit == false)
@@ -110,6 +115,7 @@ public class DodgeballManager : MonoBehaviour {
 
             winMessage.SetActive(true);
             loseMessage.SetActive(false);
+            optionButtons.SetActive(true);
         }
 
         GameTimer();
@@ -148,5 +154,15 @@ public class DodgeballManager : MonoBehaviour {
         gameTime -= Time.deltaTime;
         int seconds = Mathf.RoundToInt(gameTime);
         timerText.text = string.Format("{0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
+    }
+
+    public void OnPlayAgain()
+    {
+        SceneManager.LoadScene("DodgeballDojo");
+    }
+
+    public void OnMainMenu()
+    {
+        SceneManager.LoadScene("Menus");
     }
 }
