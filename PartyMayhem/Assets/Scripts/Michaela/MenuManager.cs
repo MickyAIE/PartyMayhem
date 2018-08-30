@@ -39,6 +39,15 @@ public class MenuManager : MonoBehaviour {
     [HideInInspector]
     public bool freeplayMode;
 
+    public Text minigameName;
+    public bool selectedMissile = false;
+    public bool selectedDodgeball = false;
+
+    public Image minigamePreview;
+    public Sprite missilePreview;
+    public Sprite dodgeballPreview;
+    
+
     public enum Mode
     {
         Board,
@@ -60,6 +69,9 @@ public class MenuManager : MonoBehaviour {
     public Dropdown resolutionDropdown;
 
 
+    public GameObject missileInfo;
+    public GameObject dodgeballInfo;
+
     public void Start()
     {
         anim.SetBool("goToSettings", false);
@@ -76,6 +88,9 @@ public class MenuManager : MonoBehaviour {
         tournamentModeInfo.SetActive(false);
         freeplayModeInfo.SetActive(false);
         hoverGuideText.SetActive(false);
+
+        dodgeballInfo.SetActive(false);
+        missileInfo.SetActive(false);
 
         musicSlider.value = -15f;
         sfxSlider.value = -15f;
@@ -102,7 +117,7 @@ public class MenuManager : MonoBehaviour {
             if(resolutions[i].width == Screen.currentResolution.width && 
                resolutions[i].height == Screen.currentResolution.height)
             {
-                currentResolutionIndex = 1;
+                currentResolutionIndex = i;
             }
         }
 
@@ -325,32 +340,56 @@ public class MenuManager : MonoBehaviour {
         //Debug.Log("Mode Select");
     }
 
-
-    public void GoToMissileMadness()
+    public void OnMinigameMissilePressed()
     {
-        SceneManager.LoadScene("MissileMadness");
+        click.Play();
+
+        selectedDodgeball = false;
+        selectedMissile = true;
+
+        minigameName.text = "Missile Madness";
+        minigamePreview.sprite = missilePreview;
+
+        dodgeballInfo.SetActive(false);
+        missileInfo.SetActive(true);
+
+        anim.SetBool("goToMinigameInfo", true);
     }
 
-    public void GoToGeochase()
+    public void OnMinigameDodgeballPressed()
     {
-        SceneManager.LoadScene("Pacman_Minigame");
+        click.Play();
+
+        selectedDodgeball = true;
+        selectedMissile = false;
+
+        minigameName.text = "Dodgeball";
+        minigamePreview.sprite = dodgeballPreview;
+
+        dodgeballInfo.SetActive(true);
+        missileInfo.SetActive(false);
+
+        anim.SetBool("goToMinigameInfo", true);
     }
 
-    public void GoToDodgeball()
+    public void OnBackToMinigames()
     {
-        SceneManager.LoadScene("DodgeballDojo");
+        click.Play();
+        anim.SetBool("goToMinigameInfo", false);
     }
 
-    public void GoToRacing()
+    public void PlayMinigame()
     {
-        SceneManager.LoadScene("Racing_Minigame");
-    }
+        if(selectedDodgeball == false && selectedMissile == true)
+        {
+            SceneManager.LoadScene("MissileMadness");
+        }
 
-    public void GoToRythm()
-    {
-        SceneManager.LoadScene("RhythmBlitz");
+        if (selectedDodgeball == true && selectedMissile == false)
+        {
+            SceneManager.LoadScene("DodgeballDojo");
+        }
     }
-
 
     public void HoverBoard()
     {
