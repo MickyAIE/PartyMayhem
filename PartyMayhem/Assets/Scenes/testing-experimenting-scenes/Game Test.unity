@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 1311580359}
   m_Layer: 0
   m_Name: Start Positions
-  m_TagString: Untagged
+  m_TagString: StartPositions
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,8 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401d3030e0627e94a890e000f4c7c0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profiles: []
-  startPositions: []
+  gameManager: {fileID: 0}
 --- !u!1 &1659647897
 GameObject:
   m_ObjectHideFlags: 0

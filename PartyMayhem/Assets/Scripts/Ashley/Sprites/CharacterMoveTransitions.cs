@@ -17,6 +17,8 @@ public class CharacterMoveTransitions : MonoBehaviour
     public float horizontalInput;
     public bool punchInput;
 
+    public bool isPaused = false; //set elsewhere to stop inputs affecting animator
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,9 +26,12 @@ public class CharacterMoveTransitions : MonoBehaviour
 
     private void Update()
     {
-        DetermineInput();
-        CheckDirection();
-        CheckMovement();
+        if (!isPaused)
+        {
+            DetermineInput();
+            CheckDirection();
+            CheckMovement();
+        }
     }
 
     public void DetermineInput() //takes player number to create input shorthand
@@ -36,7 +41,6 @@ public class CharacterMoveTransitions : MonoBehaviour
         punchInput = Input.GetButtonDown("P" + playerNumber + " Punch");
     }
 
-    //TO DO: make it better
     public void CheckDirection() //tells the animation controller what direction the player is facing
     {
         if (horizontalInput < 0)
@@ -61,8 +65,14 @@ public class CharacterMoveTransitions : MonoBehaviour
             animator.SetBool("isRunning", false);
     }
 
-    public void Punch() //sets punch trigger when punch input is pressed
+    public void Punch() //referenced in PlayerMovement to set punch trigger
     {
         animator.SetTrigger("punch");
+    }
+
+    public void ResetAnimation() //use to reset animator to default state
+    {
+        animator.SetInteger("direction", down);
+        animator.SetBool("isRunning", false);
     }
 }

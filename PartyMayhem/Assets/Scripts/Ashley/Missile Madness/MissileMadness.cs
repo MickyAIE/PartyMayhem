@@ -11,7 +11,8 @@ public class MissileMadness : MonoBehaviour
 
     public float timeLimit;
     public float countdown;
-    public bool allowMovement;
+    public bool allowMovement = false;
+    public bool onePlayerMode = false;
 
     public enum GameState
     {
@@ -32,10 +33,17 @@ public class MissileMadness : MonoBehaviour
     private void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+
+        if (PlayerCount() == 1)
+        {
+            onePlayerMode = true;
+        }
     }
 
     private void Update()
     {
+        PlayerCount();
+
         switch (gameState)
         {
             case GameState.Start:
@@ -44,32 +52,26 @@ public class MissileMadness : MonoBehaviour
 
                 if (countdown <= 0)
                 {
-                    gameState = GameState.Game;
                     allowMovement = true;
+                    timer.gameObject.SetActive(true);
+                    message.gameObject.SetActive(false);
+                    gameState = GameState.Game;
                 }
-                
                 break;
 
             case GameState.Game:
-                timer.gameObject.SetActive(true);
-                message.gameObject.SetActive(false);
-
                 timeLimit -= Time.deltaTime;
                 int seconds = Mathf.RoundToInt(timeLimit);
                 timer.text = string.Format("{0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
 
-                OnePlayerLeft();
-
-                if (timeLimit <= 0 || OnePlayerLeft())
+                if (timeLimit <= 0 || (PlayerCount() == 1 && !onePlayerMode) || PlayerCount() == 0)
                 {
                     EndGame();
                     gameState = GameState.Finish;
                 }
-
                 break;
 
             case GameState.Finish:
-
                 break;
         }
     }
@@ -79,8 +81,9 @@ public class MissileMadness : MonoBehaviour
         message.text = "FINISH!";
         timer.gameObject.SetActive(false);
         message.gameObject.SetActive(true);
+        allowMovement = false;
 
-        //Freezes players when game ends
+        //Freezes players when game ends, implement something better later.
         foreach (GameObject player in players)
         {
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
@@ -94,19 +97,24 @@ public class MissileMadness : MonoBehaviour
             {
                 pm.enabled = false;
             }
+
+            CharacterMoveTransitions cmt = player.GetComponent<CharacterMoveTransitions>();
+            if (cmt != null)
+            {
+                cmt.isPaused = true;
+                cmt.ResetAnimation();
+            }
         }
     }
 
-    private bool OnePlayerLeft()
+    private int PlayerCount()
     {
         int playerCount = 0;
-
         foreach (GameObject player in players)
         {
             if (player.activeSelf == true)
                 playerCount++;
         }
-
-        return (playerCount == 1);
+        return playerCount;
     }
 }

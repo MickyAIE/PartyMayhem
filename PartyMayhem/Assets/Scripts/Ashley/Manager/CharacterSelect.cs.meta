@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 29141fbbcafae014a8d4ab6942c80f0f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - currentPrefab: {instanceID: 0}
+  - Dog_10: {fileID: 1229449262659976, guid: 1785e4cd9a3fd2d44866f2ab62beec84, type: 2}
+  - Shiba_09: {fileID: 1242678690437446, guid: 8e7268ef7a24d9042937e72026843d73, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
