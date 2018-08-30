@@ -5,7 +5,31 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class bools
+{
+    public bool hoverBoard = false;
+    public bool hoverTournament = false;
+    public bool hoverFreeplay = false;
+
+    public bool hoveringOverSomething = false;
+
+    public bool pressSpace = false;
+
+    public bool boardMode;
+    public bool tournamentMode;
+    public bool freeplayMode;
+
+    public bool selectedMissile = false;
+    public bool selectedDodgeball = false;
+    public bool selectedRacing = false;
+    public bool selectedGeo = false;
+    public bool selectedRhythm = false;
+}
+
 public class MenuManager : MonoBehaviour {
+
+    public bools bools;
 
     public Animator anim;
 
@@ -17,38 +41,29 @@ public class MenuManager : MonoBehaviour {
     public Slider sfxSlider;
 
     public Text modeText;
-
-
-    [HideInInspector]
-    public bool hoverBoard = false;
-    [HideInInspector]
-    public bool hoverTournament = false;
-    [HideInInspector]
-    public bool hoverFreeplay = false;
-
-    [HideInInspector]
-    public bool hoveringOverSomething = false;
-
-    [HideInInspector]
-    public bool pressSpace = false;
-
-    [HideInInspector]
-    public bool boardMode;
-    [HideInInspector]
-    public bool tournamentMode;
-    [HideInInspector]
-    public bool freeplayMode;
-
     public Text minigameName;
-    public bool selectedMissile = false;
-    public bool selectedDodgeball = false;
 
     public Image minigamePreview;
     public Sprite missilePreview;
     public Sprite dodgeballPreview;
+    //public Sprite geoPreview;
+    //public Sprite racingPreview;
+    //public Sprite rhythmPreview;
+    public Sprite noPreview;
 
     public Dropdown graphicsDropdown;
-    
+    public Dropdown resolutionDropdown;
+
+    public GameObject boardModeInfo;
+    public GameObject tournamentModeInfo;
+    public GameObject freeplayModeInfo;
+
+    public GameObject missileInfo;
+    public GameObject dodgeballInfo;
+
+    public GameObject hoverGuideText;
+
+    Resolution[] resolutions;
 
     public enum Mode
     {
@@ -57,22 +72,7 @@ public class MenuManager : MonoBehaviour {
         Freeplay,
         NotChosen
     };
-
     private Mode mode;
-
-    public GameObject boardModeInfo;
-    public GameObject tournamentModeInfo;
-    public GameObject freeplayModeInfo;
-
-    public GameObject hoverGuideText;
-
-
-    Resolution[] resolutions;
-    public Dropdown resolutionDropdown;
-
-
-    public GameObject missileInfo;
-    public GameObject dodgeballInfo;
 
     public void Start()
     {
@@ -82,9 +82,13 @@ public class MenuManager : MonoBehaviour {
         anim.SetBool("startScreen", true);
 
 
-        hoverBoard = false;
-        hoverTournament = false;
-        hoverFreeplay = false;
+        bools.hoverBoard = false;
+        bools.hoverTournament = false;
+        bools.hoverFreeplay = false;
+
+        bools.boardMode = false;
+        bools.tournamentMode = false;
+        bools.freeplayMode = false;
 
         boardModeInfo.SetActive(false);
         tournamentModeInfo.SetActive(false);
@@ -99,12 +103,7 @@ public class MenuManager : MonoBehaviour {
 
         graphicsDropdown.value = 4;
 
-        boardMode = false;
-        tournamentMode = false;
-        freeplayMode = false;
-
         mode = Mode.NotChosen;
-
 
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -132,74 +131,36 @@ public class MenuManager : MonoBehaviour {
 
     public void Update()
     {
-        if (pressSpace == false)
+        if (bools.pressSpace == false)
         {
             if (Input.anyKeyDown)
             {
                 anim.SetBool("startScreen", false);
-                pressSpace = true;
+                bools.pressSpace = true;
             }
         }
 
+        Hover();
 
-        if((boardMode == false && tournamentMode == false) && freeplayMode == false)
+        if ((bools.boardMode == false && bools.tournamentMode == false) && bools.freeplayMode == false)
         {
             mode = Mode.NotChosen;
         }
 
-        if(boardMode == true && (tournamentMode == false && freeplayMode == false))
+        if(bools.boardMode == true && (bools.tournamentMode == false && bools.freeplayMode == false))
         {
             mode = Mode.Board;
         }
 
-        if (tournamentMode == true && (boardMode == false && freeplayMode == false))
+        if (bools.tournamentMode == true && (bools.boardMode == false && bools.freeplayMode == false))
         {
             mode = Mode.Tournament;
         }
 
-        if (freeplayMode == true && (tournamentMode == false && boardMode == false))
+        if (bools.freeplayMode == true && (bools.tournamentMode == false && bools.boardMode == false))
         {
             mode = Mode.Freeplay;
         }
-
-
-        if ((hoverBoard == false && hoverTournament == false) && hoverFreeplay == false)
-        {
-            hoverGuideText.SetActive(true);
-        }
-        else
-        {
-            hoverGuideText.SetActive(false);
-        }
-
-
-        if(hoverBoard == true && (hoverTournament == false && hoverFreeplay == false))
-        {
-            boardModeInfo.SetActive(true);
-        }
-        else if (hoverBoard == false)
-        {
-            boardModeInfo.SetActive(false);
-        }
-
-        if (hoverTournament == true && (hoverBoard == false && hoverFreeplay == false))
-        {
-            tournamentModeInfo.SetActive(true);
-        }
-        else if(hoverTournament == false)
-        {
-            tournamentModeInfo.SetActive(false);
-        }
-
-        if (hoverFreeplay == true && (hoverBoard == false && hoverTournament == false))
-        {
-            freeplayModeInfo.SetActive(true);
-        }
-        else if (hoverFreeplay == false)
-        {
-            freeplayModeInfo.SetActive(false);
-        }
-
 
         switch (mode)
         {
@@ -223,6 +184,45 @@ public class MenuManager : MonoBehaviour {
         modeText.text = ("Mode: " + mode.ToString());
     }
 
+    public void Hover()
+    {
+        if ((bools.hoverBoard == false && bools.hoverTournament == false) && bools.hoverFreeplay == false)
+        {
+            hoverGuideText.SetActive(true);
+        }
+        else
+        {
+            hoverGuideText.SetActive(false);
+        }
+
+
+        if (bools.hoverBoard == true && (bools.hoverTournament == false && bools.hoverFreeplay == false))
+        {
+            boardModeInfo.SetActive(true);
+        }
+        else if (bools.hoverBoard == false)
+        {
+            boardModeInfo.SetActive(false);
+        }
+
+        if (bools.hoverTournament == true && (bools.hoverBoard == false && bools.hoverFreeplay == false))
+        {
+            tournamentModeInfo.SetActive(true);
+        }
+        else if (bools.hoverTournament == false)
+        {
+            tournamentModeInfo.SetActive(false);
+        }
+
+        if (bools.hoverFreeplay == true && (bools.hoverBoard == false && bools.hoverTournament == false))
+        {
+            freeplayModeInfo.SetActive(true);
+        }
+        else if (bools.hoverFreeplay == false)
+        {
+            freeplayModeInfo.SetActive(false);
+        }
+    }
 
     public void SetMusicVolume(float volume)
     {
@@ -253,54 +253,46 @@ public class MenuManager : MonoBehaviour {
         Debug.Log("Resolution: " + resolution);
     }
 
-
     public void OnStartButtonPress()
     {
         click.Play();
         anim.SetBool("goToModes", true);
-        //Debug.Log("Start");
     }
 
     public void OnModesBackPress()
     {
         click.Play();
         anim.SetBool("goToModes", false);
-        //Debug.Log("Back");
     }
 
     public void OnSettingsButtonPress()
     {
         click.Play();
         anim.SetBool("goToSettings", true);
-       // Debug.Log("Settings");
     }
 
     public void OnSettingsBackPress()
     {
         click.Play();
         anim.SetBool("goToSettings", false);
-        //Debug.Log("Back");
     }
 
     public void OnCreditsButtonPress()
     {
         click.Play();
         anim.SetBool("goToCredits", true);
-        //Debug.Log("Credits");
     }
 
     public void OnCreditsBackPress()
     {
         click.Play();
         anim.SetBool("goToCredits", false);
-        //Debug.Log("Back");
     }
 
     public void OnQuitButtonPress()
     {
         click.Play();
         Application.Quit();
-        //Debug.Log("Quit");
     }
 
     public void OnBoardModeSelected()
@@ -308,9 +300,7 @@ public class MenuManager : MonoBehaviour {
         click.Play();
         anim.SetBool("goToMinigames", true);
 
-        boardMode = true;
-
-        //Debug.Log("Minigame Select (board)");
+        bools.boardMode = true;
     }
 
     public void OnTournamentModeSelected()
@@ -318,9 +308,7 @@ public class MenuManager : MonoBehaviour {
         click.Play();
         anim.SetBool("goToMinigames", true);
 
-        tournamentMode = true;
-
-        //Debug.Log("Minigame Select (tournament)");
+        bools.tournamentMode = true;
     }
 
     public void OnFreeplayModeSelected()
@@ -328,27 +316,25 @@ public class MenuManager : MonoBehaviour {
         click.Play();
         anim.SetBool("goToMinigames", true);
 
-        freeplayMode = true;
-
-        //Debug.Log("Minigame Select (freeplay)");
+        bools.freeplayMode = true;
     }
 
     public void OnBackToModes()
     {
-        boardMode = false;
-        tournamentMode = false;
-        freeplayMode = false;
+        bools.boardMode = false;
+        bools.tournamentMode = false;
+        bools.freeplayMode = false;
+
         click.Play();
         anim.SetBool("goToMinigames", false);
-        //Debug.Log("Mode Select");
     }
 
     public void OnMinigameMissilePressed()
     {
         click.Play();
 
-        selectedDodgeball = false;
-        selectedMissile = true;
+        bools.selectedDodgeball = false;
+        bools.selectedMissile = true;
 
         minigameName.text = "Missile Madness";
         minigamePreview.sprite = missilePreview;
@@ -363,8 +349,8 @@ public class MenuManager : MonoBehaviour {
     {
         click.Play();
 
-        selectedDodgeball = true;
-        selectedMissile = false;
+        bools.selectedDodgeball = true;
+        bools.selectedMissile = false;
 
         minigameName.text = "Dodgeball";
         minigamePreview.sprite = dodgeballPreview;
@@ -375,52 +361,116 @@ public class MenuManager : MonoBehaviour {
         anim.SetBool("goToMinigameInfo", true);
     }
 
+    public void OnMinigameRacingPressed()
+    {
+        click.Play();
+
+        bools.selectedDodgeball = false;
+        bools.selectedMissile = false;
+        bools.selectedGeo = false;
+        bools.selectedRhythm = false;
+        bools.selectedRacing = true;
+
+        minigameName.text = "Racing";
+        minigamePreview.sprite = noPreview;
+
+        dodgeballInfo.SetActive(false);
+        missileInfo.SetActive(false);
+
+        anim.SetBool("goToMinigameInfo", true);
+    }
+
+    public void OnMinigameGeoPressed()
+    {
+        click.Play();
+
+        bools.selectedDodgeball = false;
+        bools.selectedMissile = false;
+        bools.selectedGeo = true;
+        bools.selectedRhythm = false;
+        bools.selectedRacing = false;
+
+        minigameName.text = "Geochase";
+        minigamePreview.sprite = noPreview;
+
+        dodgeballInfo.SetActive(false);
+        missileInfo.SetActive(false);
+
+        anim.SetBool("goToMinigameInfo", true);
+    }
+
+    public void OnMinigameRhythmPressed()
+    {
+        click.Play();
+
+        bools.selectedDodgeball = false;
+        bools.selectedMissile = false;
+        bools.selectedGeo = false;
+        bools.selectedRhythm = true;
+        bools.selectedRacing = false;
+
+        minigameName.text = "Rhythm Blitz";
+        minigamePreview.sprite = noPreview;
+
+        dodgeballInfo.SetActive(false);
+        missileInfo.SetActive(false);
+
+        anim.SetBool("goToMinigameInfo", true);
+    }
+
+    public void PlayMinigame()
+    {
+        if(bools.selectedMissile == true && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
+        {
+            SceneManager.LoadScene("MissileMadness");
+        }
+        if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == true && (bools.selectedRacing == false && bools.selectedRhythm == false))))
+        {
+            SceneManager.LoadScene("DodgeballDojo");
+        }
+        if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == true && bools.selectedRhythm == false))))
+        {
+            SceneManager.LoadScene("Racing_Minigame");
+        }
+        if (bools.selectedMissile == false && (bools.selectedGeo == true && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
+        {
+            SceneManager.LoadScene("Pacman_Minigame");
+        }
+        if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == true))))
+        {
+            SceneManager.LoadScene("RhythmBlitz");
+        }
+    }
+
     public void OnBackToMinigames()
     {
         click.Play();
         anim.SetBool("goToMinigameInfo", false);
     }
 
-    public void PlayMinigame()
-    {
-        if(selectedDodgeball == false && selectedMissile == true)
-        {
-            SceneManager.LoadScene("MissileMadness");
-        }
-
-        if (selectedDodgeball == true && selectedMissile == false)
-        {
-            SceneManager.LoadScene("DodgeballDojo");
-        }
-    }
 
     public void HoverBoard()
     {
-        hoverBoard = true;
+        bools.hoverBoard = true;
     }
-
     public void NotHoverBoard()
     {
-        hoverBoard = false;
+        bools.hoverBoard = false;
     }
-
     public void HoverTournament()
     {
-        hoverTournament = true;
+        bools.hoverTournament = true;
     }
-
     public void NotHoverTournament()
     {
-        hoverTournament = false;
+        bools.hoverTournament = false;
     }
-
     public void HoverFreeplay()
     {
-        hoverFreeplay = true;
+        bools.hoverFreeplay = true;
     }
-
     public void NotHoverFreeplay()
     {
-        hoverFreeplay = false;
+        bools.hoverFreeplay = false;
     }
 }

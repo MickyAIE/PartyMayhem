@@ -191,7 +191,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 55976358}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -225,7 +225,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1720154916}
-        m_MethodName: OnMinigamePressed
+        m_MethodName: OnMinigameRacingPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3737,7 +3737,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 759495028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -3771,7 +3771,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1720154916}
-        m_MethodName: OnMinigamePressed
+        m_MethodName: OnMinigameRhythmPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5055,7 +5055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &967105989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8116,7 +8116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1373008608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8259,7 +8259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1430898843
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9881,7 +9881,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1647723992}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -9915,7 +9915,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1720154916}
-        m_MethodName: OnMinigamePressed
+        m_MethodName: OnMinigameGeoPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10647,6 +10647,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848d4d5b8abe99c41b8bfb8a04cf27e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bools:
+    hoverBoard: 0
+    hoverTournament: 0
+    hoverFreeplay: 0
+    hoveringOverSomething: 0
+    pressSpace: 0
+    boardMode: 0
+    tournamentMode: 0
+    freeplayMode: 0
+    selectedMissile: 0
+    selectedDodgeball: 0
+    selectedRacing: 0
+    selectedGeo: 0
+    selectedRhythm: 0
   anim: {fileID: 1622402893}
   audioMixer: {fileID: 24100000, guid: d90e8c807487e4449ad1a6893ce36d7c, type: 2}
   music: {fileID: 1720154918}
@@ -10654,28 +10668,19 @@ MonoBehaviour:
   musicSlider: {fileID: 398359546}
   sfxSlider: {fileID: 1006804079}
   modeText: {fileID: 1805940496}
-  hoverBoard: 0
-  hoverTournament: 0
-  hoverFreeplay: 0
-  hoveringOverSomething: 0
-  pressSpace: 0
-  boardMode: 0
-  tournamentMode: 0
-  freeplayMode: 0
   minigameName: {fileID: 2002962252}
-  selectedMissile: 0
-  selectedDodgeball: 0
   minigamePreview: {fileID: 456299859}
   missilePreview: {fileID: 21300000, guid: 9bc10432380252d4cbb935baa5e73c85, type: 3}
   dodgeballPreview: {fileID: 21300000, guid: c35fced5c256fbd498deaa4295412b18, type: 3}
+  noPreview: {fileID: 0}
   graphicsDropdown: {fileID: 448437298}
+  resolutionDropdown: {fileID: 830088436}
   boardModeInfo: {fileID: 184389859}
   tournamentModeInfo: {fileID: 785159716}
   freeplayModeInfo: {fileID: 2099372506}
-  hoverGuideText: {fileID: 506884356}
-  resolutionDropdown: {fileID: 830088436}
   missileInfo: {fileID: 277808313}
   dodgeballInfo: {fileID: 201813675}
+  hoverGuideText: {fileID: 506884356}
 --- !u!4 &1720154917
 Transform:
   m_ObjectHideFlags: 0
