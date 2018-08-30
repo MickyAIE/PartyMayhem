@@ -46,6 +46,8 @@ public class MenuManager : MonoBehaviour {
     public Image minigamePreview;
     public Sprite missilePreview;
     public Sprite dodgeballPreview;
+
+    public Dropdown graphicsDropdown;
     
 
     public enum Mode
@@ -95,6 +97,7 @@ public class MenuManager : MonoBehaviour {
         musicSlider.value = -15f;
         sfxSlider.value = -15f;
 
+        graphicsDropdown.value = 4;
 
         boardMode = false;
         tournamentMode = false;
