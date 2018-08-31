@@ -137,9 +137,15 @@ public class MenuManager : MonoBehaviour {
         resolutionDropdown.value = PlayerPrefs.GetInt("resolution", currentResolutionIndex);
     }
 
-
+    float tempTimer = 1.1f;
     public void Update()
     {
+        if (tempTimer > 1)
+        {
+            bools.changesMade = false;
+        }
+        tempTimer -= Time.deltaTime;
+
         if (bools.pressSpace == false)
         {
             if (Input.anyKeyDown)
