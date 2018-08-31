@@ -37,7 +37,9 @@ public class MenuManager : MonoBehaviour {
 
     public AudioMixer audioMixer;
     public AudioSource music;
-    public AudioSource click;
+    public AudioSource sfx;
+    public AudioClip click;
+    public AudioClip error;
 
     public Slider musicSlider;
     public Slider sfxSlider;
@@ -109,6 +111,11 @@ public class MenuManager : MonoBehaviour {
         graphicsDropdown.value = PlayerPrefs.GetInt("graphics", 3);
         sfxSlider.value = PlayerPrefs.GetFloat("sVolume", -15f);
         musicSlider.value = PlayerPrefs.GetFloat("mVolume", -15f);
+
+        audioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("mVolume", -15f));
+        audioMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sVolume", -15f));
+
+        sfx.clip = click;
 
         mode = Mode.NotChosen;
 
@@ -290,26 +297,35 @@ public class MenuManager : MonoBehaviour {
 
     public void OnStartButtonPress()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
+
         anim.SetBool("goToModes", true);
     }
 
     public void OnModesBackPress()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
+
         anim.SetBool("goToModes", false);
     }
 
     public void OnSettingsButtonPress()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
+
         anim.SetBool("goToSettings", true);
     }
 
     public void OnSettingsBackPress()
     {
-        click.Play();
-        if(bools.hasSaved == true)
+        sfx.clip = click;
+        sfx.Play();
+        sfx.clip = click;
+        sfx.Play();
+        if (bools.hasSaved == true)
         {
             anim.SetBool("goToSettings", false);
             notSavedPopUp.SetActive(false);
@@ -319,6 +335,8 @@ public class MenuManager : MonoBehaviour {
         else if(bools.hasSaved == false && bools.changesMade == true)
         {
             notSavedPopUp.SetActive(true);
+            sfx.clip = error;
+            sfx.Play();
         }
         else
         {
@@ -331,7 +349,8 @@ public class MenuManager : MonoBehaviour {
 
     public void GoBackAnyway()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
 
         bools.changesMade = false;
         bools.hasSaved = false;
@@ -341,7 +360,8 @@ public class MenuManager : MonoBehaviour {
     }
     public void SaveAndGoBack()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         Save();
 
         bools.changesMade = false;
@@ -353,25 +373,29 @@ public class MenuManager : MonoBehaviour {
 
     public void OnCreditsButtonPress()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         anim.SetBool("goToCredits", true);
     }
 
     public void OnCreditsBackPress()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         anim.SetBool("goToCredits", false);
     }
 
     public void OnQuitButtonPress()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         Application.Quit();
     }
 
     public void OnBoardModeSelected()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         anim.SetBool("goToMinigames", true);
 
         bools.boardMode = true;
@@ -379,7 +403,8 @@ public class MenuManager : MonoBehaviour {
 
     public void OnTournamentModeSelected()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         anim.SetBool("goToMinigames", true);
 
         bools.tournamentMode = true;
@@ -387,7 +412,8 @@ public class MenuManager : MonoBehaviour {
 
     public void OnFreeplayModeSelected()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         anim.SetBool("goToMinigames", true);
 
         bools.freeplayMode = true;
@@ -399,13 +425,15 @@ public class MenuManager : MonoBehaviour {
         bools.tournamentMode = false;
         bools.freeplayMode = false;
 
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         anim.SetBool("goToMinigames", false);
     }
 
     public void OnMinigameMissilePressed()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
 
         bools.selectedDodgeball = false;
         bools.selectedMissile = true;
@@ -421,7 +449,8 @@ public class MenuManager : MonoBehaviour {
 
     public void OnMinigameDodgeballPressed()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
 
         bools.selectedDodgeball = true;
         bools.selectedMissile = false;
@@ -437,7 +466,8 @@ public class MenuManager : MonoBehaviour {
 
     public void OnMinigameRacingPressed()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
 
         bools.selectedDodgeball = false;
         bools.selectedMissile = false;
@@ -456,7 +486,8 @@ public class MenuManager : MonoBehaviour {
 
     public void OnMinigameGeoPressed()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
 
         bools.selectedDodgeball = false;
         bools.selectedMissile = false;
@@ -475,7 +506,8 @@ public class MenuManager : MonoBehaviour {
 
     public void OnMinigameRhythmPressed()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
 
         bools.selectedDodgeball = false;
         bools.selectedMissile = false;
@@ -518,7 +550,8 @@ public class MenuManager : MonoBehaviour {
 
     public void OnBackToMinigames()
     {
-        click.Play();
+        sfx.clip = click;
+        sfx.Play();
         anim.SetBool("goToMinigameInfo", false);
     }
 
