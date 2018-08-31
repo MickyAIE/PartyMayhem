@@ -11,10 +11,7 @@ public class bools
     public bool hoverBoard = false;
     public bool hoverTournament = false;
     public bool hoverFreeplay = false;
-
     public bool hoveringOverSomething = false;
-
-    public bool pressSpace = false;
 
     public bool boardMode;
     public bool tournamentMode;
@@ -25,6 +22,11 @@ public class bools
     public bool selectedRacing = false;
     public bool selectedGeo = false;
     public bool selectedRhythm = false;
+
+    public bool hasSaved = false;
+    public bool changesMade = false;
+
+    public bool pressSpace = false;
 }
 
 public class MenuManager : MonoBehaviour {
@@ -62,6 +64,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject dodgeballInfo;
 
     public GameObject hoverGuideText;
+    public GameObject notSavedPopUp;
 
     Resolution[] resolutions;
 
@@ -90,6 +93,9 @@ public class MenuManager : MonoBehaviour {
         bools.tournamentMode = false;
         bools.freeplayMode = false;
 
+        bools.hasSaved = false;
+        bools.changesMade = false;
+
         boardModeInfo.SetActive(false);
         tournamentModeInfo.SetActive(false);
         freeplayModeInfo.SetActive(false);
@@ -98,7 +104,11 @@ public class MenuManager : MonoBehaviour {
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(false);
 
-        graphicsDropdown.value = 4;
+        notSavedPopUp.SetActive(false);
+
+        graphicsDropdown.value = PlayerPrefs.GetInt("graphics", 3);
+        sfxSlider.value = PlayerPrefs.GetFloat("sVolume", -15f);
+        musicSlider.value = PlayerPrefs.GetFloat("mVolume", -15f);
 
         mode = Mode.NotChosen;
 
@@ -113,16 +123,18 @@ public class MenuManager : MonoBehaviour {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if(resolutions[i].width == Screen.currentResolution.width && 
-               resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                    resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
+            
         }
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+        resolutionDropdown.value = PlayerPrefs.GetInt("resolution", currentResolutionIndex);
     }
 
 
@@ -224,23 +236,29 @@ public class MenuManager : MonoBehaviour {
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("musicVolume", volume);
+        bools.changesMade = true;
     }
 
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("sfxVolume", volume);
+        bools.changesMade = true;
     }
 
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
         Debug.Log("Quality Level: " + qualityIndex);
+
+        bools.changesMade = true;
     }
 
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
         Debug.Log("Is fullscreen: " + isFullscreen);
+
+        bools.changesMade = true;
     }
 
     public void SetResolution(int resolutionIndex)
@@ -248,6 +266,20 @@ public class MenuManager : MonoBehaviour {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         Debug.Log("Resolution: " + resolution);
+
+        bools.changesMade = true;
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetFloat("sVolume", sfxSlider.value);
+        PlayerPrefs.SetFloat("mVolume", musicSlider.value);
+
+        PlayerPrefs.SetInt("graphics", graphicsDropdown.value);
+        PlayerPrefs.SetInt("resolution", resolutionDropdown.value);
+
+        bools.hasSaved = true;
+        bools.changesMade = false;
     }
 
     public void OnStartButtonPress()
@@ -271,7 +303,46 @@ public class MenuManager : MonoBehaviour {
     public void OnSettingsBackPress()
     {
         click.Play();
+        if(bools.hasSaved == true)
+        {
+            anim.SetBool("goToSettings", false);
+            notSavedPopUp.SetActive(false);
+            bools.hasSaved = false;
+            bools.changesMade = false;
+        }
+        else if(bools.hasSaved == false && bools.changesMade == true)
+        {
+            notSavedPopUp.SetActive(true);
+        }
+        else
+        {
+            anim.SetBool("goToSettings", false);
+            notSavedPopUp.SetActive(false);
+            bools.hasSaved = false;
+            bools.changesMade = false;
+        }
+    }
+
+    public void GoBackAnyway()
+    {
+        click.Play();
+
+        bools.changesMade = false;
+        bools.hasSaved = false;
+
         anim.SetBool("goToSettings", false);
+        notSavedPopUp.SetActive(false);
+    }
+    public void SaveAndGoBack()
+    {
+        click.Play();
+        Save();
+
+        bools.changesMade = false;
+        bools.hasSaved = false;
+
+        anim.SetBool("goToSettings", false);
+        notSavedPopUp.SetActive(false);
     }
 
     public void OnCreditsButtonPress()

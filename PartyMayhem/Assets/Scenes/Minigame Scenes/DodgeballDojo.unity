@@ -179,6 +179,7 @@ MonoBehaviour:
   verticalInput: 0
   horizontalInput: 0
   punchInput: 0
+  isPaused: 0
 --- !u!95 &146706977
 Animator:
   serializedVersion: 3
@@ -700,10 +701,10 @@ RectTransform:
   m_Father: {fileID: 1469621793}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -48.8}
-  m_SizeDelta: {x: -757.01, y: 46.3}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -32.449997}
+  m_SizeDelta: {x: 502.02, y: 43.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &342136289
 MonoBehaviour:
