@@ -4,26 +4,20 @@ using UnityEngine;
 
 public class PlayerProfile : MonoBehaviour
 {
+    //There are four of these attached to the GameManager, one for every player.
+
     public GameManager gameManager;
 
-    public int playerNumber;
-    public GameObject player;
+    public GameObject playerPrefab; //prefab to spawn in minigames
+    public Sprite playerPortrait; //portrait to display
 
-    public Animator animator;
-    public SpriteRenderer sprite;
+    public int playerNumber; //set in inspector
+    public bool isActive; //set in inspector
+
+    public float score; //does nothing yet, store player scores here
 
     private void Awake()
     {
-    }
-
-    public GameObject UpdateCharacterChoice()
-    {
-        animator = player.GetComponent<Animator>();
-        sprite = player.GetComponent<SpriteRenderer>();
-
-        //animator.runtimeAnimatorController = Resources.Load("main/colors/controllercolors/ControllerRED") as RuntimeAnimatorController;
-        //sprite.sprite = aaaaa;
-
-        return player;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 }

@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public GameManager gameManager;
     public PlayerProfile[] profiles;
-    public Transform[] startPositions;
-    public int playerCount;
+    public int activePlayerCount;
+
+    private Transform[] startPositions;
 
     private void Awake()
     {
@@ -20,16 +21,31 @@ public class GameManager : MonoBehaviour
             Application.Quit();
     }
 
+    public int ActivePlayerCount() //Number of profiles active.
+    {
+        int i = 0;
+
+        foreach (PlayerProfile profile in profiles)
+        {
+            if (profile.isActive)
+            {
+                i++;
+            }
+        }
+
+        return i;
+    }
+
     public void SpawnPlayers() //Use to spawn in players to scene.
     {
         startPositions = GameObject.FindGameObjectWithTag("StartPositions").GetComponentsInChildren<Transform>();
 
         if (profiles != null && startPositions != null)
         {
-            for (int i = 1; i < profiles.Length; i++)
+            for (int i = 0; i < ActivePlayerCount(); i++)
             {
-                profiles[i].UpdateCharacterChoice();
-                Instantiate(profiles[i].player, startPositions[i]);
+                if (profiles[i].isActive)
+                    Instantiate(profiles[i].playerPrefab, startPositions[i + 1]);
             }
         }
     }

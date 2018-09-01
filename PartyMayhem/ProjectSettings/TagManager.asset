@@ -9,6 +9,8 @@ TagManager:
   - CheckPoint
   - Rhythm Manager
   - Ball
+  - GameManager
+  - StartPositions
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MissileMadness : MonoBehaviour
 {
+    private GameManager manager;
+
     public GameObject[] players;
     public Text timer;
     public Text message;
@@ -25,6 +27,7 @@ public class MissileMadness : MonoBehaviour
 
     private void Awake()
     {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         timer.gameObject.SetActive(false);
         message.gameObject.SetActive(true);
         allowMovement = false;
@@ -32,9 +35,12 @@ public class MissileMadness : MonoBehaviour
 
     private void Start()
     {
+        if (manager != null)
+            manager.SpawnPlayers();
+
         players = GameObject.FindGameObjectsWithTag("Player");
 
-        if (PlayerCount() == 1)
+        if (CurrentPlayerCount() == 1)
         {
             onePlayerMode = true;
         }
@@ -42,7 +48,7 @@ public class MissileMadness : MonoBehaviour
 
     private void Update()
     {
-        PlayerCount();
+        CurrentPlayerCount();
 
         switch (gameState)
         {
@@ -64,7 +70,7 @@ public class MissileMadness : MonoBehaviour
                 int seconds = Mathf.RoundToInt(timeLimit);
                 timer.text = string.Format("{0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
 
-                if (timeLimit <= 0 || (PlayerCount() == 1 && !onePlayerMode) || PlayerCount() == 0)
+                if (timeLimit <= 0 || (CurrentPlayerCount() == 1 && !onePlayerMode) || CurrentPlayerCount() == 0)
                 {
                     EndGame();
                     gameState = GameState.Finish;
@@ -107,7 +113,7 @@ public class MissileMadness : MonoBehaviour
         }
     }
 
-    private int PlayerCount()
+    private int CurrentPlayerCount()
     {
         int playerCount = 0;
         foreach (GameObject player in players)
