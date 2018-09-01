@@ -57,6 +57,7 @@ public class MenuManager : MonoBehaviour {
 
     public Dropdown graphicsDropdown;
     public Dropdown resolutionDropdown;
+    public Toggle fullScreenToggle;
 
     public GameObject boardModeInfo;
     public GameObject tournamentModeInfo;
@@ -67,6 +68,9 @@ public class MenuManager : MonoBehaviour {
 
     public GameObject hoverGuideText;
     public GameObject notSavedPopUp;
+    public GameObject controlsPopUp;
+    public GameObject controlsPopUp2;
+    public GameObject controlsPopUp3;
 
     Resolution[] resolutions;
 
@@ -107,6 +111,9 @@ public class MenuManager : MonoBehaviour {
         missileInfo.SetActive(false);
 
         notSavedPopUp.SetActive(false);
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
 
         graphicsDropdown.value = PlayerPrefs.GetInt("graphics", 3);
         sfxSlider.value = PlayerPrefs.GetFloat("sVolume", -15f);
@@ -114,6 +121,15 @@ public class MenuManager : MonoBehaviour {
 
         audioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("mVolume", -15f));
         audioMixer.SetFloat("sfxVolume", PlayerPrefs.GetFloat("sVolume", -15f));
+
+        if (Screen.fullScreen == true)
+        {
+            fullScreenToggle.isOn = true;
+        }
+        else
+        {
+            fullScreenToggle.isOn = false;
+        }
 
         sfx.clip = click;
 
@@ -293,6 +309,22 @@ public class MenuManager : MonoBehaviour {
 
         bools.hasSaved = true;
         bools.changesMade = false;
+
+        Debug.Log("Saved");
+    }
+
+    public void ControlsPopUp()
+    {
+        controlsPopUp.SetActive(true);
+        controlsPopUp2.SetActive(true);
+        controlsPopUp3.SetActive(true);
+    }
+
+    public void ControlsBack()
+    {
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
     }
 
     public void OnStartButtonPress()
@@ -345,6 +377,14 @@ public class MenuManager : MonoBehaviour {
             bools.hasSaved = false;
             bools.changesMade = false;
         }
+    }
+
+    public void SettingsPopUpCancel()
+    {
+        sfx.clip = click;
+        sfx.Play();
+
+        notSavedPopUp.SetActive(false);
     }
 
     public void GoBackAnyway()
@@ -528,7 +568,7 @@ public class MenuManager : MonoBehaviour {
     {
         if(bools.selectedMissile == true && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
         {
-            SceneManager.LoadScene("MissileMadness");
+            SceneManager.LoadScene("Char Select Menu");
         }
         if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == true && (bools.selectedRacing == false && bools.selectedRhythm == false))))
         {
