@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [HideInInspector] public string sceneName;
+
     [HideInInspector] public CharacterMoveTransitions scrAnimations;
     [HideInInspector] public RhythmManager rManager;
 
@@ -22,10 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public float axisX;
     [HideInInspector] public float axisY;
+    [HideInInspector] public float tempAngle;
     [HideInInspector] public float angle;
 
     public void Start()
     {
+        Scene scene = SceneManager.GetActiveScene();
+        sceneName = scene.name;
+
         playerRigid = GetComponent<Rigidbody2D>();
         scrAnimations = GetComponent<CharacterMoveTransitions>();
         if(rManager != null)
@@ -47,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(sPunch != null)
+        if (sPunch != null)
         {
             if(isPunching == true)
             {
@@ -73,31 +80,70 @@ public class PlayerMovement : MonoBehaviour
         {
             isPunching = false;
         }
-
-
     }
 
     public void Aim()
     {
         axisX = Input.GetAxis("P" + playerNumber + " Aim Horizontal");
+
         axisY = Input.GetAxis("P" + playerNumber + " Aim Vertical");
 
-        angle = Mathf.Atan2(axisY, axisX) * Mathf.Rad2Deg;
+        tempAngle = Mathf.Atan2(axisY, axisX) * Mathf.Rad2Deg;
+
+        if(tempAngle >= 0 && tempAngle <= 20 || tempAngle >= -20 && tempAngle <= 0)
+        {
+            angle = 0;
+        }
+        else if(tempAngle >= 20 && tempAngle <= 70)
+        {
+            angle = 45;
+        }
+        else if(tempAngle >= 70 && tempAngle <= 110)
+        {
+            angle = 90;
+        }
+        else if(tempAngle >= 110 && tempAngle <= 160)
+        {
+            angle = 135;
+        }
+        else if(tempAngle >= 160 && tempAngle <= 180 || tempAngle >= -180 && tempAngle <= -160)
+        {
+            angle = 180;
+        }
+        else if(tempAngle >= -160 && tempAngle <= -110)
+        {
+            angle = 225;
+        }
+        else if(tempAngle >= -110 && tempAngle <= -70)
+        {
+            angle = 270;
+        }
+        else if(tempAngle >= -70 && tempAngle <= -20)
+        {
+            angle = 315;
+        }
+        else
+        {
+            Debug.LogError("Angle not found: " + tempAngle);
+        }
     }
 
     public void Move()
     {
-        Vector3 newPosition = new Vector2(Input.GetAxis("P" + playerNumber + " Horizontal"), Input.GetAxis("P" + playerNumber + " Vertical"));
-
-        playerRigid.velocity = newPosition * speed * speedMod * Time.deltaTime;
-
-        if ((Input.GetAxis("P" + playerNumber + " Horizontal") > 0.1 || Input.GetAxis("P" + playerNumber + " Horizontal") < -0.1) && (Input.GetAxis("P" + playerNumber + " Vertical") > 0.1 || Input.GetAxis("P" + playerNumber + " Vertical") < -0.1))
+        if(sceneName != "RhythmBlitz")
         {
-            speedMod = 0.75f;
-        }
-        else
-        {
-            speedMod = 1;
+            Vector3 newPosition = new Vector2(Input.GetAxis("P" + playerNumber + " Horizontal"), Input.GetAxis("P" + playerNumber + " Vertical"));
+
+            playerRigid.velocity = newPosition * speed * speedMod * Time.deltaTime;
+
+            if ((Input.GetAxis("P" + playerNumber + " Horizontal") > 0.1 || Input.GetAxis("P" + playerNumber + " Horizontal") < -0.1) && (Input.GetAxis("P" + playerNumber + " Vertical") > 0.1 || Input.GetAxis("P" + playerNumber + " Vertical") < -0.1))
+            {
+                speedMod = 0.75f;
+            }
+            else
+            {
+                speedMod = 1;
+            }
         }
     }
 

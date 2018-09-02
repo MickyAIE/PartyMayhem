@@ -19,9 +19,24 @@ public class RhythmManager : MonoBehaviour
     [HideInInspector] public float timer;
     [HideInInspector] public float timerMax;
 
+    [HideInInspector] public List<string> colours = new List<string>();
+    [HideInInspector] public string chosenColour;
+    [HideInInspector] public List<string> chosenColours = new List<string>();
+    [HideInInspector] public bool usingColours;
+
+    [HideInInspector] public int points;
+    [HideInInspector] public int rounds;
+
 
     public void Start()
     {
+        points = 4;
+
+        colours.Add("Red");
+        colours.Add("Green");
+        colours.Add("Blue");
+        colours.Add("Yellow");
+
         gameSpeed = 500;
         goingUp = true;
         award = 0;
@@ -38,11 +53,20 @@ public class RhythmManager : MonoBehaviour
         {
             timer = 0;
             CalculateScore();
-            //Debug.Log(award.ToString());
         }
         else
         {
             timer += gameSpeed * Time.deltaTime;
+        }
+
+        if(chosenColours.Count < points && usingColours == false)
+        {
+            GetColours();
+        }
+
+        if(chosenColours.Count == 0)
+        {
+            usingColours = false;
         }
     }
 
@@ -72,5 +96,21 @@ public class RhythmManager : MonoBehaviour
     public void StateScore()
     {
         Debug.Log(award.ToString());
+    }
+
+    public void GetColours()
+    {
+        chosenColour = colours[Random.Range(0, colours.Count)];
+        chosenColours.Add(chosenColour);
+
+        if (chosenColours.Count == points)
+        {
+            usingColours = true;
+
+            Debug.Log(chosenColours[0] + chosenColours[1] + chosenColours[2] + chosenColours[3]);
+
+            chosenColours.RemoveAt(0); //TESTING REMOVAL
+            Debug.Log(chosenColours[0] + chosenColours[1] + chosenColours[2]);
+        }
     }
 }
