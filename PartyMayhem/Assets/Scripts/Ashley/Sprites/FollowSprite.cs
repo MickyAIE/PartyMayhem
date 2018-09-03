@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FollowSprite : MonoBehaviour
 {
-    //Attaches sprite to other sprite's position without affecting its rotation.
+    //This script lets an object follow around another object around without affecting it's rotation.
+    //Used for shadows on sprites that need to rotate eg. balls.
 
-    public Transform sprite;
+    public Transform sprite; //The sprite you want your sprite to follow.
 
     private void Update()
     {

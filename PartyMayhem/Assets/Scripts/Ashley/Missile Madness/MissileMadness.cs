@@ -13,7 +13,6 @@ public class MissileMadness : MonoBehaviour
 
     public float timeLimit;
     public float countdown;
-    public bool allowMovement = false;
     public bool onePlayerMode = false;
 
     public enum GameState
@@ -30,20 +29,19 @@ public class MissileMadness : MonoBehaviour
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         timer.gameObject.SetActive(false);
         message.gameObject.SetActive(true);
-        allowMovement = false;
     }
 
     private void Start()
     {
-        if (manager != null)
-            manager.SpawnPlayers();
-
+        manager.SpawnPlayers();
         players = GameObject.FindGameObjectsWithTag("Player");
 
         if (CurrentPlayerCount() == 1)
         {
             onePlayerMode = true;
         }
+
+        DisablePlayerMovement();
     }
 
     private void Update()
@@ -53,14 +51,15 @@ public class MissileMadness : MonoBehaviour
         switch (gameState)
         {
             case GameState.Start:
-                message.text = countdown.ToString("f0");
                 countdown -= Time.deltaTime;
+                message.text = countdown.ToString("f0");
 
                 if (countdown <= 0)
                 {
-                    allowMovement = true;
                     timer.gameObject.SetActive(true);
                     message.gameObject.SetActive(false);
+
+                    EnablePlayerMovement();
                     gameState = GameState.Game;
                 }
                 break;
@@ -72,7 +71,11 @@ public class MissileMadness : MonoBehaviour
 
                 if (timeLimit <= 0 || (CurrentPlayerCount() == 1 && !onePlayerMode) || CurrentPlayerCount() == 0)
                 {
-                    EndGame();
+                    message.text = "FINISH!";
+                    timer.gameObject.SetActive(false);
+                    message.gameObject.SetActive(true);
+
+                    DisablePlayerMovement();
                     gameState = GameState.Finish;
                 }
                 break;
@@ -82,14 +85,19 @@ public class MissileMadness : MonoBehaviour
         }
     }
 
-    private void EndGame()
+    private int CurrentPlayerCount() //Number of players alive.
     {
-        message.text = "FINISH!";
-        timer.gameObject.SetActive(false);
-        message.gameObject.SetActive(true);
-        allowMovement = false;
+        int playerCount = 0;
+        foreach (GameObject player in players)
+        {
+            if (player.activeSelf == true)
+                playerCount++;
+        }
+        return playerCount;
+    }
 
-        //Freezes players when game ends, implement something better later.
+    private void DisablePlayerMovement() //Freezes players when game ends, implement something better later.
+    {
         foreach (GameObject player in players)
         {
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
@@ -107,20 +115,33 @@ public class MissileMadness : MonoBehaviour
             CharacterMoveTransitions cmt = player.GetComponent<CharacterMoveTransitions>();
             if (cmt != null)
             {
-                cmt.isPaused = true;
                 cmt.ResetAnimation();
             }
         }
     }
 
-    private int CurrentPlayerCount()
+    private void EnablePlayerMovement() //Reenables player movement after using DisablePlayerMovement.
     {
-        int playerCount = 0;
         foreach (GameObject player in players)
         {
-            if (player.activeSelf == true)
-                playerCount++;
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
+
+            PlayerMovement pm = player.GetComponent<PlayerMovement>();
+            if (pm != null)
+            {
+                pm.enabled = true;
+                pm.speed = 200f;
+            }
+
+            CharacterMoveTransitions cmt = player.GetComponent<CharacterMoveTransitions>();
+            if (cmt != null)
+            {
+                cmt.ResetAnimation();
+            }
         }
-        return playerCount;
     }
 }

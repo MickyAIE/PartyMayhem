@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSelect : MonoBehaviour
+public class CharSelectSlot : MonoBehaviour
 {
     //This script is attached to each player's character select slot in the Character Select Screen
 

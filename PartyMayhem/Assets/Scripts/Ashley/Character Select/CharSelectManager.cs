@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class CharSelectManager : MonoBehaviour
 {
-    private GameManager manager;
     private PlayerProfile[] players;
 
     private void Awake()
     {
-        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         players = GameObject.FindGameObjectWithTag("GameManager").GetComponents<PlayerProfile>();
     }
 
