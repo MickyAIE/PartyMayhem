@@ -14,8 +14,8 @@ public class Timers
     public float waitTimer = 3;
     public float waitStartTime = 3;
 
-    public float Movetimer = .5f;
-    public float moveStartTime = .5f;
+    public float Movetimer = .9f;
+    public float moveStartTime = .9f;
 }
 
 [System.Serializable]
@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour {
     public int randomNumber;
 
     public RaycastHit hit;
-    public float rayDistance = 2;
+    public float rayDistance = 1;
 
 
     private void Start()

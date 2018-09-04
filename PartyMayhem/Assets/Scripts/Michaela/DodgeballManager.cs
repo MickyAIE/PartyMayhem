@@ -60,22 +60,11 @@ public class DodgeballManager : MonoBehaviour {
         foreach(GameObject player in players)
         {
             player.AddComponent<DodgeballPlayerExtra>();
-            if(player == players[0])
-            {
-                player.gameObject.name = "Player1";
-            }
-            else if (player == players[1])
-            {
-                player.gameObject.name = "Player2";
-            }
-            else if (player == players[2])
-            {
-                player.gameObject.name = "Player3";
-            }
-            else if (player == players[3])
-            {
-                player.gameObject.name = "Player4";
-            }
+
+            if(player == players[0]) player.gameObject.name = "Player1";
+            else if (player == players[1]) player.gameObject.name = "Player2";
+            else if (player == players[2]) player.gameObject.name = "Player3";
+            else if (player == players[3]) player.gameObject.name = "Player4";
         }
     }
 
@@ -83,29 +72,30 @@ public class DodgeballManager : MonoBehaviour {
     {
         foreach (GameObject player in players)
         {
-            if(playerOneHasBeenHit == true)
-            {
-                players[0].SetActive(false);
-            }
-            if (playerTwoHasBeenHit == true)
-            {
-                players[1].SetActive(false);
-            }
-            if (playerThreeHasBeenHit == true)
-            {
-                players[2].SetActive(false);
-            }
-            if (playerFourHasBeenHit == true)
-            {
-                players[3].SetActive(false);
-            }
+            if(playerOneHasBeenHit == true) players[0].SetActive(false);
+            if (playerTwoHasBeenHit == true) players[1].SetActive(false);
+            if (playerThreeHasBeenHit == true) players[2].SetActive(false);
+            if (playerFourHasBeenHit == true) players[3].SetActive(false);
 
-            if ((playerOneHasBeenHit == true && playerTwoHasBeenHit == true)
-                && (playerThreeHasBeenHit == true && playerFourHasBeenHit == true)) {
-
-                allPlayersHit = true;
+            if (players.Length == 1)
+            {
+                if (playerOneHasBeenHit == true) allPlayersHit = true;
             }
-
+            else if (players.Length == 2)
+            {
+                if (playerOneHasBeenHit == true && playerTwoHasBeenHit == true)
+                        allPlayersHit = true;
+            }
+            else if (players.Length == 3)
+            {
+                if ((playerOneHasBeenHit == true && playerTwoHasBeenHit == true) && playerThreeHasBeenHit == true)
+                    allPlayersHit = true;
+            }
+            else if (players.Length == 4)
+            {
+                if ((playerOneHasBeenHit == true && playerTwoHasBeenHit == true) && (playerThreeHasBeenHit == true && playerFourHasBeenHit == true))
+                    allPlayersHit = true;
+            }
         }
 
         if (allPlayersHit == true)
@@ -113,19 +103,11 @@ public class DodgeballManager : MonoBehaviour {
             endGame = true;
             shouldSpawnEnemy = false;
 
-            foreach (GameObject player in players)
-            {
-                player.SetActive(false);
-            }
-
-            foreach (GameObject enemy in enemies)
-            {
-            }
+            foreach (GameObject player in players) player.SetActive(false);
 
             winMessage.SetActive(false);
             loseMessage.SetActive(true);
             optionButtons.SetActive(true);
-
         }
 
         if (gameTime <= 0 && allPlayersHit == false)
@@ -133,10 +115,7 @@ public class DodgeballManager : MonoBehaviour {
             endGame = true;
             shouldSpawnEnemy = false;
 
-            foreach (GameObject player in players)
-            {
-                player.SetActive(false);
-            }
+            foreach (GameObject player in players) player.SetActive(false);
 
             winMessage.SetActive(true);
             loseMessage.SetActive(false);
@@ -146,14 +125,8 @@ public class DodgeballManager : MonoBehaviour {
         GameTimer();
 
         enemyCount = enemies.Count;
-        if (enemyCount >= maxEnemies && endGame == false)
-        {
-            shouldSpawnEnemy = false;
-        }
-        else if(enemyCount > maxEnemies && endGame == false)
-        {
-            shouldSpawnEnemy = true;
-        }
+        if (enemyCount >= maxEnemies && endGame == false) shouldSpawnEnemy = false;
+        else if(enemyCount > maxEnemies && endGame == false) shouldSpawnEnemy = true;
 
         timer -= Time.deltaTime;
         if (timer <= 0 && shouldSpawnEnemy == true)
