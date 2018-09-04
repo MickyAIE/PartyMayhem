@@ -8,9 +8,16 @@ public class RacingGameManager : MonoBehaviour {
     public int Laps;
     public Text LapCounter;
     public GameObject[] Players;
+    public GameManager manager;
+
+    public void Awake()
+    {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
 
     void Start() {
         Players = GameObject.FindGameObjectsWithTag("Player");
+        manager.SpawnPlayers();
         foreach (GameObject Player in Players)
         {
             Player.AddComponent(typeof(LapsCounter));
@@ -19,6 +26,7 @@ public class RacingGameManager : MonoBehaviour {
     }
 
     void Update () {
+        manager.SpawnPlayers();
         Players = GameObject.FindGameObjectsWithTag("Player");
         Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
         LapCounter.text = Laps + "/3";
