@@ -45,7 +45,10 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < ActivePlayerCount(); i++)
             {
                 if (profiles[i].isActive)
+                {
                     Instantiate(profiles[i].playerPrefab, startPositions[i + 1]);
+                    profiles[i].UpdatePlayerNumbers();
+                }
             }
         }
     }

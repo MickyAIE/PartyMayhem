@@ -25,6 +25,6 @@ public class Buttons : MonoBehaviour
 
     public void StartButton()
     {
-        SceneManager.LoadScene("MissileMadness");
+        SceneManager.LoadScene("Racing_Minigame");
     }
 }

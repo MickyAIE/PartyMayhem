@@ -17,6 +17,8 @@ public class CharacterMoveTransitions : MonoBehaviour
     public float horizontalInput;
     public bool punchInput;
 
+    public bool isPaused = false;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,7 +26,7 @@ public class CharacterMoveTransitions : MonoBehaviour
 
     private void Update()
     {
-        if (animator != null)
+        if (animator != null && isPaused == false)
         {
             DetermineInput();
             CheckDirection();

@@ -115,6 +115,7 @@ public class MissileMadness : MonoBehaviour
             CharacterMoveTransitions cmt = player.GetComponent<CharacterMoveTransitions>();
             if (cmt != null)
             {
+                cmt.isPaused = true;
                 cmt.ResetAnimation();
             }
         }
@@ -140,6 +141,7 @@ public class MissileMadness : MonoBehaviour
             CharacterMoveTransitions cmt = player.GetComponent<CharacterMoveTransitions>();
             if (cmt != null)
             {
+                cmt.isPaused = false;
                 cmt.ResetAnimation();
             }
         }

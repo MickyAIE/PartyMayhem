@@ -20,4 +20,13 @@ public class PlayerProfile : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
+
+    public void UpdatePlayerNumbers()
+    {
+        if (playerPrefab != null)
+        {
+            playerPrefab.GetComponent<PlayerMovement>().playerNumber = playerNumber.ToString();
+            playerPrefab.GetComponent<CharacterMoveTransitions>().playerNumber = playerNumber;
+        }
+    }
 }

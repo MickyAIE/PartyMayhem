@@ -16,8 +16,8 @@ public class RacingGameManager : MonoBehaviour {
     }
 
     void Start() {
-        Players = GameObject.FindGameObjectsWithTag("Player");
         manager.SpawnPlayers();
+        Players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject Player in Players)
         {
             Player.AddComponent(typeof(LapsCounter));
@@ -26,7 +26,6 @@ public class RacingGameManager : MonoBehaviour {
     }
 
     void Update () {
-        manager.SpawnPlayers();
         Players = GameObject.FindGameObjectsWithTag("Player");
         Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
         LapCounter.text = Laps + "/3";
