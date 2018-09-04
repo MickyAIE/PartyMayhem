@@ -31,6 +31,8 @@ public class bools
 
 public class MenuManager : MonoBehaviour {
 
+    private GameManager gameManager;
+
     public bools bools;
 
     public Animator anim;
@@ -85,6 +87,8 @@ public class MenuManager : MonoBehaviour {
 
     public void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         anim.SetBool("goToSettings", false);
         anim.SetBool("goToCredits", false);
         anim.SetBool("goToModes", false);
@@ -568,23 +572,28 @@ public class MenuManager : MonoBehaviour {
     {
         if(bools.selectedMissile == true && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
         {
+            gameManager.minigameToLoad = "MissileMadness";
             SceneManager.LoadScene("Char Select Menu");
         }
         if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == true && (bools.selectedRacing == false && bools.selectedRhythm == false))))
         {
-            SceneManager.LoadScene("DodgeballDojo");
+            gameManager.minigameToLoad = "DodgeballDojo";
+            SceneManager.LoadScene("Char Select Menu");
         }
         if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == true && bools.selectedRhythm == false))))
         {
-            SceneManager.LoadScene("Racing_Minigame");
+            gameManager.minigameToLoad = "Racing_Minigame";
+            SceneManager.LoadScene("Char Select Menu");
         }
         if (bools.selectedMissile == false && (bools.selectedGeo == true && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
         {
-            SceneManager.LoadScene("Pacman_Minigame");
+            gameManager.minigameToLoad = "Pacman_Minigame";
+            SceneManager.LoadScene("Char Select Menu");
         }
         if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == true))))
         {
-            SceneManager.LoadScene("RhythmBlitz");
+            gameManager.minigameToLoad = "RhythmBlitz";
+            SceneManager.LoadScene("Char Select Menu");
         }
     }
 
