@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class DodgeballManager : MonoBehaviour {
 
+    private GameManager manager;
+
     public GameObject[] enemySpawnPoints;
     public GameObject enemyPrefab;
     public List<GameObject> enemies;
@@ -35,8 +37,15 @@ public class DodgeballManager : MonoBehaviour {
     public bool playerThreeHasBeenHit = false;
     public bool playerFourHasBeenHit = false;
 
+    private void Awake()
+    {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
+
     private void Start()
     {
+        manager.SpawnPlayers();
+
         Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
         enemies.Add(enemyPrefab);
 
