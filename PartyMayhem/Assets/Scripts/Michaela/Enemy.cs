@@ -166,38 +166,38 @@ public class Enemy : MonoBehaviour {
 
     public bool CheckTargetIsAlive(GameObject p)
     {
-        if(p.gameObject.name == "Player" && dodgeballManager.playerOneHasBeenHit == true)
+        if(p.gameObject.name == "Player1" && dodgeballManager.playerOneHasBeenHit == true)
         {
             return false;
         }
-        if(p.gameObject.name == "Player" && dodgeballManager.playerOneHasBeenHit == false)
+        if(p.gameObject.name == "Player1" && dodgeballManager.playerOneHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target1" && dodgeballManager.playerTwoHasBeenHit == true)
+        if (p.gameObject.name == "Player2" && dodgeballManager.playerTwoHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target1" && dodgeballManager.playerTwoHasBeenHit == false)
+        if (p.gameObject.name == "Player2" && dodgeballManager.playerTwoHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target2" && dodgeballManager.playerThreeHasBeenHit == true)
+        if (p.gameObject.name == "Player3" && dodgeballManager.playerThreeHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target2" && dodgeballManager.playerThreeHasBeenHit == false)
+        if (p.gameObject.name == "Player3" && dodgeballManager.playerThreeHasBeenHit == false)
         {
             return true;
         }
 
-        if (p.gameObject.name == "Target3" && dodgeballManager.playerFourHasBeenHit == true)
+        if (p.gameObject.name == "Player4" && dodgeballManager.playerFourHasBeenHit == true)
         {
             return false;
         }
-        if (p.gameObject.name == "Target3" && dodgeballManager.playerFourHasBeenHit == false)
+        if (p.gameObject.name == "Player4" && dodgeballManager.playerFourHasBeenHit == false)
         {
             return true;
         }

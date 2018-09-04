@@ -60,6 +60,22 @@ public class DodgeballManager : MonoBehaviour {
         foreach(GameObject player in players)
         {
             player.AddComponent<DodgeballPlayerExtra>();
+            if(player == players[0])
+            {
+                player.gameObject.name = "Player1";
+            }
+            else if (player == players[1])
+            {
+                player.gameObject.name = "Player2";
+            }
+            else if (player == players[2])
+            {
+                player.gameObject.name = "Player3";
+            }
+            else if (player == players[3])
+            {
+                player.gameObject.name = "Player4";
+            }
         }
     }
 

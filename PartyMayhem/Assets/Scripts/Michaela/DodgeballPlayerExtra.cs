@@ -33,19 +33,19 @@ public class DodgeballPlayerExtra : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ball" && gameObject.name == "Player")
+        if (collision.gameObject.tag == "Ball" && gameObject.name == "Player1")
         {
             dM.playerOneHasBeenHit = true;
         }
-        if (collision.gameObject.tag == "Ball" && gameObject.name == "Target1")
+        if (collision.gameObject.tag == "Ball" && gameObject.name == "Player2")
         {
             dM.playerTwoHasBeenHit = true;
         }
-        if (collision.gameObject.tag == "Ball" && gameObject.name == "Target2")
+        if (collision.gameObject.tag == "Ball" && gameObject.name == "Player3")
         {
             dM.playerThreeHasBeenHit = true;
         }
-        if (collision.gameObject.tag == "Ball" && gameObject.name == "Target3")
+        if (collision.gameObject.tag == "Ball" && gameObject.name == "Player4")
         {
             dM.playerFourHasBeenHit = true;
         }
