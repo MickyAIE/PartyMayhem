@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    private GameManager gameManager;
     private CharSelectManager manager;
     private Button startButton;
 
     private void Awake()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         manager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<CharSelectManager>();
         startButton = GetComponent<Button>();
     }
@@ -25,6 +27,6 @@ public class Buttons : MonoBehaviour
 
     public void StartButton()
     {
-        SceneManager.LoadScene("Racing_Minigame");
+        SceneManager.LoadScene(gameManager.minigameToLoad);
     }
 }
