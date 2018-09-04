@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public GameManager gameManager;
     public PlayerProfile[] profiles;
     public int activePlayerCount;
+    public string minigameToLoad;
 
     private Transform[] startPositions;
 
