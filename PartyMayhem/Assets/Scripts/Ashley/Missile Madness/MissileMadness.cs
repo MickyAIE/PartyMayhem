@@ -10,6 +10,7 @@ public class MissileMadness : MonoBehaviour
     public GameObject[] players;
     public Text timer;
     public Text message;
+    public Button returnButton;
 
     public float timeLimit;
     public float countdown;
@@ -29,6 +30,7 @@ public class MissileMadness : MonoBehaviour
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         timer.gameObject.SetActive(false);
         message.gameObject.SetActive(true);
+        returnButton.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -74,6 +76,7 @@ public class MissileMadness : MonoBehaviour
                     message.text = "FINISH!";
                     timer.gameObject.SetActive(false);
                     message.gameObject.SetActive(true);
+                    returnButton.gameObject.SetActive(true);
 
                     DisablePlayerMovement();
                     gameState = GameState.Finish;

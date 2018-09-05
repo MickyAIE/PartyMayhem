@@ -104,7 +104,7 @@ public class CharSelectSlot : MonoBehaviour
                 }
             }
 
-            if (player.isActive)
+            if (player.isActive && !choiceConfirmed)
             {
                 if (Input.GetAxis("P" + slotNumber + " Vertical") > 0)
                 {

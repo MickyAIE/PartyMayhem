@@ -1,14 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharSelectManager : MonoBehaviour
 {
+    private GameManager manager;
     private PlayerProfile[] players;
+    public Button startButton;
 
     private void Awake()
     {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         players = GameObject.FindGameObjectWithTag("GameManager").GetComponents<PlayerProfile>();
+    }
+
+    private void Update()
+    {
+        if (CanStartGame())
+            startButton.interactable = true;
+        else
+            startButton.interactable = false;
     }
 
     public bool CanStartGame()
