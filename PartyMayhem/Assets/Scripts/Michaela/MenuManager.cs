@@ -27,6 +27,8 @@ public class bools
     public bool changesMade = false;
 
     public bool pressSpace = false;
+
+    //public bool returningTo = false;
 }
 
 public class MenuManager : MonoBehaviour {
@@ -74,6 +76,8 @@ public class MenuManager : MonoBehaviour {
     public GameObject controlsPopUp2;
     public GameObject controlsPopUp3;
 
+    //public GameObject fade;
+
     Resolution[] resolutions;
 
     public enum Mode
@@ -105,6 +109,13 @@ public class MenuManager : MonoBehaviour {
 
         bools.hasSaved = false;
         bools.changesMade = false;
+
+        /*if(bools.returningTo == true)
+        {
+            anim.SetTrigger("Fade");
+            anim.SetBool("goToModes", true);
+            anim.SetBool("goToMinigames", true);
+        }*/
 
         boardModeInfo.SetActive(false);
         tournamentModeInfo.SetActive(false);
