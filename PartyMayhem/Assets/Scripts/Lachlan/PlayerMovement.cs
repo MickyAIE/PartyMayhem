@@ -54,6 +54,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (sRotate != null)
+        {
+            sRotate.transform.eulerAngles = new Vector3(sPunch.transform.rotation.x, sPunch.transform.rotation.y, angle + 270);
+        }
+        else
+        {
+            Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Rotate |");
+        }
+
         if (sPunch != null)
         {
             if(isPunching == true)
@@ -165,17 +174,8 @@ public class PlayerMovement : MonoBehaviour
                 Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Punch |");
             }
 
-            Debug.Log("PUNCH " + playerNumber + " " + angle);
+            //Debug.Log("PUNCH " + playerNumber + " " + angle);
             punchCooldown = 0.3f;
-
-            if(sRotate != null)
-            {
-                sRotate.transform.eulerAngles = new Vector3(sPunch.transform.rotation.x, sPunch.transform.rotation.y, angle + 270);
-            }
-            else
-            {
-                Debug.LogError("| MISSING GAME OBJECT |  | Player " + playerNumber + " |  | PlayerMovement |  | S Rotate |");
-            }
 
             if (scrAnimations != null)
             {

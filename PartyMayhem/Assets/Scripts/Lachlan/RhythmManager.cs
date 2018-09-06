@@ -27,7 +27,6 @@ public class RhythmManager : MonoBehaviour
     [HideInInspector] public int points;
     [HideInInspector] public int rounds;
 
-
     public void Start()
     {
         points = 4;
@@ -109,8 +108,8 @@ public class RhythmManager : MonoBehaviour
 
             Debug.Log(chosenColours[0] + chosenColours[1] + chosenColours[2] + chosenColours[3]);
 
-            chosenColours.RemoveAt(0); //TESTING REMOVAL
-            Debug.Log(chosenColours[0] + chosenColours[1] + chosenColours[2]);
+            //chosenColours.RemoveAt(0); //TESTING REMOVAL
+            //Debug.Log(chosenColours[0] + chosenColours[1] + chosenColours[2]);
         }
     }
 }
