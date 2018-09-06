@@ -103,7 +103,7 @@ MonoBehaviour:
   ballSpawn: {fileID: 1085579804862208}
   ball: {fileID: 0}
   rotateSpeed: 3
-  ballSpeed: 6
+  ballSpeed: 5
   onStartMoveDistance: 0
   randomMoveDistance: 2
   randomNumber: 0

@@ -183,7 +183,7 @@ MonoBehaviour:
   sPunch: {fileID: 0}
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
-  speed: 150
+  speed: 200
   speedMod: 0
   turnSpeed: 0
   isPunching: 0
@@ -836,9 +836,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd0e16b72e596c4aa800364bdfb9466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   profiles: []
   activePlayerCount: 0
+  minigameToLoad: 
 --- !u!4 &429399675
 Transform:
   m_ObjectHideFlags: 0
