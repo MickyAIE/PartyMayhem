@@ -18,7 +18,7 @@ public class CheckPoints : MonoBehaviour {
                 //Add to currentLap if currentCheckpoint is 
                 if (LapsCounter.currentCheckpoint == 0)
                     LapsCounter.currentLap++; //Adds a 1 to the current lap. When the scene begins the Lap counter is at 0 because the players start just before the start line.
-                LapsCounter.currentCheckpoint++; //Changes the current checkpoint to the next checkpoint (kind of a confusing sentence but it just moves down the list)
+                LapsCounter.currentCheckpoint++; //Changes the current checkpoint to the next checkpoint (kind of a confusing sentence but it just moves down the array)
             }
             else
             {
