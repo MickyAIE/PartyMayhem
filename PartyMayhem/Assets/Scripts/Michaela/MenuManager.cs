@@ -115,7 +115,15 @@ public class MenuManager : MonoBehaviour {
         missileInfo.SetActive(false);
 
         notSavedPopUp.SetActive(false);
-        controlsPopUp.SetActive(false);
+
+        if(PlayerPrefs.GetInt("controls", 0) == 0)
+        {
+            controlsPopUp.SetActive(true);
+        }
+        else
+        {
+            controlsPopUp.SetActive(false);
+        }
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
 
@@ -326,6 +334,7 @@ public class MenuManager : MonoBehaviour {
 
     public void ControlsBack()
     {
+        PlayerPrefs.SetInt("controls", 1);
         controlsPopUp.SetActive(false);
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
