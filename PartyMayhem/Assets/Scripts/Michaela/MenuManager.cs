@@ -27,8 +27,6 @@ public class bools
     public bool changesMade = false;
 
     public bool pressSpace = false;
-
-    //public bool returningTo = false;
 }
 
 public class MenuManager : MonoBehaviour {
@@ -76,8 +74,6 @@ public class MenuManager : MonoBehaviour {
     public GameObject controlsPopUp2;
     public GameObject controlsPopUp3;
 
-    //public GameObject fade;
-
     Resolution[] resolutions;
 
     public enum Mode
@@ -109,13 +105,6 @@ public class MenuManager : MonoBehaviour {
 
         bools.hasSaved = false;
         bools.changesMade = false;
-
-        /*if(bools.returningTo == true)
-        {
-            anim.SetTrigger("Fade");
-            anim.SetBool("goToModes", true);
-            anim.SetBool("goToMinigames", true);
-        }*/
 
         boardModeInfo.SetActive(false);
         tournamentModeInfo.SetActive(false);
@@ -201,7 +190,11 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
-        Hover();
+        if (tournamentModeInfo.activeInHierarchy == false && (boardModeInfo.activeInHierarchy == false && freeplayModeInfo.activeInHierarchy == false))
+        {
+            hoverGuideText.SetActive(true);
+        }
+        else hoverGuideText.SetActive(false);
 
         if ((bools.boardMode == false && bools.tournamentMode == false) && bools.freeplayMode == false)
         {
@@ -244,45 +237,36 @@ public class MenuManager : MonoBehaviour {
 
         modeText.text = ("Mode: " + mode.ToString());
     }
-
-    public void Hover()
+    
+    public void ShowBoardInfo()
     {
-        if ((bools.hoverBoard == false && bools.hoverTournament == false) && bools.hoverFreeplay == false)
-        {
-            hoverGuideText.SetActive(true);
-        }
-        else
-        {
-            hoverGuideText.SetActive(false);
-        }
-
-
-        if (bools.hoverBoard == true && (bools.hoverTournament == false && bools.hoverFreeplay == false))
-        {
-            boardModeInfo.SetActive(true);
-        }
-        else if (bools.hoverBoard == false)
-        {
-            boardModeInfo.SetActive(false);
-        }
-
-        if (bools.hoverTournament == true && (bools.hoverBoard == false && bools.hoverFreeplay == false))
-        {
-            tournamentModeInfo.SetActive(true);
-        }
-        else if (bools.hoverTournament == false)
-        {
-            tournamentModeInfo.SetActive(false);
-        }
-
-        if (bools.hoverFreeplay == true && (bools.hoverBoard == false && bools.hoverTournament == false))
-        {
-            freeplayModeInfo.SetActive(true);
-        }
-        else if (bools.hoverFreeplay == false)
-        {
-            freeplayModeInfo.SetActive(false);
-        }
+        boardModeInfo.SetActive(true);
+        bools.hoverBoard = true;
+    }
+    public void HideBoardInfo()
+    {
+        boardModeInfo.SetActive(false);
+        bools.hoverBoard = false;
+    }
+    public void ShowTournamentInfo()
+    {
+        tournamentModeInfo.SetActive(true);
+        bools.hoverTournament = true;
+    }
+    public void HideTournamentInfo()
+    {
+        tournamentModeInfo.SetActive(false);
+        bools.hoverTournament = false;
+    }
+    public void ShowFreeplayInfo()
+    {
+        freeplayModeInfo.SetActive(true);
+        bools.hoverFreeplay = true;
+    }
+    public void HideFreeplayInfo()
+    {
+        freeplayModeInfo.SetActive(false);
+        bools.hoverFreeplay = false;
     }
 
     public void SetMusicVolume(float volume)
@@ -622,31 +606,5 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = click;
         sfx.Play();
         anim.SetBool("goToMinigameInfo", false);
-    }
-
-
-    public void HoverBoard()
-    {
-        bools.hoverBoard = true;
-    }
-    public void NotHoverBoard()
-    {
-        bools.hoverBoard = false;
-    }
-    public void HoverTournament()
-    {
-        bools.hoverTournament = true;
-    }
-    public void NotHoverTournament()
-    {
-        bools.hoverTournament = false;
-    }
-    public void HoverFreeplay()
-    {
-        bools.hoverFreeplay = true;
-    }
-    public void NotHoverFreeplay()
-    {
-        bools.hoverFreeplay = false;
     }
 }
