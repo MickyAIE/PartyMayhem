@@ -12123,7 +12123,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "Which player will be the fastest? Find out now by challenging the other
+    players! \n \nThe players must complete 3 Laps around the course using the speed
+    boosts on the floor to help!\n\n"
 --- !u!222 &1561906587
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13631,7 +13633,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 773714007}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.2127864
+  m_Size: 0.21278639
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
