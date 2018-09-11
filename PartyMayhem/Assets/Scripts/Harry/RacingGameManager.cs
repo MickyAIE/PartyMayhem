@@ -41,7 +41,7 @@ public class RacingGameManager : MonoBehaviour {
         {
             Time.timeScale = 0.5F;
             Invoke("ResetTimeScale", 1);
-            MiddleText.text = "Race Over!" //TODO Figure out a way to display that it was this player that won (IE PLAYER 1 instead of the gameobjects name)
+            MiddleText.text = "Race Over!"; //TODO Figure out a way to display that it was this player that won (IE PLAYER 1 instead of the gameobjects name)
             AllLapsCompleted = false;
         }
         Countdown -= Time.deltaTime;
