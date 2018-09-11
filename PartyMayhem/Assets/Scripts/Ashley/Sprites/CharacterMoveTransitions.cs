@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMoveTransitions : MonoBehaviour
 {
-    public Animator animator;
+    public Animator[] animators;
 
     //named ints for easier reading
     readonly int down = 0;
@@ -21,12 +21,12 @@ public class CharacterMoveTransitions : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animators = GetComponentsInChildren<Animator>();
     }
 
     private void Update()
     {
-        if (animator != null && isPaused == false)
+        if (animators != null && isPaused == false)
         {
             DetermineInput();
             CheckDirection();
@@ -44,39 +44,77 @@ public class CharacterMoveTransitions : MonoBehaviour
     public void CheckDirection() //tells the animation controller what direction the player is facing
     {
         if (horizontalInput < 0)
-            animator.SetInteger("direction", left);
+        {
+            foreach (Animator animator in animators)
+            {
+                animator.SetInteger("direction", left);
+            }
+        }
 
         else if (horizontalInput > 0)
-            animator.SetInteger("direction", right);
+        {
+            foreach (Animator animator in animators)
+            {
+                animator.SetInteger("direction", right);
+            }
+        }
 
         if (verticalInput < 0)
-            animator.SetInteger("direction", down);
+        {
+            foreach (Animator animator in animators)
+            {
+                animator.SetInteger("direction", down);
+            }
+        }
 
         else if (verticalInput > 0)
-            animator.SetInteger("direction", up);
+        {
+            foreach (Animator animator in animators)
+            {
+                animator.SetInteger("direction", up);
+            }
+        }
     }
 
     public void CheckMovement() //tells the animation controller if player is running or not
     {
         if (verticalInput != 0 || horizontalInput != 0)
-            animator.SetBool("isRunning", true);
+        {
+            foreach (Animator animator in animators)
+            {
+                animator.SetBool("isRunning", true);
+            }
+        }
 
         else
-            animator.SetBool("isRunning", false);
+        {
+            foreach (Animator animator in animators)
+            {
+                animator.SetBool("isRunning", false);
+            }
+        }
     }
 
     public void Punch() //referenced in PlayerMovement to set punch trigger
     {
-        if (animator != null)
-            animator.SetTrigger("punch");
+        if (animators != null)
+        {
+            foreach (Animator animator in animators)
+            {
+                animator.SetTrigger("punch");
+            }
+        }
     }
 
     public void ResetAnimation() //use to reset animator to default state
     {
-        if (animator != null)
+        if (animators != null)
         {
-            animator.SetInteger("direction", down);
-            animator.SetBool("isRunning", false);
+            foreach (Animator animator in animators)
+            {
+                animator.SetInteger("direction", down);
+                animator.SetBool("isRunning", false);
+            }
         }
     }
 }
