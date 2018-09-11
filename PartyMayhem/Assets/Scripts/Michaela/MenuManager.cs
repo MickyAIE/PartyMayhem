@@ -53,7 +53,7 @@ public class MenuManager : MonoBehaviour {
     public Sprite missilePreview;
     public Sprite dodgeballPreview;
     //public Sprite geoPreview;
-    //public Sprite racingPreview;
+    public Sprite racingPreview;
     //public Sprite rhythmPreview;
     public Sprite noPreview;
 
@@ -533,7 +533,7 @@ public class MenuManager : MonoBehaviour {
         bools.selectedRacing = true;
 
         minigameName.text = "Racing";
-        minigamePreview.sprite = noPreview;
+        minigamePreview.sprite = racingPreview;
 
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(false);
