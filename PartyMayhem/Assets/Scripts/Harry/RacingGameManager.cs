@@ -7,6 +7,8 @@ public class RacingGameManager : MonoBehaviour {
 
     public float Countdown = 30.0f;
     public int Laps;
+    public bool AllLapsCompleted;
+    public bool MiddleTextCleared;
     public Text LapCounter;
     public Text MiddleText;
     public GameObject[] Players;
@@ -26,32 +28,36 @@ public class RacingGameManager : MonoBehaviour {
             Player.AddComponent(typeof(LapsCounter));
             Player.GetComponent<PlayerMovement>().enabled = false;
         }
-        Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;  
+        Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
+        AllLapsCompleted = true;
+        MiddleTextCleared = true;
     }
 
     void Update () {
         Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
         LapCounter.text = Laps + "/3";
-        if (Laps >= 3)
+        if (AllLapsCompleted == false) { return; }
+        if (Laps >= 3 && AllLapsCompleted == true)
         {
-            Time.timeScale = 0.25F;
-            Invoke("ResetTimeScale", 0.5f);
-            MiddleText.text = "The Winner Is" + this.gameObject.name; //TODO Figure out a way to display that it was this player that won (IE PLAYER 1 instead of the gameobjects name)
+            Time.timeScale = 0.5F;
+            Invoke("ResetTimeScale", 1);
+            MiddleText.text = "Race Over!" //TODO Figure out a way to display that it was this player that won (IE PLAYER 1 instead of the gameobjects name)
+            AllLapsCompleted = false;
         }
         Countdown -= Time.deltaTime;
-        if (Countdown < 3)
+        if (Countdown < 3 && MiddleTextCleared == true)
         {
             MiddleText.text = "3";
         }
-        if (Countdown < 2)
+        if (Countdown < 2 && MiddleTextCleared == true)
         {
             MiddleText.text = "2";
         }
-        if (Countdown < 1)
+        if (Countdown < 1 && MiddleTextCleared == true)
         {
             MiddleText.text = "1";
         }
-        if (Countdown < 0)
+        if (Countdown < 0 && MiddleTextCleared == true)
         {
             MiddleText.text = "Go!";
             foreach (GameObject Player in Players)
@@ -59,9 +65,10 @@ public class RacingGameManager : MonoBehaviour {
             Player.GetComponent<PlayerMovement>().enabled = true;
             }
         }
-        if (Countdown < -0.5)
+        if (Countdown < -0.5 && MiddleTextCleared == true)
         {
             MiddleText.text = "";
+            MiddleTextCleared = false;
         }
     }
     public void ResetTimeScale()
@@ -69,8 +76,8 @@ public class RacingGameManager : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
-    public void ApplyScripts()
+    public void ResetMiddleText()
     {
-
+        
     }
 }
