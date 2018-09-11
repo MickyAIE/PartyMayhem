@@ -67,6 +67,9 @@ public class MenuManager : MonoBehaviour {
 
     public GameObject missileInfo;
     public GameObject dodgeballInfo;
+    public GameObject racingInfo;
+    public GameObject rhythmInfo;
+    public GameObject geoInfo;
 
     public GameObject hoverGuideText;
     public GameObject notSavedPopUp;
@@ -491,6 +494,9 @@ public class MenuManager : MonoBehaviour {
 
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(true);
+        racingInfo.SetActive(false);
+        geoInfo.SetActive(false);
+        rhythmInfo.SetActive(false);
 
         anim.SetBool("goToMinigameInfo", true);
     }
@@ -508,6 +514,9 @@ public class MenuManager : MonoBehaviour {
 
         dodgeballInfo.SetActive(true);
         missileInfo.SetActive(false);
+        racingInfo.SetActive(false);
+        geoInfo.SetActive(false);
+        rhythmInfo.SetActive(false);
 
         anim.SetBool("goToMinigameInfo", true);
     }
@@ -528,6 +537,9 @@ public class MenuManager : MonoBehaviour {
 
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(false);
+        racingInfo.SetActive(true);
+        geoInfo.SetActive(false);
+        rhythmInfo.SetActive(false);
 
         anim.SetBool("goToMinigameInfo", true);
     }
@@ -548,6 +560,9 @@ public class MenuManager : MonoBehaviour {
 
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(false);
+        racingInfo.SetActive(false);
+        geoInfo.SetActive(true);
+        rhythmInfo.SetActive(false);
 
         anim.SetBool("goToMinigameInfo", true);
     }
@@ -568,6 +583,9 @@ public class MenuManager : MonoBehaviour {
 
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(false);
+        racingInfo.SetActive(false);
+        geoInfo.SetActive(false);
+        rhythmInfo.SetActive(true);
 
         anim.SetBool("goToMinigameInfo", true);
     }
