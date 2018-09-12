@@ -19,6 +19,7 @@ public class IcePatch : MonoBehaviour {
 		 if(SpeedDelayOn == true)
             {
              SpeedDelay();
+             SpeedDelayOn = false;
             }
 	}
 
@@ -35,10 +36,11 @@ public class IcePatch : MonoBehaviour {
     {
         Debug.Log("IceCollisionExit");
         SpeedDelayOn = false;
+        MoveSpeed.speed = 200f; 
     }
 
     public void SpeedDelay()
     {
-        MoveSpeed.Move();
+        MoveSpeed.speed = 160f;
     }
 }
