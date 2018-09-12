@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MissileSpawner : MonoBehaviour
 {
+    //Component of Minigame Manager
+
     private MissileMadness manager;
 
     public GameObject redMissile;
@@ -14,7 +16,7 @@ public class MissileSpawner : MonoBehaviour
 
     private void Awake()
     {
-        manager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MissileMadness>();
+        manager = GetComponent<MissileMadness>();
     }
 
     private void Update()

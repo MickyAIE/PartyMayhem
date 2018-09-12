@@ -11,6 +11,8 @@ TagManager:
   - Ball
   - GameManager
   - StartPositions
+  - ShieldPickup
+  - SpeedPickup
   layers:
   - Default
   - TransparentFX
