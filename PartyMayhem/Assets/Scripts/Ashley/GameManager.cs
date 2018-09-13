@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public string minigameToLoad;
 
     public int gameTimer;
+    public int gameLaps;
     public int difficultyIndex;
 
     private Transform[] startPositions;

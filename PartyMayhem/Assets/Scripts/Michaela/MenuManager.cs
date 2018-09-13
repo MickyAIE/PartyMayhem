@@ -81,6 +81,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject controlButton;
     public GameObject datPopUp;
 
+    public Dropdown lapsDropdown;
     public Dropdown timerDropdown;
     public Toggle easy;
     public Toggle normal;
@@ -105,7 +106,6 @@ public class MenuManager : MonoBehaviour {
         anim.SetBool("goToCredits", false);
         anim.SetBool("goToModes", false);
         anim.SetBool("startScreen", true);
-
 
         bools.hoverBoard = false;
         bools.hoverTournament = false;
@@ -204,11 +204,28 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
+        if(bools.selectedRacing == true)
+        {
+            lapsDropdown.gameObject.SetActive(true);
+            timerDropdown.gameObject.SetActive(false);
+        }
+        else
+        {
+            lapsDropdown.gameObject.SetActive(false);
+            timerDropdown.gameObject.SetActive(true);
+        }
+
         if(timerDropdown.value == 0)  gameManager.gameTimer = 60;
         if (timerDropdown.value == 1) gameManager.gameTimer = 120;
         if (timerDropdown.value == 2) gameManager.gameTimer = 180;
         if (timerDropdown.value == 3) gameManager.gameTimer = 240;
         if (timerDropdown.value == 4) gameManager.gameTimer = 300;
+
+        if (lapsDropdown.value == 0) gameManager.gameLaps = 1;
+        if (lapsDropdown.value == 1) gameManager.gameLaps = 2;
+        if (lapsDropdown.value == 2) gameManager.gameLaps = 3;
+        if (lapsDropdown.value == 3) gameManager.gameLaps = 4;
+        if (lapsDropdown.value == 4) gameManager.gameLaps = 5;
 
         if (easy.isOn == true && (normal.isOn == false && hard.isOn == false)) gameManager.difficultyIndex = 1;
         if (easy.isOn == false && (normal.isOn == true && hard.isOn == false)) gameManager.difficultyIndex = 2;
@@ -538,6 +555,9 @@ public class MenuManager : MonoBehaviour {
 
         bools.selectedDodgeball = false;
         bools.selectedMissile = true;
+        bools.selectedGeo = false;
+        bools.selectedRhythm = false;
+        bools.selectedRacing = false;
 
         minigameName.text = "Missile Madness";
         minigamePreview.sprite = missilePreview;
@@ -558,6 +578,9 @@ public class MenuManager : MonoBehaviour {
 
         bools.selectedDodgeball = true;
         bools.selectedMissile = false;
+        bools.selectedGeo = false;
+        bools.selectedRhythm = false;
+        bools.selectedRacing = false;
 
         minigameName.text = "Dodgeball";
         minigamePreview.sprite = dodgeballPreview;
