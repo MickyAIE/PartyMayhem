@@ -52,13 +52,13 @@ public class RacingGameManager : MonoBehaviour {
 
     void Update () {
         Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
-        LapCounter.text = Laps + "/3";
+        LapCounter.text = Laps + "/" + manager.gameLaps;
         foreach (GameObject Guide in Guides)
         {           
             Guide.GetComponent<SpriteRenderer>().material.color = Color.Lerp(StartingColor, EndColor, Time.time/3f);            
         }
         if (AllLapsCompleted == false) { return; }
-        if (Laps >= 3 && AllLapsCompleted == true)
+        if (Laps >= manager.gameLaps && AllLapsCompleted == true)
         {
             Time.timeScale = 0.5F;
             Invoke("ResetTimeScale", 1);

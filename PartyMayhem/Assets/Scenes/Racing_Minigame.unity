@@ -3947,7 +3947,7 @@ MonoBehaviour:
   activePlayerCount: 0
   minigameToLoad: 
   gameTimer: 0
-  gameLaps: 3
+  gameLaps: 0
   difficultyIndex: 0
 --- !u!4 &1294242889
 Transform:
