@@ -9,9 +9,12 @@ public class RacingGameManager : MonoBehaviour {
     public int Laps;
     public bool AllLapsCompleted;
     public bool MiddleTextCleared;
+    public Color StartingColor; //it took all my mental fortitude to not type this the Australian way.
+    public Color EndColor;
     public Text LapCounter;
     public Text MiddleText;
     public GameObject[] Players;
+    public GameObject[] Guides;
     public GameManager manager;
     public PlayerMovement PlayerMovement;
 
@@ -22,6 +25,7 @@ public class RacingGameManager : MonoBehaviour {
 
     void Start() {
         manager.SpawnPlayers();
+        Guides = GameObject.FindGameObjectsWithTag("Guide");
         Players = GameObject.FindGameObjectsWithTag("Player");       
         foreach (GameObject Player in Players)
         {
@@ -29,6 +33,8 @@ public class RacingGameManager : MonoBehaviour {
             Player.GetComponent<PlayerMovement>().enabled = false;
         }
         Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
+        StartingColor = Guides[0].GetComponent<SpriteRenderer>().color;
+        EndColor = new Color(StartingColor.r, StartingColor.g, StartingColor.b, 0f);
         AllLapsCompleted = true;
         MiddleTextCleared = true;
     }
@@ -36,6 +42,10 @@ public class RacingGameManager : MonoBehaviour {
     void Update () {
         Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
         LapCounter.text = Laps + "/3";
+        foreach (GameObject Guide in Guides)
+        {           
+            Guide.GetComponent<SpriteRenderer>().material.color = Color.Lerp(StartingColor, EndColor, Time.time/3f);            
+        }
         if (AllLapsCompleted == false) { return; }
         if (Laps >= 3 && AllLapsCompleted == true)
         {
