@@ -64,54 +64,9 @@ public class Enemy : MonoBehaviour {
         dodgeballManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<DodgeballManager>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-        if (gameManager.difficultyIndex == 1)
-        {
-            ballSpeed = 4f;
-
-            timers.waitToMoveTimer = 3;
-            timers.waitToMoveStartTime = 3;
-
-            timers.throwTimer = 3;
-            timers.throwStartTime = 3;
-
-            timers.waitTimer = 4;
-            timers.waitStartTime = 4;
-
-            timers.Movetimer = .9f;
-            timers.moveStartTime = .9f;
-        }
-        if (gameManager.difficultyIndex == 2)
-        {
-            ballSpeed = 5f;
-
-            timers.waitToMoveTimer = 2;
-            timers.waitToMoveStartTime = 2;
-
-            timers.throwTimer = 2;
-            timers.throwStartTime = 2;
-
-            timers.waitTimer = 3;
-            timers.waitStartTime = 3;
-
-            timers.Movetimer = .9f;
-            timers.moveStartTime = .9f;
-        }
-        if (gameManager.difficultyIndex == 3)
-        {
-            ballSpeed = 6f;
-
-            timers.waitToMoveTimer = 1;
-            timers.waitToMoveStartTime = 1;
-
-            timers.throwTimer = 1;
-            timers.throwStartTime = 1;
-
-            timers.waitTimer = 2;
-            timers.waitStartTime = 2;
-
-            timers.Movetimer = .9f;
-            timers.moveStartTime = .9f;
-        }
+        if (gameManager.difficultyIndex == 1) ballSpeed = 3.5f;     
+        if (gameManager.difficultyIndex == 2) ballSpeed = 5f;    
+        if (gameManager.difficultyIndex == 3) ballSpeed = 7f;     
 
         bools.hasThrownBall = false;
         bools.hasSpawnedBall = false;
