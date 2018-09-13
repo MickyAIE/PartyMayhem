@@ -41,7 +41,9 @@ public class MenuManager : MonoBehaviour {
     public AudioSource music;
     public AudioSource sfx;
     public AudioClip click;
-    public AudioClip error;
+    public AudioClip specialClick;
+    public AudioClip backClick;
+    public AudioClip uhohClick;
 
     public Slider musicSlider;
     public Slider sfxSlider;
@@ -361,6 +363,9 @@ public class MenuManager : MonoBehaviour {
         bools.hasSaved = true;
         bools.changesMade = false;
 
+        sfx.clip = specialClick;
+        sfx.Play();
+
         Debug.Log("Saved");
     }
     #endregion
@@ -427,8 +432,6 @@ public class MenuManager : MonoBehaviour {
     {
         sfx.clip = click;
         sfx.Play();
-        sfx.clip = click;
-        sfx.Play();
 
         controlsPopUp.SetActive(false);
         controlsPopUp2.SetActive(false);
@@ -444,7 +447,7 @@ public class MenuManager : MonoBehaviour {
         else if(bools.hasSaved == false && bools.changesMade == true)
         {
             notSavedPopUp.SetActive(true);
-            sfx.clip = error;
+            sfx.clip = backClick;
             sfx.Play();
         }
         else
@@ -466,7 +469,7 @@ public class MenuManager : MonoBehaviour {
 
     public void GoBackAnyway()
     {
-        sfx.clip = click;
+        sfx.clip = backClick;
         sfx.Play();
 
         bools.changesMade = false;
@@ -477,7 +480,7 @@ public class MenuManager : MonoBehaviour {
     }
     public void SaveAndGoBack()
     {
-        sfx.clip = click;
+        sfx.clip = specialClick;
         sfx.Play();
         Save();
 
@@ -509,12 +512,10 @@ public class MenuManager : MonoBehaviour {
 
     public void OnQuitButtonPress()
     {
-        sfx.clip = click;
+        sfx.clip = backClick;
         sfx.Play();
         Application.Quit();
     }
-
-
 
     public void OnBackToModes()
     {
@@ -548,6 +549,7 @@ public class MenuManager : MonoBehaviour {
 #endregion
 
 #region MinigamePressed Functions
+
     public void OnMinigameMissilePressed()
     {
         sfx.clip = click;
@@ -666,12 +668,18 @@ public class MenuManager : MonoBehaviour {
 
     public void PrePlayMinigame()
     {
+        sfx.clip = specialClick;
+        sfx.Play();
+
         datPopUp.SetActive(true);
         selectButton.GetComponent<Button>().enabled = false;
         controlButton.GetComponent<Button>().enabled = false;
     }
     public void ExitPrePlayMinigame()
     {
+        sfx.clip = backClick;
+        sfx.Play();
+
         datPopUp.SetActive(false);
         selectButton.GetComponent<Button>().enabled = true;
         controlButton.GetComponent<Button>().enabled = true;
@@ -679,7 +687,10 @@ public class MenuManager : MonoBehaviour {
 
     public void PlayMinigame()
     {
-        if(bools.selectedMissile == true && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
+        sfx.clip = specialClick;
+        sfx.Play();
+
+        if (bools.selectedMissile == true && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
         {
             gameManager.minigameToLoad = "MissileMadness";
             SceneManager.LoadScene("Char Select Menu");
@@ -708,6 +719,9 @@ public class MenuManager : MonoBehaviour {
 
     public void ControlsPopUp()
     {
+        sfx.clip = specialClick;
+        sfx.Play();
+
         controlsPopUp.SetActive(true);
         controlsPopUp2.SetActive(true);
         controlsPopUp3.SetActive(true);
@@ -715,6 +729,9 @@ public class MenuManager : MonoBehaviour {
 
     public void ControlsBack()
     {
+        sfx.clip = backClick;
+        sfx.Play();
+
         PlayerPrefs.SetInt("controls", 1);
         controlsPopUp.SetActive(false);
         controlsPopUp2.SetActive(false);

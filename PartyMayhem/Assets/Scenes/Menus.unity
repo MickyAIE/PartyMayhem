@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5370,6 +5370,7 @@ MonoBehaviour:
   activePlayerCount: 0
   minigameToLoad: 
   gameTimer: 0
+  gameLaps: 0
   difficultyIndex: 0
 --- !u!4 &607404479
 Transform:
@@ -5754,7 +5755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &673245169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16584,8 +16585,10 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: d90e8c807487e4449ad1a6893ce36d7c, type: 2}
   music: {fileID: 1720154918}
   sfx: {fileID: 1720154919}
-  click: {fileID: 8300000, guid: 516e77622fb566b46a98ac737512b491, type: 3}
-  error: {fileID: 8300000, guid: faa4e284a1f93fe43b2d1d900e13d7e3, type: 3}
+  click: {fileID: 8300000, guid: c7bcbc883d1950842ba853fe11db8507, type: 3}
+  specialClick: {fileID: 8300000, guid: fcd3060ec5df2eb4e8e4d9f2f6e7f0f9, type: 3}
+  backClick: {fileID: 8300000, guid: a1bf14e4864d4af458c330e53eedb88a, type: 3}
+  uhohClick: {fileID: 0}
   musicSlider: {fileID: 398359546}
   sfxSlider: {fileID: 1006804079}
   modeText: {fileID: 1805940496}
@@ -16614,6 +16617,7 @@ MonoBehaviour:
   selectButton: {fileID: 1347692672}
   controlButton: {fileID: 40860954}
   datPopUp: {fileID: 1312309962}
+  lapsDropdown: {fileID: 673245170}
   timerDropdown: {fileID: 2057075726}
   easy: {fileID: 1035991532}
   normal: {fileID: 1823289980}
