@@ -6,6 +6,7 @@ public class RhythmScoreTracker : MonoBehaviour
 {
     [HideInInspector] public int points;
 
+    [HideInInspector] public Dictionary<string, string> drums = new Dictionary<string, string>();
     public GameObject drumRed;
     public GameObject drumGreen;
     public GameObject drumBlue;
@@ -21,14 +22,17 @@ public class RhythmScoreTracker : MonoBehaviour
         {
             rManager = GameObject.FindGameObjectWithTag("Rhythm Manager").GetComponent<RhythmManager>();
         }
+
+        drums.Add(drumRed.name, "Red");
+        drums.Add(drumGreen.name, "Green");
+        drums.Add(drumBlue.name, "Blue");
+        drums.Add(drumYellow.name, "Yellow");
     }
 
     private void Update()
     {
         award = rManager.award;
         if (rManager.chosenColours.Count > 0)
-        //I had this:
-        //if(rManager.chosenColours[0] != null)
         {
             currentColour = rManager.chosenColours[0];
         }
