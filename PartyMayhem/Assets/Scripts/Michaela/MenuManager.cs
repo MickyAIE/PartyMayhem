@@ -223,11 +223,11 @@ public class MenuManager : MonoBehaviour {
         if (timerDropdown.value == 3) gameManager.gameTimer = 240;
         if (timerDropdown.value == 4) gameManager.gameTimer = 300;
 
-        if (lapsDropdown.value == 0) gameManager.gameLaps = 1;
-        if (lapsDropdown.value == 1) gameManager.gameLaps = 2;
-        if (lapsDropdown.value == 2) gameManager.gameLaps = 3;
-        if (lapsDropdown.value == 3) gameManager.gameLaps = 4;
-        if (lapsDropdown.value == 4) gameManager.gameLaps = 5;
+        if (lapsDropdown.value == 0) gameManager.gameLaps = 2;
+        if (lapsDropdown.value == 1) gameManager.gameLaps = 3;
+        if (lapsDropdown.value == 2) gameManager.gameLaps = 4;
+        if (lapsDropdown.value == 3) gameManager.gameLaps = 5;
+        if (lapsDropdown.value == 4) gameManager.gameLaps = 6;
 
         if (easy.isOn == true && (normal.isOn == false && hard.isOn == false)) gameManager.difficultyIndex = 1;
         if (easy.isOn == false && (normal.isOn == true && hard.isOn == false)) gameManager.difficultyIndex = 2;
