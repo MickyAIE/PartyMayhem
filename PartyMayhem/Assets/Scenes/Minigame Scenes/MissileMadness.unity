@@ -650,6 +650,9 @@ MonoBehaviour:
   profiles: []
   activePlayerCount: 0
   minigameToLoad: 
+  gameTimer: 0
+  gameLaps: 0
+  difficultyIndex: 0
 --- !u!4 &494080298
 Transform:
   m_ObjectHideFlags: 0
