@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class DodgeballManager : MonoBehaviour {
 
-    private GameManager manager;
+    private GameManager gameManager;
 
     public GameObject[] enemySpawnPoints;
     public GameObject enemyPrefab;
@@ -39,13 +39,17 @@ public class DodgeballManager : MonoBehaviour {
 
     private void Awake()
     {
-        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void Start()
     {
-        gameTime = manager.gameTimer;
-        manager.SpawnPlayers();
+        if(gameManager.gameTimer != 0) gameTime = gameManager.gameTimer;
+        if (gameManager.difficultyIndex == 1) maxEnemies = 3;
+        if (gameManager.difficultyIndex == 2) maxEnemies = 5;
+        if (gameManager.difficultyIndex == 3) maxEnemies = 7;
+
+        gameManager.SpawnPlayers();
 
         Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
         enemies.Add(enemyPrefab);

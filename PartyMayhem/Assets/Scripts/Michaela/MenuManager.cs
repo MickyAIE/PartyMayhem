@@ -204,7 +204,7 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
-        /*if(timerDropdown.value == 0)  gameManager.gameTimer = 60;
+        if(timerDropdown.value == 0)  gameManager.gameTimer = 60;
         if (timerDropdown.value == 1) gameManager.gameTimer = 120;
         if (timerDropdown.value == 2) gameManager.gameTimer = 180;
         if (timerDropdown.value == 3) gameManager.gameTimer = 240;
@@ -212,7 +212,7 @@ public class MenuManager : MonoBehaviour {
 
         if (easy.isOn == true && (normal.isOn == false && hard.isOn == false)) gameManager.difficultyIndex = 1;
         if (easy.isOn == false && (normal.isOn == true && hard.isOn == false)) gameManager.difficultyIndex = 2;
-        if (easy.isOn == false && (normal.isOn == false && hard.isOn == true)) gameManager.difficultyIndex = 3;*/
+        if (easy.isOn == false && (normal.isOn == false && hard.isOn == true)) gameManager.difficultyIndex = 3;
 
         if (tournamentModeInfo.activeInHierarchy == false && (boardModeInfo.activeInHierarchy == false && freeplayModeInfo.activeInHierarchy == false))
         {
