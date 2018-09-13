@@ -62,10 +62,10 @@ public class RacingGameManager : MonoBehaviour {
         {
             Time.timeScale = 0.5F;
             Invoke("ResetTimeScale", 1);
-            if (Player1Wins == true) { MiddleText.text = "Player 1 Wins"; Invoke("BackToMainMenu", 2); }
-            if (Player2Wins == true) { MiddleText.text = "Player 2 Wins"; Invoke("BackToMainMenu", 2); }
-            if (Player3Wins == true) { MiddleText.text = "Player 3 Wins"; Invoke("BackToMainMenu", 2); }
-            if (Player4Wins == true) { MiddleText.text = "Player 4 Wins"; Invoke("BackToMainMenu", 2); }
+            if (Player1Wins == true) { MiddleText.text = "Player 1 Wins"; Invoke("BackToMainMenu", 3); }
+            if (Player2Wins == true) { MiddleText.text = "Player 2 Wins"; Invoke("BackToMainMenu", 3); }
+            if (Player3Wins == true) { MiddleText.text = "Player 3 Wins"; Invoke("BackToMainMenu", 3); }
+            if (Player4Wins == true) { MiddleText.text = "Player 4 Wins"; Invoke("BackToMainMenu", 3); }
             /*MiddleText.text = "Race Over!";*/ //TODO Figure out a way to display that it was this player that won (IE PLAYER 1 instead of the gameobjects name)
             //AllLapsCompleted = false;
         }

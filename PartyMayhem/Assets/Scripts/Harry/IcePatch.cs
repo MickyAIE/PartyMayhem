@@ -16,7 +16,8 @@ public class IcePatch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		 if(SpeedDelayOn == true)
+        MoveSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        if (SpeedDelayOn == true)
             {
              SpeedDelay();
              SpeedDelayOn = false;
