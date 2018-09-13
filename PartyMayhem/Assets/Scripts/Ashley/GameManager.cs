@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public int activePlayerCount;
     public string minigameToLoad;
 
+    public int gameTimer;
+    public int difficultyIndex;
+
     private Transform[] startPositions;
 
     private void Awake()
