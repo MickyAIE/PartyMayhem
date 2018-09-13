@@ -77,6 +77,15 @@ public class MenuManager : MonoBehaviour {
     public GameObject controlsPopUp2;
     public GameObject controlsPopUp3;
 
+    public GameObject selectButton;
+    public GameObject controlButton;
+    public GameObject datPopUp;
+
+    public Dropdown timerDropdown;
+    public Toggle easy;
+    public Toggle normal;
+    public Toggle hard;
+
     Resolution[] resolutions;
 
     public enum Mode
@@ -129,6 +138,8 @@ public class MenuManager : MonoBehaviour {
         }
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
+
+        datPopUp.SetActive(false);
 
         graphicsDropdown.value = PlayerPrefs.GetInt("graphics", 3);
         sfxSlider.value = PlayerPrefs.GetFloat("sVolume", -15f);
@@ -193,6 +204,16 @@ public class MenuManager : MonoBehaviour {
             }
         }
 
+        /*if(timerDropdown.value == 0)  gameManager.gameTimer = 60;
+        if (timerDropdown.value == 1) gameManager.gameTimer = 120;
+        if (timerDropdown.value == 2) gameManager.gameTimer = 180;
+        if (timerDropdown.value == 3) gameManager.gameTimer = 240;
+        if (timerDropdown.value == 4) gameManager.gameTimer = 300;
+
+        if (easy.isOn == true && (normal.isOn == false && hard.isOn == false)) gameManager.difficultyIndex = 1;
+        if (easy.isOn == false && (normal.isOn == true && hard.isOn == false)) gameManager.difficultyIndex = 2;
+        if (easy.isOn == false && (normal.isOn == false && hard.isOn == true)) gameManager.difficultyIndex = 3;*/
+
         if (tournamentModeInfo.activeInHierarchy == false && (boardModeInfo.activeInHierarchy == false && freeplayModeInfo.activeInHierarchy == false))
         {
             hoverGuideText.SetActive(true);
@@ -240,7 +261,8 @@ public class MenuManager : MonoBehaviour {
 
         modeText.text = ("Mode: " + mode.ToString());
     }
-    
+
+#region Hover Functions
     public void ShowBoardInfo()
     {
         boardModeInfo.SetActive(true);
@@ -271,7 +293,9 @@ public class MenuManager : MonoBehaviour {
         freeplayModeInfo.SetActive(false);
         bools.hoverFreeplay = false;
     }
+#endregion
 
+#region Settings Functions
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("musicVolume", volume);
@@ -322,22 +346,38 @@ public class MenuManager : MonoBehaviour {
 
         Debug.Log("Saved");
     }
+    #endregion
 
-    public void ControlsPopUp()
+#region ModeSelect Functions
+    public void OnBoardModeSelected()
     {
-        controlsPopUp.SetActive(true);
-        controlsPopUp2.SetActive(true);
-        controlsPopUp3.SetActive(true);
+        sfx.clip = click;
+        sfx.Play();
+        anim.SetBool("goToMinigames", true);
+
+        bools.boardMode = true;
     }
 
-    public void ControlsBack()
+    public void OnTournamentModeSelected()
     {
-        PlayerPrefs.SetInt("controls", 1);
-        controlsPopUp.SetActive(false);
-        controlsPopUp2.SetActive(false);
-        controlsPopUp3.SetActive(false);
+        sfx.clip = click;
+        sfx.Play();
+        anim.SetBool("goToMinigames", true);
+
+        bools.tournamentMode = true;
     }
 
+    public void OnFreeplayModeSelected()
+    {
+        sfx.clip = click;
+        sfx.Play();
+        anim.SetBool("goToMinigames", true);
+
+        bools.freeplayMode = true;
+    }
+    #endregion
+
+#region On(button)Press Functions
     public void OnStartButtonPress()
     {
         sfx.clip = click;
@@ -350,6 +390,10 @@ public class MenuManager : MonoBehaviour {
     {
         sfx.clip = click;
         sfx.Play();
+
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
 
         anim.SetBool("goToModes", false);
     }
@@ -368,6 +412,11 @@ public class MenuManager : MonoBehaviour {
         sfx.Play();
         sfx.clip = click;
         sfx.Play();
+
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
+
         if (bools.hasSaved == true)
         {
             anim.SetBool("goToSettings", false);
@@ -433,6 +482,11 @@ public class MenuManager : MonoBehaviour {
     {
         sfx.clip = click;
         sfx.Play();
+
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
+
         anim.SetBool("goToCredits", false);
     }
 
@@ -443,32 +497,7 @@ public class MenuManager : MonoBehaviour {
         Application.Quit();
     }
 
-    public void OnBoardModeSelected()
-    {
-        sfx.clip = click;
-        sfx.Play();
-        anim.SetBool("goToMinigames", true);
 
-        bools.boardMode = true;
-    }
-
-    public void OnTournamentModeSelected()
-    {
-        sfx.clip = click;
-        sfx.Play();
-        anim.SetBool("goToMinigames", true);
-
-        bools.tournamentMode = true;
-    }
-
-    public void OnFreeplayModeSelected()
-    {
-        sfx.clip = click;
-        sfx.Play();
-        anim.SetBool("goToMinigames", true);
-
-        bools.freeplayMode = true;
-    }
 
     public void OnBackToModes()
     {
@@ -476,11 +505,32 @@ public class MenuManager : MonoBehaviour {
         bools.tournamentMode = false;
         bools.freeplayMode = false;
 
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
+
         sfx.clip = click;
         sfx.Play();
         anim.SetBool("goToMinigames", false);
     }
 
+    public void OnBackToMinigames()
+    {
+        sfx.clip = click;
+        sfx.Play();
+
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
+        datPopUp.SetActive(false);
+        selectButton.GetComponent<Button>().enabled = true;
+        controlButton.GetComponent<Button>().enabled = true;
+
+        anim.SetBool("goToMinigameInfo", false);
+    }
+#endregion
+
+#region MinigamePressed Functions
     public void OnMinigameMissilePressed()
     {
         sfx.clip = click;
@@ -589,6 +639,20 @@ public class MenuManager : MonoBehaviour {
 
         anim.SetBool("goToMinigameInfo", true);
     }
+#endregion
+
+    public void PrePlayMinigame()
+    {
+        datPopUp.SetActive(true);
+        selectButton.GetComponent<Button>().enabled = false;
+        controlButton.GetComponent<Button>().enabled = false;
+    }
+    public void ExitPrePlayMinigame()
+    {
+        datPopUp.SetActive(false);
+        selectButton.GetComponent<Button>().enabled = true;
+        controlButton.GetComponent<Button>().enabled = true;
+    }
 
     public void PlayMinigame()
     {
@@ -619,10 +683,18 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
-    public void OnBackToMinigames()
+    public void ControlsPopUp()
     {
-        sfx.clip = click;
-        sfx.Play();
-        anim.SetBool("goToMinigameInfo", false);
+        controlsPopUp.SetActive(true);
+        controlsPopUp2.SetActive(true);
+        controlsPopUp3.SetActive(true);
+    }
+
+    public void ControlsBack()
+    {
+        PlayerPrefs.SetInt("controls", 1);
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
     }
 }

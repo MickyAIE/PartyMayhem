@@ -44,6 +44,7 @@ public class DodgeballManager : MonoBehaviour {
 
     private void Start()
     {
+        gameTime = manager.gameTimer;
         manager.SpawnPlayers();
 
         Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
