@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpeedPickup : MonoBehaviour
 {
+    //This script is attached to the player when they pick up the speed boost item.
     //Increases player's speed for a small amount of time.
 
     private PlayerMovement player;
@@ -18,7 +19,7 @@ public class SpeedPickup : MonoBehaviour
 
         foreach (SpriteRenderer sprite in sprites)
         {
-            sprite.color = Color.blue;
+            sprite.color = Color.red;
         }
 
         if (player != null)

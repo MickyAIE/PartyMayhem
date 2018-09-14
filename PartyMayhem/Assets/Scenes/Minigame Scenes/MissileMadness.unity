@@ -1048,6 +1048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 1795450002483634, guid: 34c63ace40f54fc449c1638421aa8987, type: 2}
   speedBoost: {fileID: 1121087124221634, guid: df8b6a75ab2fa754f924304d9e6a5df8, type: 2}
+  shieldSprite: {fileID: 21300000, guid: ecd850f8b9c5836479c2902f81426c03, type: 3}
   spawnSpots:
   - {fileID: 480980145}
   - {fileID: 471646649}
@@ -1172,7 +1173,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1485626293630972, guid: a510749aeb02117478a9ec7641b02628, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a510749aeb02117478a9ec7641b02628, type: 2}
