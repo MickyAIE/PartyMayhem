@@ -7,16 +7,16 @@ using UnityEngine;
 
 public class RacingGameManager : MonoBehaviour {
 
-    public float Countdown = 30.0f;
-    public int Laps;
-    public bool AllLapsCompleted;
+    public float Countdown = 30.0f; //Used to control the timer at the start to countdown from 3.
+    public int Laps; //used to control the total amount of laps required to win the race
+    public bool AllLapsCompleted; 
     public bool MiddleTextCleared;
     public bool Player1Wins;
     public bool Player2Wins;
     public bool Player3Wins;
     public bool Player4Wins;
     public Color StartingColor; //it took all my mental fortitude to not type this the Australian way.
-    public Color EndColor;
+    public Color EndColor; //Starting color and end color are used to transition the guidance arrows to fade away
     public Text LapCounter;
     public Text MiddleText;
     public GameObject[] Players;
