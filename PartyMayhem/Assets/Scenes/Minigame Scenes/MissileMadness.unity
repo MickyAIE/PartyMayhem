@@ -412,7 +412,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 391876514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0.5, z: 0}
   m_LocalScale: {x: 1.3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1003,8 +1003,7 @@ MonoBehaviour:
   timer: {fileID: 1489458958}
   message: {fileID: 642101517}
   returnButton: {fileID: 628749273}
-  timeLimit: 60
-  countdown: 3
+  timeLimit: 0
   onePlayerMode: 0
 --- !u!4 &902804801
 Transform:
@@ -1033,6 +1032,9 @@ MonoBehaviour:
   redMissile: {fileID: 1071241352264944, guid: cd39fc942aa34e34dbb596c0b35d4422, type: 2}
   blueMissile: {fileID: 1068358570608690, guid: 3b448e92a634df14fae5aaadfd1a64a7,
     type: 2}
+  missileIndicator: {fileID: 1400397561442974, guid: d5ca40a9e90829148b7c244b162d0e6b,
+    type: 2}
+  arrowDirection: 0
   spawnTimer: 1
   spawnDelay: 3
 --- !u!114 &902804803
@@ -1173,6 +1175,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1485626293630972, guid: a510749aeb02117478a9ec7641b02628, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 70892718465732106, guid: a510749aeb02117478a9ec7641b02628,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -13,7 +13,7 @@ public class MissileMadness : MonoBehaviour
     public Button returnButton;
 
     public float timeLimit;
-    public float countdown;
+    private static float countdown = 3.5f;
     public bool onePlayerMode = false;
 
     public enum GameState
@@ -22,15 +22,30 @@ public class MissileMadness : MonoBehaviour
         Game,
         Finish
     }
-    private GameState gameState;
-    public GameState State { get { return gameState; } }
+    public GameState State { get; private set; }
+
+    public enum Difficulties
+    {
+        Easy,
+        Normal,
+        Hard
+    }
+    public Difficulties Difficulty { get; private set; }
 
     private void Awake()
     {
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        timeLimit = manager.gameTimer;
         timer.gameObject.SetActive(false);
         message.gameObject.SetActive(true);
         returnButton.gameObject.SetActive(false);
+
+        if (manager.gameTimer != 0)
+            timeLimit = manager.gameTimer;
+        else
+            timeLimit = 60;
+
+        Difficulty = (Difficulties)manager.difficultyIndex - 1;
     }
 
     private void Start()
@@ -50,19 +65,19 @@ public class MissileMadness : MonoBehaviour
     {
         CurrentPlayerCount();
 
-        switch (gameState)
+        switch (State)
         {
             case GameState.Start:
                 countdown -= Time.deltaTime;
                 message.text = countdown.ToString("f0");
 
-                if (countdown <= 0)
+                if (countdown <= 1)
                 {
                     timer.gameObject.SetActive(true);
                     message.gameObject.SetActive(false);
 
                     EnablePlayerMovement();
-                    gameState = GameState.Game;
+                    State = GameState.Game;
                 }
                 break;
 
@@ -79,7 +94,7 @@ public class MissileMadness : MonoBehaviour
                     returnButton.gameObject.SetActive(true);
 
                     DisablePlayerMovement();
-                    gameState = GameState.Finish;
+                    State = GameState.Finish;
                 }
                 break;
 
