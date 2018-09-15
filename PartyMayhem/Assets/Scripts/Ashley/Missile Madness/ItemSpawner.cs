@@ -10,6 +10,7 @@ public class ItemSpawner : MonoBehaviour
 
     public GameObject shield;
     public GameObject speedBoost;
+    public Sprite shieldSprite;
 
     public Transform[] spawnSpots;
     public bool canSpawn = true;

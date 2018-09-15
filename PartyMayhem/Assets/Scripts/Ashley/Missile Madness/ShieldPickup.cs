@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class ShieldPickup : MonoBehaviour
 {
-    //Changes the player's layer to one that won't collide with missiles.
+    //This script is attached to the player when they pick up the shield item.
+    //Changes the player's layer to one that won't collide with missiles and adds a shield sprite.
 
-    private SpriteRenderer[] sprites;
+    private ItemSpawner spawner;
+    private SpriteRenderer sRenderer;
+
     private readonly float powerupLifetime = 5f;
     private float powerupTimer = 0f;
 
     private void Awake()
     {
-        sprites = gameObject.GetComponentsInChildren<SpriteRenderer>();
-
-        foreach (SpriteRenderer sprite in sprites)
-        {
-            sprite.color = Color.red;
-        }
+        spawner = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<ItemSpawner>();
+        sRenderer = gameObject.AddComponent<SpriteRenderer>();
 
         gameObject.layer = 10;
+    }
+
+    private void Start()
+    {
+        sRenderer.sprite = spawner.shieldSprite;
+        sRenderer.sortingOrder = 6;
     }
 
     private void Update()
@@ -34,11 +39,7 @@ public class ShieldPickup : MonoBehaviour
     {
         gameObject.layer = 0;
 
-        foreach (SpriteRenderer sprite in sprites)
-        {
-            sprite.color = Color.white;
-        }
-
+        Destroy(sRenderer);
         Destroy(this);
     }
 }
