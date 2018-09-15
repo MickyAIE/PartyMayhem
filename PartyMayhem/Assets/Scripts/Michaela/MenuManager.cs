@@ -5,8 +5,53 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+#region External
 [System.Serializable]
-public class bools
+public class Main
+{
+    public GameObject startButton;
+    public GameObject settingsButton;
+    public GameObject creditsButton;
+    public GameObject quitButton;
+}
+[System.Serializable]
+public class Credits
+{
+    public GameObject backButton;
+    public GameObject scrollBar;
+}
+[System.Serializable]
+public class Settings
+{
+    public GameObject musicSlider;
+    public GameObject effectsSlider;
+    public GameObject resolutionDropDown;
+    public GameObject GraphicsDropDown;
+    public GameObject fullscreenToggle;
+}
+[System.Serializable]
+public class Modes
+{
+    public GameObject tournamentButton;
+    public GameObject freeplayButton;
+}
+[System.Serializable]
+public class Lists
+{
+    public GameObject MissileButton;
+    public GameObject RacingButton;
+    public GameObject GeoButton;
+    public GameObject DodgeButton;
+    public GameObject RhythmButton;
+}
+[System.Serializable]
+public class Profile
+{
+    public GameObject selectButton;
+}
+
+[System.Serializable]
+public class Bbools
 {
     public bool hoverBoard = false;
     public bool hoverTournament = false;
@@ -28,12 +73,19 @@ public class bools
 
     public bool pressSpace = false;
 }
+#endregion
 
 public class MenuManager : MonoBehaviour {
 
     private GameManager gameManager;
 
-    public bools bools;
+    public Bbools bools;
+    public Main main;
+    public Credits credits;
+    public Settings settings;
+    public Modes mode;
+    public Lists list;
+    public Profile profile;
 
     public Animator anim;
 
@@ -43,7 +95,6 @@ public class MenuManager : MonoBehaviour {
     public AudioClip click;
     public AudioClip specialClick;
     public AudioClip backClick;
-    public AudioClip uhohClick;
 
     public Slider musicSlider;
     public Slider sfxSlider;
@@ -91,7 +142,7 @@ public class MenuManager : MonoBehaviour {
 
     Resolution[] resolutions;
 
-    public enum Mode
+    /*public enum Mode
     {
         Board,
         Tournament,
@@ -99,7 +150,7 @@ public class MenuManager : MonoBehaviour {
         NotChosen
     };
     private Mode mode;
-
+    */
     public void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -161,7 +212,7 @@ public class MenuManager : MonoBehaviour {
 
         sfx.clip = click;
 
-        mode = Mode.NotChosen;
+        //mode = Mode.NotChosen;
 
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -239,7 +290,7 @@ public class MenuManager : MonoBehaviour {
         }
         else hoverGuideText.SetActive(false);
 
-        if ((bools.boardMode == false && bools.tournamentMode == false) && bools.freeplayMode == false)
+        /*if ((bools.boardMode == false && bools.tournamentMode == false) && bools.freeplayMode == false)
         {
             mode = Mode.NotChosen;
         }
@@ -278,7 +329,7 @@ public class MenuManager : MonoBehaviour {
                 break;
         }
 
-        modeText.text = ("Mode: " + mode.ToString());
+        modeText.text = ("Mode: " + mode.ToString());*/
     }
 
 #region Hover Functions

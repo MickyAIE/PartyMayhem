@@ -16374,7 +16374,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 773714007}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.2127864
+  m_Size: 0.21278639
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16588,7 +16588,6 @@ MonoBehaviour:
   click: {fileID: 8300000, guid: 516e77622fb566b46a98ac737512b491, type: 3}
   specialClick: {fileID: 8300000, guid: fcd3060ec5df2eb4e8e4d9f2f6e7f0f9, type: 3}
   backClick: {fileID: 8300000, guid: a1bf14e4864d4af458c330e53eedb88a, type: 3}
-  uhohClick: {fileID: 0}
   musicSlider: {fileID: 398359546}
   sfxSlider: {fileID: 1006804079}
   modeText: {fileID: 1805940496}
