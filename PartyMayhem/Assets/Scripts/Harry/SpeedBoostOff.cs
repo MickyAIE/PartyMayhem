@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedBoost : MonoBehaviour {
-
+public class SpeedBoostOff : MonoBehaviour {
     public GameObject[] Player;
     [HideInInspector]
     public float BoostedSpeed; //This is the speed the player will be boosted to.
     public float DefaultSpeed; //This is the default running speed the player is set at.
-    
+
 
     public void Start()
     {
@@ -21,7 +20,7 @@ public class SpeedBoost : MonoBehaviour {
     {
         if (SpeedCollision.gameObject.tag == "Player") //When a Player collides with the speed pad it triggers a boost in the players speed and sends a Debug Log Message.
         {
-            SpeedCollision.GetComponent<PlayerMovement>().speed = BoostedSpeed;
+            SpeedCollision.GetComponent<PlayerMovement>().speed = DefaultSpeed;
         }
     }
 }
