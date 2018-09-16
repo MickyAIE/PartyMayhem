@@ -24,6 +24,9 @@ public class CharSelectSlot : MonoBehaviour
 
     public Image playerSlot; //square where character portrait is displayed, set in inspector
     public Image currentPortrait; //Image displayed on character select screen, set in inspector
+    public GameObject joinText; //text that tells players how to join
+    public GameObject confirmText; //text that tells players how to confirm
+    public GameObject readyText; //text confirming that that player is ready
 
     private float buttonTimer = 0;
     private readonly float buttonDelay = 0.3f;
@@ -41,12 +44,14 @@ public class CharSelectSlot : MonoBehaviour
         if (slotNumber == 1)
         {
             player.isActive = true;
+            confirmText.SetActive(true);
         }
 
         if (player.isActive == false)
         {
             playerSlot.color = Color.black;
             currentPortrait.color = Color.clear;
+            joinText.SetActive(true);
         }
     }
 
@@ -146,6 +151,8 @@ public class CharSelectSlot : MonoBehaviour
         player.isActive = true;
         playerSlot.color = Color.white;
         currentPortrait.color = Color.white;
+        joinText.SetActive(false);
+        confirmText.SetActive(true);
     }
 
     private void DeactivatePlayerProfile() //Sets corresponding player profile's current active status to false and hides portrait in menu.
@@ -153,6 +160,8 @@ public class CharSelectSlot : MonoBehaviour
         player.isActive = false;
         playerSlot.color = Color.black;
         currentPortrait.color = Color.clear;
+        joinText.SetActive(true);
+        confirmText.SetActive(false);
     }
 
     private void SelectCharacter() //Select character with punch button.
@@ -160,7 +169,8 @@ public class CharSelectSlot : MonoBehaviour
         if (IsCharacterAvailable())
         {
             choiceConfirmed = true;
-            playerSlot.color = Color.green;
+            confirmText.SetActive(false);
+            readyText.SetActive(true);
 
             SetCharacterChoice();
             DisplayUnselectableCharacter();
@@ -219,7 +229,8 @@ public class CharSelectSlot : MonoBehaviour
         player.playerPrefab = null;
         player.playerPortrait = null;
         choiceConfirmed = false;
-        playerSlot.color = Color.white;
+        confirmText.SetActive(true);
+        readyText.SetActive(false);
         ReenableUnselectableCharacter();
     }
 
