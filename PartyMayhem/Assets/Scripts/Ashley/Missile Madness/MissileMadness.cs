@@ -26,6 +26,7 @@ public class MissileMadness : MonoBehaviour
 
     public enum Difficulties
     {
+        Default,
         Easy,
         Normal,
         Hard
@@ -45,7 +46,7 @@ public class MissileMadness : MonoBehaviour
         else
             timeLimit = 60;
 
-        Difficulty = (Difficulties)manager.difficultyIndex - 1;
+        Difficulty = (Difficulties)manager.difficultyIndex;
     }
 
     private void Start()
