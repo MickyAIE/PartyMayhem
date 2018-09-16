@@ -11,15 +11,18 @@ public class LapsCounter : MonoBehaviour {
     public static int currentCheckpoint = 0;
     public static int currentLap = 0;
     public int Lap;
+    public RacingGameManager RacingGameManager;
 
-      
-    void Start()
+    public void Awake()
     {
-        
+        RacingGameManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<RacingGameManager>();
+    }
+
+    void Start()
+    {       
         checkPointArray = GameObject.FindGameObjectsWithTag("CheckPoint").OrderBy (CheckPoints => CheckPoints.name ).ToArray(); //this adds the checkpoints to the array and sorts them by name.
         currentCheckpoint = 0;
-        currentLap = 0;
-        
+        currentLap = 0;     
     }
 
     void Update()

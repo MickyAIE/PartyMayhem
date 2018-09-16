@@ -8,8 +8,7 @@ using UnityEngine;
 public class RacingGameManager : MonoBehaviour {
 
     public float Countdown = 30.0f; //Used to control the timer at the start to countdown from 3.
-    public int Laps; //used to control the total amount of laps required to win the race
-    public bool AllLapsCompleted; 
+    public int Laps1; //used to control the total amount of laps required to win the race
     public bool MiddleTextCleared;
     public bool Player1Wins;
     public bool Player2Wins;
@@ -17,7 +16,7 @@ public class RacingGameManager : MonoBehaviour {
     public bool Player4Wins;
     public Color StartingColor; //it took all my mental fortitude to not type this the Australian way.
     public Color EndColor; //Starting color and end color are used to transition the guidance arrows to fade away
-    public Text LapCounter;
+    public Text LapCounter1;
     public Text MiddleText;
     public GameObject[] Players;
     public GameObject[] Guides;
@@ -39,10 +38,10 @@ public class RacingGameManager : MonoBehaviour {
             Player.AddComponent(typeof(Winner));
             Player.GetComponent<PlayerMovement>().enabled = false;
         }
-        Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
+        Laps1 = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
+
         StartingColor = Guides[0].GetComponent<SpriteRenderer>().color;
         EndColor = new Color(StartingColor.r, StartingColor.g, StartingColor.b, 0f);
-        AllLapsCompleted = true;
         MiddleTextCleared = true;
         Player1Wins = false;
         Player2Wins = false;
@@ -51,14 +50,14 @@ public class RacingGameManager : MonoBehaviour {
     }
 
     void Update () {
-        Laps = GameObject.FindGameObjectWithTag("Player").GetComponent<LapsCounter>().Lap;
-        LapCounter.text = Laps + "/" + manager.gameLaps;
+        Laps1 = Players[0].GetComponent<LapsCounter>().Lap;
+        LapCounter1.text = Laps1 + "/" + manager.gameLaps;
+
         foreach (GameObject Guide in Guides)
         {           
             Guide.GetComponent<SpriteRenderer>().material.color = Color.Lerp(StartingColor, EndColor, Time.time/3f);            
         }
-        if (AllLapsCompleted == false) { return; }
-        if (Laps >= manager.gameLaps && AllLapsCompleted == true)
+        if (Laps1 >= manager.gameLaps)
         {
             Time.timeScale = 0.5F;
             Invoke("ResetTimeScale", 1);
@@ -66,7 +65,7 @@ public class RacingGameManager : MonoBehaviour {
             if (Player2Wins == true) { MiddleText.text = "Player 2 Wins"; Invoke("BackToMainMenu", 3); }
             if (Player3Wins == true) { MiddleText.text = "Player 3 Wins"; Invoke("BackToMainMenu", 3); }
             if (Player4Wins == true) { MiddleText.text = "Player 4 Wins"; Invoke("BackToMainMenu", 3); }
-            /*MiddleText.text = "Race Over!";*/ //TODO Figure out a way to display that it was this player that won (IE PLAYER 1 instead of the gameobjects name)
+            //MiddleText.text = "Race Over!"; //TODO Figure out a way to display that it was this player that won (IE PLAYER 1 instead of the gameobjects name)
             //AllLapsCompleted = false;
         }
         Countdown -= Time.deltaTime;
