@@ -23,12 +23,15 @@ public class MissileSpawner : MonoBehaviour
 
     private void Update()
     {
-        spawnTimer += Time.deltaTime;
-
-        if (spawnTimer >= spawnDelay && manager.State == MissileMadness.GameState.Game)
+        if (manager.State == MissileMadness.GameState.Game)
         {
-            SpawnMissile();
-            spawnTimer = 0;
+            spawnTimer += Time.deltaTime;
+
+            if (spawnTimer >= spawnDelay)
+            {
+                SpawnMissile();
+                spawnTimer = 0;
+            }
         }
     }
 
@@ -81,8 +84,28 @@ public class MissileSpawner : MonoBehaviour
         Instantiate(missile, spawnPos, spawnRot);
 
         //Decrease delay between next missile
-        if (spawnDelay >= 0.7f)
-            spawnDelay -= 0.1f;
+        switch (manager.Difficulty)
+        {
+            case MissileMadness.Difficulties.Default:
+                if (spawnDelay >= 0.7f)
+                    spawnDelay -= 0.1f;
+                break;
+
+            case MissileMadness.Difficulties.Easy:
+                if (spawnDelay >= 0.9f)
+                    spawnDelay -= 0.05f;
+                break;
+
+            case MissileMadness.Difficulties.Normal:
+                if (spawnDelay >= 0.7f)
+                    spawnDelay -= 0.1f;
+                break;
+
+            case MissileMadness.Difficulties.Hard:
+                if (spawnDelay >= 0.5f)
+                    spawnDelay -= 0.1f;
+                break;
+        }
 
         //Get indicator position offset
         Vector3 offset;

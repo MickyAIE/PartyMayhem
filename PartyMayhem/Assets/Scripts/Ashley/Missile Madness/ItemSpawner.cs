@@ -16,22 +16,41 @@ public class ItemSpawner : MonoBehaviour
     public bool canSpawn = true;
 
     private float spawnTimer = 1;
-    private readonly float spawnDelay = 5;
+    private float spawnDelay;
 
     private void Awake()
     {
         manager = GetComponent<MissileMadness>();
+
+        switch (manager.Difficulty)
+        {
+            case MissileMadness.Difficulties.Default:
+                spawnDelay = 5;
+                break;
+            case MissileMadness.Difficulties.Easy:
+                spawnDelay = 3;
+                break;
+            case MissileMadness.Difficulties.Normal:
+                spawnDelay = 5;
+                break;
+            case MissileMadness.Difficulties.Hard:
+                spawnDelay = 10;
+                break;
+        }
     }
 
     private void Update()
     {
-        spawnTimer += Time.deltaTime;
-
-        if (spawnTimer >= spawnDelay && manager.State == MissileMadness.GameState.Game && canSpawn == true)
+        if (manager.State == MissileMadness.GameState.Game && canSpawn == true)
         {
-            Instantiate(ItemToSpawn(), SpawnPosition());
-            canSpawn = false; //set back to true in PickupItem.cs
-            spawnTimer = 0;
+            spawnTimer += Time.deltaTime;
+
+            if (spawnTimer >= spawnDelay)
+            {
+                Instantiate(ItemToSpawn(), SpawnPosition());
+                canSpawn = false; //set back to true in PickupItem.cs
+                spawnTimer = 0;
+            }
         }
     }
 

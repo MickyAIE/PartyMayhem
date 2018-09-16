@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class CharSelectManager : MonoBehaviour
 {
-    private GameManager manager;
     private PlayerProfile[] players;
     public Button startButton;
 
     private void Awake()
     {
-        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         players = GameObject.FindGameObjectWithTag("GameManager").GetComponents<PlayerProfile>();
     }
 
