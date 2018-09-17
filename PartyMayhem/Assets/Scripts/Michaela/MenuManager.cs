@@ -83,7 +83,7 @@ public class MenuManager : MonoBehaviour {
     public Main main;
     public Credits credits;
     public Settings settings;
-    public Modes mode;
+    public Modes modes;
     public Lists list;
     public Profile profile;
 
@@ -130,35 +130,78 @@ public class MenuManager : MonoBehaviour {
     public GameObject controlsPopUp2;
     public GameObject controlsPopUp3;
 
+    public GameObject playerRanksButton;
+    public GameObject playerRanksButton2;
+    public GameObject playerRanksPage;
+    public GameObject playerRanksPage2;
+
+    public GameObject firstRankSpot;
+    public GameObject secondRankSpot;
+    public GameObject thirdRankSpot;
+    public GameObject fourthRankSpot;
+    public Text firstRankScore;
+    public Text secondRankScore;
+    public Text thirdRankScore;
+    public Text fourthRankScore;
+    public GameObject firstRankSpot2;
+    public GameObject secondRankSpot2;
+    public GameObject thirdRankSpot2;
+    public GameObject fourthRankSpot2;
+    public Text firstRankScore2;
+    public Text secondRankScore2;
+    public Text thirdRankScore2;
+    public Text fourthRankScore2;
+
+    public GameObject roundText;
+
     public GameObject selectButton;
     public GameObject controlButton;
     public GameObject datPopUp;
 
     public Dropdown lapsDropdown;
     public Dropdown timerDropdown;
+    public Toggle trackA;
+    public Toggle trackB;
     public Toggle easy;
     public Toggle normal;
     public Toggle hard;
 
     Resolution[] resolutions;
 
-    /*public enum Mode
-    {
-        Board,
-        Tournament,
-        Freeplay,
-        NotChosen
-    };
-    private Mode mode;
-    */
+    public GameManager.Mode mode;
+
+    public GameObject Fade;
+
+    public int rounds;
+    public int currentRound;
+
     public void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-        anim.SetBool("goToSettings", false);
-        anim.SetBool("goToCredits", false);
-        anim.SetBool("goToModes", false);
-        anim.SetBool("startScreen", true);
+        //PlayerPrefs.SetInt("activePlayers", 0);
+
+        if (gameManager.returningToMenus == false)
+        {
+            anim.SetBool("goToSettings", false);
+            anim.SetBool("goToCredits", false);
+            anim.SetBool("goToModes", false);
+            anim.SetBool("goToMinigames", false);
+            anim.SetBool("goToMinigameInfo", false);
+            anim.SetBool("startScreen", true);
+            Fade.SetActive(false);
+        }
+        else
+        {
+            anim.SetBool("goToSettings", false);
+            anim.SetBool("goToCredits", false);
+            anim.SetBool("goToMinigameInfo", false);
+            anim.SetBool("goToModes", true);
+            anim.SetBool("goToMinigames", true);
+            anim.SetBool("startScreen", false);
+            Fade.SetActive(true);
+        }
+
 
         bools.hoverBoard = false;
         bools.hoverTournament = false;
@@ -212,8 +255,6 @@ public class MenuManager : MonoBehaviour {
 
         sfx.clip = click;
 
-        //mode = Mode.NotChosen;
-
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -239,6 +280,7 @@ public class MenuManager : MonoBehaviour {
         resolutionDropdown.value = PlayerPrefs.GetInt("resolution", currentResolutionIndex);
     }
 
+    private bool track1 = true;
     float tempTimer = 1.1f;
     public void Update()
     {
@@ -261,11 +303,15 @@ public class MenuManager : MonoBehaviour {
         {
             lapsDropdown.gameObject.SetActive(true);
             timerDropdown.gameObject.SetActive(false);
+            trackA.gameObject.SetActive(true);
+            trackB.gameObject.SetActive(true);
         }
         else
         {
             lapsDropdown.gameObject.SetActive(false);
             timerDropdown.gameObject.SetActive(true);
+            trackA.gameObject.SetActive(false);
+            trackB.gameObject.SetActive(false);
         }
 
         if(timerDropdown.value == 0)  gameManager.gameTimer = 60;
@@ -274,11 +320,13 @@ public class MenuManager : MonoBehaviour {
         if (timerDropdown.value == 3) gameManager.gameTimer = 240;
         if (timerDropdown.value == 4) gameManager.gameTimer = 300;
 
-        if (lapsDropdown.value == 0) gameManager.gameLaps = 2;
-        if (lapsDropdown.value == 1) gameManager.gameLaps = 3;
-        if (lapsDropdown.value == 2) gameManager.gameLaps = 4;
-        if (lapsDropdown.value == 3) gameManager.gameLaps = 5;
-        if (lapsDropdown.value == 4) gameManager.gameLaps = 6;
+        if (lapsDropdown.value == 0) gameManager.gameLaps = 3;
+        if (lapsDropdown.value == 1) gameManager.gameLaps = 4;
+        if (lapsDropdown.value == 2) gameManager.gameLaps = 6;
+        if (lapsDropdown.value == 3) gameManager.gameLaps = 8;
+
+        if (trackA.isOn == true && trackB.isOn == false) track1 = true;
+        if (trackA.isOn == false && trackB.isOn == true) track1 = false;
 
         if (easy.isOn == true && (normal.isOn == false && hard.isOn == false)) gameManager.difficultyIndex = 1;
         if (easy.isOn == false && (normal.isOn == true && hard.isOn == false)) gameManager.difficultyIndex = 2;
@@ -290,46 +338,47 @@ public class MenuManager : MonoBehaviour {
         }
         else hoverGuideText.SetActive(false);
 
-        /*if ((bools.boardMode == false && bools.tournamentMode == false) && bools.freeplayMode == false)
-        {
-            mode = Mode.NotChosen;
-        }
+        RankPlayers();
 
-        if(bools.boardMode == true && (bools.tournamentMode == false && bools.freeplayMode == false))
-        {
-            mode = Mode.Board;
-        }
+        if (PlayerPrefs.GetInt("Mode") == 1) mode = GameManager.Mode.Board;
+        else if (PlayerPrefs.GetInt("Mode") == 2) mode = GameManager.Mode.Tournament;
+        else if (PlayerPrefs.GetInt("Mode") == 3) mode = GameManager.Mode.Freeplay;
 
-        if (bools.tournamentMode == true && (bools.boardMode == false && bools.freeplayMode == false))
-        {
-            mode = Mode.Tournament;
-        }
-
-        if (bools.freeplayMode == true && (bools.tournamentMode == false && bools.boardMode == false))
-        {
-            mode = Mode.Freeplay;
-        }
-
+        if (bools.boardMode == true && (bools.tournamentMode == false && bools.freeplayMode == false)) mode = GameManager.Mode.Board;        
+        if (bools.tournamentMode == true && (bools.boardMode == false && bools.freeplayMode == false))  mode = GameManager.Mode.Tournament;       
+        if (bools.freeplayMode == true && (bools.tournamentMode == false && bools.boardMode == false)) mode = GameManager.Mode.Freeplay;
+        
         switch (mode)
         {
-            case Mode.Board:
+            case GameManager.Mode.Board:
 
                 break;
 
-            case Mode.Tournament:
+            case GameManager.Mode.Tournament:
+                roundText.SetActive(true);
+                playerRanksButton.SetActive(true);
+                playerRanksButton2.SetActive(true);
+                break;
+
+            case GameManager.Mode.Freeplay:
+                roundText.SetActive(false);
+                playerRanksButton.SetActive(false);
+                playerRanksButton2.SetActive(false);
 
                 break;
 
-            case Mode.Freeplay:
-
-                break;
-
-            case Mode.NotChosen:
+            default:
+                Debug.Log("C");
 
                 break;
         }
 
-        modeText.text = ("Mode: " + mode.ToString());*/
+        modeText.text = (mode.ToString());
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            PlayerPrefs.SetInt("activePlayers", 0);
+        }
     }
 
 #region Hover Functions
@@ -428,6 +477,7 @@ public class MenuManager : MonoBehaviour {
         sfx.Play();
         anim.SetBool("goToMinigames", true);
 
+        PlayerPrefs.SetInt("Mode", 1);
         bools.boardMode = true;
     }
 
@@ -437,6 +487,7 @@ public class MenuManager : MonoBehaviour {
         sfx.Play();
         anim.SetBool("goToMinigames", true);
 
+        PlayerPrefs.SetInt("Mode", 2);
         bools.tournamentMode = true;
     }
 
@@ -446,6 +497,8 @@ public class MenuManager : MonoBehaviour {
         sfx.Play();
         anim.SetBool("goToMinigames", true);
 
+        PlayerPrefs.SetInt("activePlayers", 0);
+        PlayerPrefs.SetInt("Mode", 3);
         bools.freeplayMode = true;
     }
     #endregion
@@ -565,6 +618,7 @@ public class MenuManager : MonoBehaviour {
     {
         sfx.clip = backClick;
         sfx.Play();
+        PlayerPrefs.SetInt("activePlayers", 0);
         Application.Quit();
     }
 
@@ -594,8 +648,54 @@ public class MenuManager : MonoBehaviour {
         datPopUp.SetActive(false);
         selectButton.GetComponent<Button>().enabled = true;
         controlButton.GetComponent<Button>().enabled = true;
+        playerRanksButton2.GetComponent<Button>().enabled = true;
 
         anim.SetBool("goToMinigameInfo", false);
+    }
+
+    public void ControlsPopUp()
+    {
+        sfx.clip = click;
+        sfx.Play();
+
+        controlsPopUp.SetActive(true);
+        controlsPopUp2.SetActive(true);
+        controlsPopUp3.SetActive(true);
+
+        playerRanksPage.SetActive(false);
+        playerRanksPage2.SetActive(false);
+    }
+
+    public void ControlsBack()
+    {
+        sfx.clip = backClick;
+        sfx.Play();
+
+        PlayerPrefs.SetInt("controls", 1);
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
+    }
+
+    public void OnRanksPressed()
+    {
+        sfx.clip = click;
+        sfx.Play();
+
+        playerRanksPage.SetActive(true);
+        playerRanksPage2.SetActive(true);
+
+        controlsPopUp.SetActive(false);
+        controlsPopUp2.SetActive(false);
+        controlsPopUp3.SetActive(false);
+    }
+    public void OnRanksBack()
+    {
+        sfx.clip = backClick;
+        sfx.Play();
+
+        playerRanksPage.SetActive(false);
+        playerRanksPage2.SetActive(false);
     }
 #endregion
 
@@ -725,6 +825,7 @@ public class MenuManager : MonoBehaviour {
         datPopUp.SetActive(true);
         selectButton.GetComponent<Button>().enabled = false;
         controlButton.GetComponent<Button>().enabled = false;
+        playerRanksButton2.GetComponent<Button>().enabled = false;
     }
     public void ExitPrePlayMinigame()
     {
@@ -734,6 +835,7 @@ public class MenuManager : MonoBehaviour {
         datPopUp.SetActive(false);
         selectButton.GetComponent<Button>().enabled = true;
         controlButton.GetComponent<Button>().enabled = true;
+        playerRanksButton2.GetComponent<Button>().enabled = true;
     }
 
     public void PlayMinigame()
@@ -753,7 +855,10 @@ public class MenuManager : MonoBehaviour {
         }
         if (bools.selectedMissile == false && (bools.selectedGeo == false && (bools.selectedDodgeball == false && (bools.selectedRacing == true && bools.selectedRhythm == false))))
         {
-            gameManager.minigameToLoad = "Racing_Minigame";
+            if(track1 == true)
+                gameManager.minigameToLoad = "Racing_Minigame";
+            else
+                gameManager.minigameToLoad = "RacingMinigame2";
             SceneManager.LoadScene("Char Select Menu");
         }
         if (bools.selectedMissile == false && (bools.selectedGeo == true && (bools.selectedDodgeball == false && (bools.selectedRacing == false && bools.selectedRhythm == false))))
@@ -768,24 +873,332 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
-    public void ControlsPopUp()
+    public void RankPlayers()
     {
-        sfx.clip = specialClick;
-        sfx.Play();
 
-        controlsPopUp.SetActive(true);
-        controlsPopUp2.SetActive(true);
-        controlsPopUp3.SetActive(true);
+        if(PlayerPrefs.GetInt("activePlayers") != 0)
+        {
+            if (PlayerPrefs.GetInt("activePlayers") == 1)
+            {
+                firstRankSpot.SetActive(true);
+                secondRankSpot.SetActive(false);
+                thirdRankSpot.SetActive(false);
+                fourthRankSpot.SetActive(false);
+
+                firstRankSpot2.SetActive(true);
+                secondRankSpot2.SetActive(false);
+                thirdRankSpot2.SetActive(false);
+                fourthRankSpot2.SetActive(false);
+            }
+            else if (PlayerPrefs.GetInt("activePlayers") == 2)
+            {
+                firstRankSpot.SetActive(true);
+                secondRankSpot.SetActive(true);
+                thirdRankSpot.SetActive(false);
+                fourthRankSpot.SetActive(false);
+
+                firstRankSpot2.SetActive(true);
+                secondRankSpot2.SetActive(true);
+                thirdRankSpot2.SetActive(false);
+                fourthRankSpot2.SetActive(false);
+            }
+            else if (PlayerPrefs.GetInt("activePlayers") == 3)
+            {
+                firstRankSpot.SetActive(true);
+                secondRankSpot.SetActive(true);
+                thirdRankSpot.SetActive(true);
+                fourthRankSpot.SetActive(false);
+
+                firstRankSpot2.SetActive(true);
+                secondRankSpot2.SetActive(true);
+                thirdRankSpot2.SetActive(true);
+                fourthRankSpot2.SetActive(false);
+            }
+            else if (PlayerPrefs.GetInt("activePlayers") == 4)
+            {
+                firstRankSpot.SetActive(true);
+                secondRankSpot.SetActive(true);
+                thirdRankSpot.SetActive(true);
+                fourthRankSpot.SetActive(true);
+
+                firstRankSpot2.SetActive(true);
+                secondRankSpot2.SetActive(true);
+                thirdRankSpot2.SetActive(true);
+                fourthRankSpot2.SetActive(true);
+            }
+
+            CheckPlayerOrder();
+        }
+        else
+        {
+            firstRankSpot.SetActive(true);
+            secondRankSpot.SetActive(true);
+            thirdRankSpot.SetActive(true);
+            fourthRankSpot.SetActive(true);
+
+            firstRankSpot2.SetActive(true);
+            secondRankSpot2.SetActive(true);
+            thirdRankSpot2.SetActive(true);
+            fourthRankSpot2.SetActive(true);
+
+            firstRankScore.text = "---";
+            secondRankScore.text = "---";
+            thirdRankScore.text = "---";
+            fourthRankScore.text = "---";
+            firstRankScore2.text = "---";
+            secondRankScore2.text = "---";
+            thirdRankScore2.text = "---";
+            fourthRankScore2.text = "---";
+        }
     }
 
-    public void ControlsBack()
+    public void CheckPlayerOrder()
     {
-        sfx.clip = backClick;
-        sfx.Play();
+        //Player one: First Place
+        if(gameManager.player1Score > gameManager.player2Score && ((gameManager.player1Score > gameManager.player3Score) && (gameManager.player1Score > gameManager.player4Score)))
+        {
+            firstRankSpot.GetComponent<Text>().text = "Player 1";
+            firstRankSpot2.GetComponent<Text>().text = "Player 1";
+            firstRankScore.text = " -  " + gameManager.player1Score.ToString();
+            firstRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
+        //Player one: Second Place
+        else if (gameManager.player1Score < gameManager.player2Score && ((gameManager.player1Score > gameManager.player3Score) && (gameManager.player1Score > gameManager.player4Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 1";
+            secondRankSpot2.GetComponent<Text>().text = "Player 1";
+            secondRankScore.text = " -  " + gameManager.player1Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
+        else if(gameManager.player1Score > gameManager.player3Score && ((gameManager.player1Score > gameManager.player2Score) && (gameManager.player1Score > gameManager.player4Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 1";
+            secondRankSpot2.GetComponent<Text>().text = "Player 1";
+            secondRankScore.text = " -  " + gameManager.player1Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
+        else if(gameManager.player1Score > gameManager.player4Score && ((gameManager.player1Score > gameManager.player2Score) && (gameManager.player1Score > gameManager.player3Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 1";
+            secondRankSpot2.GetComponent<Text>().text = "Player 1";
+            secondRankScore.text = " -  " + gameManager.player1Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
+        //Player one: Third Place
+        else if(gameManager.player1Score < gameManager.player2Score && ((gameManager.player1Score < gameManager.player3Score) && (gameManager.player1Score > gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 1";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 1";
+            thirdRankScore.text = " -  " + gameManager.player1Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
+        else if(gameManager.player1Score < gameManager.player2Score && ((gameManager.player1Score > gameManager.player3Score) && (gameManager.player1Score < gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 1";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 1";
+            thirdRankScore.text = " -  " + gameManager.player1Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
+        else if(gameManager.player1Score > gameManager.player2Score && ((gameManager.player1Score < gameManager.player3Score) && (gameManager.player1Score < gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 1";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 1";
+            thirdRankScore.text = " -  " + gameManager.player1Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
+        //Player one: Fourth Place
+        else if(gameManager.player2Score < gameManager.player1Score && ((gameManager.player1Score < gameManager.player3Score) && (gameManager.player1Score < gameManager.player4Score)))
+        {
+            fourthRankSpot.GetComponent<Text>().text = "Player 1";
+            fourthRankSpot2.GetComponent<Text>().text = "Player 1";
+            fourthRankScore.text = " -  " + gameManager.player1Score.ToString();
+            fourthRankScore2.text = " -  " + gameManager.player1Score.ToString();
+        }
 
-        PlayerPrefs.SetInt("controls", 1);
-        controlsPopUp.SetActive(false);
-        controlsPopUp2.SetActive(false);
-        controlsPopUp3.SetActive(false);
+
+        //Player two: First Place
+        if (gameManager.player2Score > gameManager.player1Score && ((gameManager.player2Score > gameManager.player3Score) && (gameManager.player2Score > gameManager.player4Score)))
+        {
+            firstRankSpot.GetComponent<Text>().text = "Player 2";
+            firstRankSpot2.GetComponent<Text>().text = "Player 2";
+            firstRankScore.text = " -  " + gameManager.player2Score.ToString();
+            firstRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+        //Player two: Second Place
+        else if (gameManager.player2Score < gameManager.player1Score && ((gameManager.player2Score > gameManager.player3Score) && (gameManager.player2Score > gameManager.player4Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 2";
+            secondRankSpot2.GetComponent<Text>().text = "Player 2";
+            secondRankScore.text = " -  " + gameManager.player2Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+        else if (gameManager.player2Score > gameManager.player3Score && ((gameManager.player2Score > gameManager.player1Score) && (gameManager.player2Score > gameManager.player4Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 2";
+            secondRankSpot2.GetComponent<Text>().text = "Player 2";
+            secondRankScore.text = " -  " + gameManager.player2Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+        else if (gameManager.player2Score > gameManager.player4Score && ((gameManager.player2Score > gameManager.player1Score) && (gameManager.player2Score > gameManager.player3Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 2";
+            secondRankSpot2.GetComponent<Text>().text = "Player 2";
+            secondRankScore.text = " -  " + gameManager.player2Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+        //Player two: Third Place
+        else if (gameManager.player2Score < gameManager.player1Score && ((gameManager.player2Score < gameManager.player3Score) && (gameManager.player2Score > gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 2";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 2";
+            thirdRankScore.text = " -  " + gameManager.player2Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+        else if (gameManager.player2Score < gameManager.player1Score && ((gameManager.player2Score > gameManager.player3Score) && (gameManager.player2Score < gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 2";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 2";
+            thirdRankScore.text = " -  " + gameManager.player2Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+        else if (gameManager.player2Score > gameManager.player1Score && ((gameManager.player2Score < gameManager.player3Score) && (gameManager.player2Score < gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 2";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 2";
+            thirdRankScore.text = " -  " + gameManager.player2Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+        //Player two: Fourth Place
+        else if (gameManager.player2Score < gameManager.player1Score && ((gameManager.player2Score < gameManager.player3Score) && (gameManager.player2Score < gameManager.player4Score)))
+        {
+            fourthRankSpot.GetComponent<Text>().text = "Player 2";
+            fourthRankSpot2.GetComponent<Text>().text = "Player 2";
+            fourthRankScore.text = " -  " + gameManager.player2Score.ToString();
+            fourthRankScore2.text = " -  " + gameManager.player2Score.ToString();
+        }
+
+
+        //Player three: First Place
+        if (gameManager.player3Score > gameManager.player1Score && ((gameManager.player3Score > gameManager.player2Score) && (gameManager.player3Score > gameManager.player4Score)))
+        {
+            firstRankSpot.GetComponent<Text>().text = "Player 3";
+            firstRankSpot2.GetComponent<Text>().text = "Player 3";
+            firstRankScore.text = " -  " + gameManager.player3Score.ToString();
+            firstRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+        //Player three: Second Place
+        else if (gameManager.player3Score < gameManager.player1Score && ((gameManager.player3Score > gameManager.player2Score) && (gameManager.player3Score > gameManager.player4Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 3";
+            secondRankSpot2.GetComponent<Text>().text = "Player 3";
+            secondRankScore.text = " -  " + gameManager.player3Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+        else if (gameManager.player3Score > gameManager.player2Score && ((gameManager.player3Score > gameManager.player1Score) && (gameManager.player3Score > gameManager.player4Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 3";
+            secondRankSpot2.GetComponent<Text>().text = "Player 3";
+            secondRankScore.text = " -  " + gameManager.player3Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+        else if (gameManager.player3Score > gameManager.player4Score && ((gameManager.player3Score > gameManager.player1Score) && (gameManager.player3Score > gameManager.player2Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 3";
+            secondRankSpot2.GetComponent<Text>().text = "Player 3";
+            secondRankScore.text = " -  " + gameManager.player3Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+        //Player three: Third Place
+        else if (gameManager.player3Score < gameManager.player1Score && ((gameManager.player3Score < gameManager.player2Score) && (gameManager.player3Score > gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 3";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 3";
+            thirdRankScore.text = " -  " + gameManager.player3Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+        else if (gameManager.player3Score < gameManager.player1Score && ((gameManager.player3Score > gameManager.player2Score) && (gameManager.player3Score < gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 3";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 3";
+            thirdRankScore.text = " -  " + gameManager.player3Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+        else if (gameManager.player3Score > gameManager.player1Score && ((gameManager.player3Score < gameManager.player2Score) && (gameManager.player3Score < gameManager.player4Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 3";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 3";
+            thirdRankScore.text = " -  " + gameManager.player3Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+        //Player three: Fourth Place
+        else if (gameManager.player3Score < gameManager.player1Score && ((gameManager.player3Score < gameManager.player2Score) && (gameManager.player3Score < gameManager.player4Score)))
+        {
+            fourthRankSpot.GetComponent<Text>().text = "Player 3";
+            fourthRankSpot2.GetComponent<Text>().text = "Player 3";
+            fourthRankScore.text = " -  " + gameManager.player3Score.ToString();
+            fourthRankScore2.text = " -  " + gameManager.player3Score.ToString();
+        }
+
+
+        //Player fourth: First Place
+        if (gameManager.player4Score > gameManager.player1Score && ((gameManager.player4Score > gameManager.player2Score) && (gameManager.player4Score > gameManager.player3Score)))
+        {
+            firstRankSpot.GetComponent<Text>().text = "Player 4";
+            firstRankSpot2.GetComponent<Text>().text = "Player 4";
+            firstRankScore.text = " -  " + gameManager.player4Score.ToString();
+            firstRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        }
+        //Player fourth: Second Place
+        else if (gameManager.player4Score < gameManager.player1Score && ((gameManager.player4Score > gameManager.player2Score) && (gameManager.player4Score > gameManager.player3Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 4";
+            secondRankSpot2.GetComponent<Text>().text = "Player 4";
+            secondRankScore.text = " -  " + gameManager.player4Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        }   
+        else if (gameManager.player4Score > gameManager.player2Score && ((gameManager.player4Score > gameManager.player1Score) && (gameManager.player4Score > gameManager.player3Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 4";
+            secondRankSpot2.GetComponent<Text>().text = "Player 4";
+            secondRankScore.text = " -  " + gameManager.player4Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        }   
+        else if (gameManager.player4Score > gameManager.player3Score && ((gameManager.player4Score > gameManager.player1Score) && (gameManager.player4Score > gameManager.player2Score)))
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 4";
+            secondRankSpot2.GetComponent<Text>().text = "Player 4";
+            secondRankScore.text = " -  " + gameManager.player4Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        }
+        //Player fourth: Third Place
+        else if (gameManager.player4Score < gameManager.player1Score && ((gameManager.player4Score < gameManager.player2Score) && (gameManager.player4Score > gameManager.player3Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 4";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 4";
+            thirdRankScore.text = " -  " + gameManager.player4Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        }    
+        else if (gameManager.player4Score < gameManager.player1Score && ((gameManager.player4Score > gameManager.player2Score) && (gameManager.player4Score < gameManager.player3Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 4";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 4";
+            thirdRankScore.text = " -  " + gameManager.player4Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        } 
+        else if (gameManager.player4Score > gameManager.player1Score && ((gameManager.player4Score < gameManager.player2Score) && (gameManager.player4Score < gameManager.player3Score)))
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 4";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 4";
+            thirdRankScore.text = " -  " + gameManager.player4Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        }
+        //Player fourth: Fourth Place
+        else if (gameManager.player4Score < gameManager.player1Score && ((gameManager.player4Score < gameManager.player2Score) && (gameManager.player4Score < gameManager.player3Score)))
+        {
+            fourthRankSpot.GetComponent<Text>().text = "Player 4";
+            fourthRankSpot2.GetComponent<Text>().text = "Player 4";
+            fourthRankScore.text = " -  " + gameManager.player4Score.ToString();
+            fourthRankScore2.text = " -  " + gameManager.player4Score.ToString();
+        }
     }
 }

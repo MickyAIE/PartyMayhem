@@ -64,9 +64,9 @@ public class Enemy : MonoBehaviour {
         dodgeballManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<DodgeballManager>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-        /*if (gameManager.difficultyIndex == 1) ballSpeed = 3.5f;     
+        if (gameManager.difficultyIndex == 1) ballSpeed = 3.5f;     
         if (gameManager.difficultyIndex == 2) ballSpeed = 5f;    
-        if (gameManager.difficultyIndex == 3) ballSpeed = 7f;*/
+        if (gameManager.difficultyIndex == 3) ballSpeed = 7f;
 
         bools.hasThrownBall = false;
         bools.hasSpawnedBall = false;

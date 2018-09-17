@@ -113,6 +113,7 @@ public class DodgeballManager : MonoBehaviour {
             winMessage.SetActive(false);
             loseMessage.SetActive(true);
             optionButtons.SetActive(true);
+            gameManager.returningToMenus = true;
         }
 
         if (gameTime <= 0 && allPlayersHit == false)
@@ -125,6 +126,7 @@ public class DodgeballManager : MonoBehaviour {
             winMessage.SetActive(true);
             loseMessage.SetActive(false);
             optionButtons.SetActive(true);
+            gameManager.returningToMenus = true;
         }
 
         GameTimer();
