@@ -653,6 +653,11 @@ MonoBehaviour:
   gameTimer: 0
   gameLaps: 0
   difficultyIndex: 0
+  returningToMenus: 0
+  player1Score: 0
+  player2Score: 0
+  player3Score: 0
+  player4Score: 0
 --- !u!4 &494080298
 Transform:
   m_ObjectHideFlags: 0
