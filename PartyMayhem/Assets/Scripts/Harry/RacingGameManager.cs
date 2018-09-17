@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class RacingGameManager : MonoBehaviour {
 
-    public float Countdown = 30.0f; //Used to control the timer at the start to countdown from 3.
+    public float Countdown = 3.0f; //Used to control the timer at the start to countdown from 3.
     public int Laps1; //used to control the total amount of laps required to win the race
     public bool MiddleTextCleared;
     public bool Player1Wins;
@@ -69,19 +69,19 @@ public class RacingGameManager : MonoBehaviour {
             //AllLapsCompleted = false;
         }
         Countdown -= Time.deltaTime;
-        if (Countdown < 3 && MiddleTextCleared == true)
+        if (Countdown < 3f && MiddleTextCleared == true)
         {
             MiddleText.text = "3";
         }
-        if (Countdown < 2 && MiddleTextCleared == true)
+        if (Countdown < 2f && MiddleTextCleared == true)
         {
             MiddleText.text = "2";
         }
-        if (Countdown < 1 && MiddleTextCleared == true)
+        if (Countdown < 1f && MiddleTextCleared == true)
         {
             MiddleText.text = "1";
         }
-        if (Countdown < 0 && MiddleTextCleared == true)
+        if (Countdown < 0f && MiddleTextCleared == true)
         {
             MiddleText.text = "Go!";
             foreach (GameObject Player in Players)
@@ -89,7 +89,7 @@ public class RacingGameManager : MonoBehaviour {
             Player.GetComponent<PlayerMovement>().enabled = true;
             }
         }
-        if (Countdown < -0.5 && MiddleTextCleared == true)
+        if (Countdown < -0.5f && MiddleTextCleared == true)
         {
             MiddleText.text = "";
             MiddleTextCleared = false;
