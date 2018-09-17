@@ -37,6 +37,8 @@ public class DodgeballManager : MonoBehaviour {
     public bool playerThreeHasBeenHit = false;
     public bool playerFourHasBeenHit = false;
 
+    public AudioClip deathClip;
+
     private void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -44,7 +46,7 @@ public class DodgeballManager : MonoBehaviour {
 
     private void Start()
     {
-        if(gameManager.gameTimer != 0) gameTime = gameManager.gameTimer;
+        if (gameManager.gameTimer != 0) gameTime = gameManager.gameTimer;
         if (gameManager.difficultyIndex == 1) maxEnemies = 3;
         if (gameManager.difficultyIndex == 2) maxEnemies = 5;
         if (gameManager.difficultyIndex == 3) maxEnemies = 7;
@@ -60,16 +62,20 @@ public class DodgeballManager : MonoBehaviour {
 
         shouldSpawnEnemy = true;
 
-        players = GameObject.FindGameObjectsWithTag("Player").OrderBy(go => go.name).ToArray();   
+        players = GameObject.FindGameObjectsWithTag("Player").OrderBy(go => go.name).ToArray();
 
-        foreach(GameObject player in players)
+        foreach (GameObject player in players)
         {
             player.AddComponent<DodgeballPlayerExtra>();
 
-            if(player == players[0]) player.gameObject.name = "Player1";
+            if (player == players[0]) player.gameObject.name = "Player1";
             else if (player == players[1]) player.gameObject.name = "Player2";
             else if (player == players[2]) player.gameObject.name = "Player3";
             else if (player == players[3]) player.gameObject.name = "Player4";
+
+            //player.AddComponent<AudioSource>();
+            //player.GetComponent<AudioSource>().playOnAwake = false;
+            //player.GetComponent<AudioSource>().clip = deathClip;
         }
     }
 
@@ -77,7 +83,7 @@ public class DodgeballManager : MonoBehaviour {
     {
         foreach (GameObject player in players)
         {
-            if(playerOneHasBeenHit == true) players[0].SetActive(false);
+            if (playerOneHasBeenHit == true) players[0].SetActive(false);
             if (playerTwoHasBeenHit == true) players[1].SetActive(false);
             if (playerThreeHasBeenHit == true) players[2].SetActive(false);
             if (playerFourHasBeenHit == true) players[3].SetActive(false);
@@ -89,7 +95,7 @@ public class DodgeballManager : MonoBehaviour {
             else if (players.Length == 2)
             {
                 if (playerOneHasBeenHit == true && playerTwoHasBeenHit == true)
-                        allPlayersHit = true;
+                    allPlayersHit = true;
             }
             else if (players.Length == 3)
             {
@@ -133,7 +139,7 @@ public class DodgeballManager : MonoBehaviour {
 
         enemyCount = enemies.Count;
         if (enemyCount >= maxEnemies && endGame == false) shouldSpawnEnemy = false;
-        else if(enemyCount > maxEnemies && endGame == false) shouldSpawnEnemy = true;
+        else if (enemyCount > maxEnemies && endGame == false) shouldSpawnEnemy = true;
 
         timer -= Time.deltaTime;
         if (timer <= 0 && shouldSpawnEnemy == true)
@@ -142,6 +148,7 @@ public class DodgeballManager : MonoBehaviour {
             timer = startTime;
         }
     }
+
 
     public void SpawnEnemy()
     {

@@ -97,6 +97,7 @@ public class Enemy : MonoBehaviour {
         //If hasn't thrown a ball yet
         if (bools.hasThrownBall == false)
         {
+            shouldMakeSound = true;
             TurnToTarget();
 
             bools.hasPickedNumber = false;
@@ -218,11 +219,18 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    bool shouldMakeSound = true;
+
     //Throw the ball
     public void ThrowBall()
     {
         if(ball != null)
         {
+            if(shouldMakeSound == true)
+            {
+                GetComponent<AudioSource>().Play();
+                shouldMakeSound = false;
+            }
             ball.transform.position += -transform.TransformDirection(Vector3.up) * Time.deltaTime * ballSpeed;
         }
     }

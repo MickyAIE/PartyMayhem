@@ -23,12 +23,22 @@ public class Ball : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "Shield")
+        {
+            collision.gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "Shield")
+        {
+            collision.gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }

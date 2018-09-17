@@ -14,6 +14,7 @@ TagManager:
   - ShieldPickup
   - SpeedPickup
   - Guide
+  - Shield
   layers:
   - Default
   - TransparentFX
