@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int gameTimer;
     public int gameLaps;
     public int difficultyIndex;
-    //
+    
     public enum Mode
     {
         Board,
@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
         Freeplay
     };
     public bool returningToMenus = false;
+
     public int player1Score;
     public int player2Score;
     public int player3Score;
-    public int player4Score;
-    //
+    public int player4Score;    
 
     private Transform[] startPositions;
 
@@ -35,16 +35,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //
         if (activePlayerCount >= PlayerPrefs.GetInt("activePlayers"))
             PlayerPrefs.SetInt("activePlayers", activePlayerCount);
-        //
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             returningToMenus = false;
             PlayerPrefs.SetInt("activePlayers", 0);
+
             Application.Quit();
-        }//
+        }
     }
 
     public int ActivePlayerCount() //Number of profiles active.
@@ -58,9 +58,8 @@ public class GameManager : MonoBehaviour
                 i++;
             }
         }
-        //
+
         activePlayerCount = i;
-        //
         return i;
     }
 
