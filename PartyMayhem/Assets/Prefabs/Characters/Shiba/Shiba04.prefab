@@ -381,8 +381,8 @@ MonoBehaviour:
   scrAnimations: {fileID: 0}
   rManager: {fileID: 0}
   playerNumber: 1
-  sRotate: {fileID: 0}
-  sPunch: {fileID: 0}
+  sRotate: {fileID: 1030685719453306}
+  sPunch: {fileID: 1970991740471824}
   punchSound1: {fileID: 0}
   punchSound2: {fileID: 0}
   speed: 200
