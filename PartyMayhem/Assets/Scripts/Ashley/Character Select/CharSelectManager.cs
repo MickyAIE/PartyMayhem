@@ -40,10 +40,10 @@ public class CharSelectManager : MonoBehaviour
             }
         }
 
-        if (playerCount > 0 && manager.mode != GameManager.Mode.Tournament)
+        if (playerCount > 0 && !manager.tournamentMode)
             return true;
 
-        if (playerCount > 1 && manager.mode == GameManager.Mode.Tournament)
+        if (playerCount > 1 && manager.tournamentMode)
             return true;
 
         else

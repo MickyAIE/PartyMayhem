@@ -12,15 +12,8 @@ public class GameManager : MonoBehaviour
     public int gameTimer;
     public int gameLaps;
     public int difficultyIndex;
+    public bool tournamentMode = false;
     
-    public enum Mode
-    {
-        Board,
-        Tournament,
-        Freeplay
-    };
-    public Mode mode;
-
     public bool returningToMenus = false;
 
     public int player1Score;
