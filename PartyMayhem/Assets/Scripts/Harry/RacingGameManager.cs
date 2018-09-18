@@ -96,7 +96,13 @@ public class RacingGameManager : MonoBehaviour {
     }
     public void BackToMainMenu()
     {
-        manager.returningToMenus = true;
+        //manager.returningToMenus = true;
         SceneManager.LoadScene("Menus");
+        if (PlayerPrefs.GetInt("Mode") == 2 && manager.currentRound == manager.rounds)
+            manager.returningToMenus = false;
+        else
+            manager.returningToMenus = true;
+
+        if (PlayerPrefs.GetInt("Mode") == 2) manager.currentRound += 1;
     }
 }
