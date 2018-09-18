@@ -101,6 +101,7 @@ public class RacingGameManager : MonoBehaviour {
     }
     public void BackToMainMenu()
     {
+        manager.returningToMenus = true;
         SceneManager.LoadScene("Menus");
     }
 }
