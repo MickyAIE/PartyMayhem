@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MissileMadness : MonoBehaviour
 {
@@ -10,13 +11,12 @@ public class MissileMadness : MonoBehaviour
     public GameObject[] players;
     public Text timer;
     public Text message;
-    public Button returnButton;
 
     public AudioSource music;
     public AudioSource itemSound;
 
     public float timeLimit;
-    private static float countdown = 3.5f;
+    private float countdown;
     public bool onePlayerMode = false;
 
     public enum GameState
@@ -42,7 +42,7 @@ public class MissileMadness : MonoBehaviour
         timeLimit = manager.gameTimer;
         timer.gameObject.SetActive(false);
         message.gameObject.SetActive(true);
-        returnButton.gameObject.SetActive(false);
+        countdown = 3.5f;
 
         if (manager.gameTimer != 0)
             timeLimit = manager.gameTimer;
@@ -95,7 +95,7 @@ public class MissileMadness : MonoBehaviour
                     message.text = "FINISH!";
                     timer.gameObject.SetActive(false);
                     message.gameObject.SetActive(true);
-                    returnButton.gameObject.SetActive(true);
+                    countdown = 2f;
 
                     DisablePlayerMovement();
                     State = GameState.Finish;
@@ -103,6 +103,20 @@ public class MissileMadness : MonoBehaviour
                 break;
 
             case GameState.Finish:
+                countdown -= Time.deltaTime;
+
+                if (countdown <= 0)
+                {
+                    if (PlayerPrefs.GetInt("Mode") == 2)
+                        manager.currentRound++;
+                        
+                    if (PlayerPrefs.GetInt("Mode") == 2 && manager.currentRound == manager.rounds)
+                        manager.returningToMenus = false;
+                    else
+                        manager.returningToMenus = true;
+
+                    SceneManager.LoadScene("Menus");
+                }
                 break;
         }
     }

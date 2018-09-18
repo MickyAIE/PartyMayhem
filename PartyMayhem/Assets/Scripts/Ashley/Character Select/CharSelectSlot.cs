@@ -55,6 +55,11 @@ public class CharSelectSlot : MonoBehaviour
             currentPortrait.color = Color.clear;
             joinText.SetActive(true);
         }
+
+        if (player.playerPrefab != null)
+            player.playerPrefab = null;
+        if (player.playerPortrait != null)
+            player.playerPortrait = null;
     }
 
     private void Update()

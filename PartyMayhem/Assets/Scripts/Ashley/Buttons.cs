@@ -20,6 +20,11 @@ public class Buttons : MonoBehaviour
 
     public void BackButton()
     {
+        if (PlayerPrefs.GetInt("Mode") == 2 && manager.currentRound == manager.rounds)
+            manager.returningToMenus = false;
+        else
+            manager.returningToMenus = true;
+
         SceneManager.LoadScene("Menus");
     }
 }
