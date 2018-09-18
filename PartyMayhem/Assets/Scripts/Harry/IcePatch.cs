@@ -8,9 +8,11 @@ public class IcePatch : MonoBehaviour {
     public GameObject[] Player;
     public bool SpeedDelayOn = false;
 
-    private void Awake()
+    public void Start()
     {
         MoveSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        Player = GameObject.FindGameObjectsWithTag("Player");
+        Player = new GameObject[4];
     }
 
     void Update () {

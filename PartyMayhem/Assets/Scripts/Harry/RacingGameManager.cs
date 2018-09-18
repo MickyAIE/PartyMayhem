@@ -9,6 +9,9 @@ public class RacingGameManager : MonoBehaviour {
 
     public float Countdown = 3.0f; //Used to control the timer at the start to countdown from 3.
     public int Laps1; //used to control the total amount of laps required to win the race
+    public int Laps2;
+    public int Laps3;
+    public int Laps4;
     public bool MiddleTextCleared;
     public bool Player1Wins;
     public bool Player2Wins;
@@ -18,10 +21,12 @@ public class RacingGameManager : MonoBehaviour {
     public Color EndColor; //Starting color and end color are used to transition the guidance arrows to fade away
     public Text LapCounter1;
     public Text MiddleText;
+    public Text CurrentLeaderText;
     public GameObject[] Players;
     public GameObject[] Guides;
+    public CheckPoints CheckPointScripts;
     public GameManager manager;
-    public PlayerMovement PlayerMovement;
+//    public PlayerMovement PlayerMovement;
 
     public void Awake()
     {
@@ -31,7 +36,7 @@ public class RacingGameManager : MonoBehaviour {
     void Start() {
         manager.SpawnPlayers();
         Guides = GameObject.FindGameObjectsWithTag("Guide");
-        Players = GameObject.FindGameObjectsWithTag("Player");       
+        Players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject Player in Players)
         {
             Player.AddComponent(typeof(LapsCounter));
@@ -51,7 +56,11 @@ public class RacingGameManager : MonoBehaviour {
 
     void Update () {
         Laps1 = Players[0].GetComponent<LapsCounter>().Lap;
-        LapCounter1.text = Laps1 + "/" + manager.gameLaps;
+        /*Laps2 = Players[1].GetComponent<LapsCounter>().Lap;
+        Laps3 = Players[2].GetComponent<LapsCounter>().Lap;
+        Laps4 = Players[3].GetComponent<LapsCounter>().Lap;*/
+        LapCounter1.text = Laps1 + "/" + manager.gameLaps + "Laps";
+        CurrentLeaderText.text = CheckPointScripts.CurrentLeader;
 
         foreach (GameObject Guide in Guides)
         {           
