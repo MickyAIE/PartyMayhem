@@ -8,6 +8,7 @@ public class CharSelectSlot : MonoBehaviour
     //This script is attached to each player's character select slot in the Character Select Screen
 
     public GameManager manager;
+    public CharSelectManager cssManager;
 
     private PlayerProfile player; //the player profile associated with this player slot
     public PlayerProfile[] players; //all player profiles attached to the GameManager
@@ -34,6 +35,7 @@ public class CharSelectSlot : MonoBehaviour
     private void Awake()
     {
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        cssManager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<CharSelectManager>();
         players = GameObject.FindGameObjectWithTag("GameManager").GetComponents<PlayerProfile>();
 
         player = players[slotNumber - 1];
@@ -83,6 +85,8 @@ public class CharSelectSlot : MonoBehaviour
 
             if (Input.GetButtonDown("P" + slotNumber + " Punch"))
             {
+                cssManager.selectSound.Play();
+
                 if (player.isActive)
                 {
                     if (!choiceConfirmed)
@@ -96,6 +100,8 @@ public class CharSelectSlot : MonoBehaviour
 
             if (Input.GetKey(KeyCode.B))
             {
+                cssManager.cancelSound.Play();
+
                 if (player.isActive)
                 {
                     if (choiceConfirmed)
@@ -113,6 +119,8 @@ public class CharSelectSlot : MonoBehaviour
             {
                 if (Input.GetAxis("P" + slotNumber + " Vertical") > 0)
                 {
+                    cssManager.boopSound.Play();
+
                     if (flavourIdx > 0)
                         flavourIdx--;
                     else
@@ -121,6 +129,8 @@ public class CharSelectSlot : MonoBehaviour
 
                 if (Input.GetAxis("P" + slotNumber + " Vertical") < 0)
                 {
+                    cssManager.boopSound.Play();
+
                     if (flavourIdx < doggos.Length - 1)
                         flavourIdx++;
                     else
@@ -129,6 +139,8 @@ public class CharSelectSlot : MonoBehaviour
 
                 if (Input.GetAxis("P" + slotNumber + " Horizontal") > 0)
                 {
+                    cssManager.boopSound.Play();
+
                     if (characterIdx == 0)
                         characterIdx = 1;
                     else
@@ -137,6 +149,8 @@ public class CharSelectSlot : MonoBehaviour
 
                 if (Input.GetAxis("P" + slotNumber + " Horizontal") < 0)
                 {
+                    cssManager.boopSound.Play();
+
                     if (characterIdx == 0)
                         characterIdx = 1;
                     else

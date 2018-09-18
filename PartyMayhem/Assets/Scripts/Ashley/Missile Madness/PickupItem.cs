@@ -6,10 +6,12 @@ public class PickupItem : MonoBehaviour
 {
     //Attaches a powerup to player when triggered.
 
+    private MissileMadness manager;
     private ItemSpawner spawner;
 
     private void Awake()
     {
+        manager = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<MissileMadness>();
         spawner = GameObject.FindGameObjectWithTag("MinigameManager").GetComponent<ItemSpawner>();
     }
 
@@ -30,7 +32,7 @@ public class PickupItem : MonoBehaviour
                 }
 
                 spawner.canSpawn = true;
-
+                manager.itemSound.Play();
                 Destroy(gameObject);
             }
         }

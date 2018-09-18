@@ -12,6 +12,9 @@ public class MissileMadness : MonoBehaviour
     public Text message;
     public Button returnButton;
 
+    public AudioSource music;
+    public AudioSource itemSound;
+
     public float timeLimit;
     private static float countdown = 3.5f;
     public bool onePlayerMode = false;

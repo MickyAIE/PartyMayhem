@@ -48,7 +48,9 @@ public class MissilePhysics : MonoBehaviour
             missile.angularVelocity = 0;
 
         if (lifeTime <= 0 || manager.State != MissileMadness.GameState.Game)
+        {
             Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //locks-on to first player that enters lockOnRange

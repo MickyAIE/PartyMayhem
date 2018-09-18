@@ -51,10 +51,10 @@ public class MissileSpawner : MonoBehaviour
         //Determine position
         Vector3 spawnPos;
 
-        Vector3 spawnTop = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(-0f, 1f), 1.2f, 1f));
-        Vector3 spawnRight = Camera.main.ViewportToWorldPoint(new Vector3(1.2f, Random.Range(-0f, 1f), 1f));
-        Vector3 spawnBottom = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(-0f, 1f), -0.2f, 1f));
-        Vector3 spawnLeft = Camera.main.ViewportToWorldPoint(new Vector3(-0.2f, Random.Range(-0f, 1f), 1f));
+        Vector3 spawnTop = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(-0f, 1f), 1.3f, 1f));
+        Vector3 spawnRight = Camera.main.ViewportToWorldPoint(new Vector3(1.3f, Random.Range(-0f, 1f), 1f));
+        Vector3 spawnBottom = Camera.main.ViewportToWorldPoint(new Vector3(Random.Range(-0f, 1f), -0.3f, 1f));
+        Vector3 spawnLeft = Camera.main.ViewportToWorldPoint(new Vector3(-0.3f, Random.Range(-0f, 1f), 1f));
 
         float pos;
         pos = Random.value;
@@ -112,22 +112,22 @@ public class MissileSpawner : MonoBehaviour
 
         if (spawnPos == spawnTop)
         {
-            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.2f, 17f));
+            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.1f, 17f));
             arrowDirection = 0;
         }
         else if (spawnPos == spawnRight)
         {
-            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.24f, 0.5f, 17f));
+            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.14f, 0.5f, 17f));
             arrowDirection = 1;
         }
         else if (spawnPos == spawnLeft)
         {
-            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.76f, 0.5f, 17f));
+            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.86f, 0.5f, 17f));
             arrowDirection = 2;
         }
         else
         {
-            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.8f, 17f));
+            offset = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.9f, 17f));
             arrowDirection = 3;
         }
 

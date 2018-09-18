@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         Tournament,
         Freeplay
     };
-    Mode mode;
+    public Mode mode;
 
     public bool returningToMenus = false;
 
@@ -71,11 +71,11 @@ public class GameManager : MonoBehaviour
     {
         startPositions = GameObject.FindGameObjectWithTag("StartPositions").GetComponentsInChildren<Transform>();
 
-        if (profiles != null && startPositions != null)
+        for (int i = 0; i < ActivePlayerCount(); i++)
         {
-            for (int i = 0; i < ActivePlayerCount(); i++)
+            if (profiles[i].isActive)
             {
-                if (profiles[i].isActive)
+                if (profiles != null && startPositions != null)
                 {
                     Instantiate(profiles[i].playerPrefab, startPositions[i + 1]);
                     profiles[i].UpdatePlayerNumbers();
