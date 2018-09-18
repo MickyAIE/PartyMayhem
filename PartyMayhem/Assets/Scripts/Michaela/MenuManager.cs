@@ -304,7 +304,7 @@ public class MenuManager : MonoBehaviour {
         {
             PlayerPrefs.SetInt("activePlayers", 0);
         }*/
-
+        Debug.Log(mode);
         if (PlayerPrefs.GetInt("Mode") == 1)
         {
             mode = GameManager.Mode.Board;
@@ -1114,6 +1114,18 @@ public class MenuManager : MonoBehaviour {
             fourthPlace.text = "Player 1";
             fourthPlaceScore.text = gameManager.player1Score.ToString();
         }
+        //Player one: Has 0 points
+        else if(gameManager.player1Score == 0)
+        {
+            firstRankSpot.GetComponent<Text>().text = "Player 1";
+            firstRankSpot2.GetComponent<Text>().text = "Player 1";
+
+            firstRankScore.text = " -  " + gameManager.player1Score.ToString();
+            firstRankScore2.text = " -  " + gameManager.player1Score.ToString();
+
+            firstPlace.text = "Player 1 Won!";
+            firstPlaceScore.text = "with a score of " + gameManager.player1Score.ToString();
+        }
 
 
         //Player two: First Place
@@ -1208,7 +1220,18 @@ public class MenuManager : MonoBehaviour {
             fourthPlace.text = "Player 2";
             fourthPlaceScore.text = gameManager.player2Score.ToString();
         }
+        //Player two: Has 0 points
+        else if (gameManager.player2Score == 0)
+        {
+            secondRankSpot.GetComponent<Text>().text = "Player 2";
+            secondRankSpot2.GetComponent<Text>().text = "Player 2";
 
+            secondRankScore.text = " -  " + gameManager.player2Score.ToString();
+            secondRankScore2.text = " -  " + gameManager.player2Score.ToString();
+
+            secondPlace.text = "Player 2";
+            secondPlaceScore.text = gameManager.player2Score.ToString();
+        }
 
         //Player three: First Place
         if (gameManager.player3Score > gameManager.player1Score && ((gameManager.player3Score > gameManager.player2Score) && (gameManager.player3Score > gameManager.player4Score)))
@@ -1302,9 +1325,20 @@ public class MenuManager : MonoBehaviour {
             fourthPlace.text = "Player 3 Won!";
             fourthPlaceScore.text = gameManager.player3Score.ToString();
         }
+        //Player three: Has 0 points
+        else if (gameManager.player3Score == 0)
+        {
+            thirdRankSpot.GetComponent<Text>().text = "Player 3";
+            thirdRankSpot2.GetComponent<Text>().text = "Player 3";
 
+            thirdRankScore.text = " -  " + gameManager.player3Score.ToString();
+            thirdRankScore2.text = " -  " + gameManager.player3Score.ToString();
 
-        //Player fourth: First Place
+            thirdPlace.text = "Player 3";
+            thirdPlaceScore.text = gameManager.player3Score.ToString();
+        }
+
+        //Player four: First Place
         if (gameManager.player4Score > gameManager.player1Score && ((gameManager.player4Score > gameManager.player2Score) && (gameManager.player4Score > gameManager.player3Score)))
         {
             firstRankSpot.GetComponent<Text>().text = "Player 4";
@@ -1316,7 +1350,7 @@ public class MenuManager : MonoBehaviour {
             firstPlace.text = "Player 4 Won!";
             firstPlaceScore.text = "with a score of " + gameManager.player4Score.ToString();
         }
-        //Player fourth: Second Place
+        //Player four: Second Place
         else if (gameManager.player4Score < gameManager.player1Score && ((gameManager.player4Score > gameManager.player2Score) && (gameManager.player4Score > gameManager.player3Score)))
         {
             secondRankSpot.GetComponent<Text>().text = "Player 4";
@@ -1350,7 +1384,7 @@ public class MenuManager : MonoBehaviour {
             secondPlace.text = "Player 4";
             secondPlaceScore.text = gameManager.player4Score.ToString();
         }
-        //Player fourth: Third Place
+        //Player four: Third Place
         else if (gameManager.player4Score < gameManager.player1Score && ((gameManager.player4Score < gameManager.player2Score) && (gameManager.player4Score > gameManager.player3Score)))
         {
             thirdRankSpot.GetComponent<Text>().text = "Player 4";
@@ -1384,8 +1418,20 @@ public class MenuManager : MonoBehaviour {
             thirdPlace.text = "Player 4";
             thirdPlaceScore.text = gameManager.player4Score.ToString();
         }
-        //Player fourth: Fourth Place
+        //Player four: Fourth Place
         else if (gameManager.player4Score < gameManager.player1Score && ((gameManager.player4Score < gameManager.player2Score) && (gameManager.player4Score < gameManager.player3Score)))
+        {
+            fourthRankSpot.GetComponent<Text>().text = "Player 4";
+            fourthRankSpot2.GetComponent<Text>().text = "Player 4";
+
+            fourthRankScore.text = " -  " + gameManager.player4Score.ToString();
+            fourthRankScore2.text = " -  " + gameManager.player4Score.ToString();
+
+            fourthPlace.text = "Player 4";
+            fourthPlaceScore.text = gameManager.player4Score.ToString();
+        }
+        //Player four: Has 0 points
+        else if (gameManager.player4Score == 0)
         {
             fourthRankSpot.GetComponent<Text>().text = "Player 4";
             fourthRankSpot2.GetComponent<Text>().text = "Player 4";

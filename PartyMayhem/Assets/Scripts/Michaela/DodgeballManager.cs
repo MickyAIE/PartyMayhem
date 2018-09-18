@@ -111,10 +111,6 @@ public class DodgeballManager : MonoBehaviour {
             }
         }
 
-        if (PlayerPrefs.GetInt("Mode") == 1) mode = GameManager.Mode.Board;
-        else if (PlayerPrefs.GetInt("Mode") == 2) mode = GameManager.Mode.Tournament;
-        else if (PlayerPrefs.GetInt("Mode") == 3) mode = GameManager.Mode.Freeplay;
-
         if (allPlayersHit == true)
         {
             endGame = true;
@@ -180,9 +176,9 @@ public class DodgeballManager : MonoBehaviour {
 
     public void OnMainMenu()
     {
-        if (mode == GameManager.Mode.Tournament) gameManager.currentRound += 1;
+        if (PlayerPrefs.GetInt("Mode") == 2) gameManager.currentRound += 1;
 
-        if (mode == GameManager.Mode.Tournament && gameManager.currentRound == gameManager.rounds)
+        if (PlayerPrefs.GetInt("Mode") == 2 && gameManager.currentRound == gameManager.rounds)
             gameManager.returningToMenus = false;
         else
             gameManager.returningToMenus = true;

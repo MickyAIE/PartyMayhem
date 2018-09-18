@@ -6685,10 +6685,10 @@ MonoBehaviour:
   tournamentMode: 0
   mode: 0
   returningToMenus: 0
-  player1Score: 500
-  player2Score: 250
-  player3Score: 100
-  player4Score: 50
+  player1Score: 0
+  player2Score: 0
+  player3Score: 0
+  player4Score: 0
   rounds: 1
   currentRound: 0
 --- !u!4 &607404479
