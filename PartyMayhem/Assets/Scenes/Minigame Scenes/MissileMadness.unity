@@ -653,6 +653,8 @@ MonoBehaviour:
   gameTimer: 0
   gameLaps: 0
   difficultyIndex: 0
+  tournamentMode: 0
+  mode: 0
   returningToMenus: 0
   player1Score: 0
   player2Score: 0
@@ -1273,7 +1275,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1485626293630972, guid: a510749aeb02117478a9ec7641b02628, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a510749aeb02117478a9ec7641b02628, type: 2}

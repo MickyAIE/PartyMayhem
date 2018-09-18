@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         {
             if (profiles[i].isActive)
             {
-                if (profiles != null && startPositions != null)
+                if (profiles[i].playerPrefab != null)
                 {
                     Instantiate(profiles[i].playerPrefab, startPositions[i + 1]);
                     profiles[i].UpdatePlayerNumbers();
