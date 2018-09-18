@@ -31,4 +31,6 @@ public class colouredtilepickup : MonoBehaviour {
         if (p4.name == "player4")
             Destroy(gameObject);
     }*/
+
+
 }
