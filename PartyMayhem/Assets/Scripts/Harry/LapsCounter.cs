@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LapsCounter : MonoBehaviour {
 
+    [SerializeField]
     public GameObject[] checkPointArray; //This array contains the 4 total checkpoints including the starting line
     public static GameObject[] NextCheckpoint; //The next checkpoint in descending order.
     public static int currentCheckpoint = 0;

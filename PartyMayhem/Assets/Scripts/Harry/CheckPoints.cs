@@ -5,7 +5,8 @@ using UnityEngine;
 public class CheckPoints : MonoBehaviour {
 
     public string CurrentLeader;
-    
+    /*public GameManager GameManager;
+    public RacingGameManager RacingGameManager;*/
     void OnTriggerEnter2D(Collider2D CheckPointUpdate)
     {
         if (CheckPointUpdate.tag !="Player") //If a gameobject enteres the collision and doesnt have the player tag, do not continue
@@ -14,7 +15,6 @@ public class CheckPoints : MonoBehaviour {
         if (transform == LapsCounter.NextCheckpoint[LapsCounter.currentCheckpoint].transform) //If this checkpoints transform is equal to NextCheckpoint's transform (which is always the descending through the Array containing all 4 checkpoints)
         {
             CurrentLeader = CheckPointUpdate.gameObject.name;
-            Debug.Log(CurrentLeader);
             if (LapsCounter.currentCheckpoint + 1 < LapsCounter.NextCheckpoint.Length)//Check so the current checkpoint counter is less than the next checkpoint.
             {                 
                 if (LapsCounter.currentCheckpoint == 0)//Add to currentLap if currentCheckpoint is
@@ -25,6 +25,7 @@ public class CheckPoints : MonoBehaviour {
             {
                 //If we dont have any Checkpoints set currentcheckpoint to 0
                 LapsCounter.currentCheckpoint = 0;
+                /*if (RacingGameManager.Laps1 >= GameManager.gameLaps) { RacingGameManager.MiddleText.text = CheckPointUpdate.name + "Wins!"; }*/
             }
         }
     }
