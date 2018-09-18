@@ -5,63 +5,10 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-#region External
-[System.Serializable]
-public class Main
-{
-    public GameObject startButton;
-    public GameObject settingsButton;
-    public GameObject creditsButton;
-    public GameObject quitButton;
-}
-[System.Serializable]
-public class Credits
-{
-    public GameObject backButton;
-    public GameObject scrollBar;
-}
-[System.Serializable]
-public class Settings
-{
-    public GameObject musicSlider;
-    public GameObject effectsSlider;
-    public GameObject resolutionDropDown;
-    public GameObject GraphicsDropDown;
-    public GameObject fullscreenToggle;
-}
-[System.Serializable]
-public class Modes
-{
-    public GameObject tournamentButton;
-    public GameObject freeplayButton;
-}
-[System.Serializable]
-public class Lists
-{
-    public GameObject MissileButton;
-    public GameObject RacingButton;
-    public GameObject GeoButton;
-    public GameObject DodgeButton;
-    public GameObject RhythmButton;
-}
-[System.Serializable]
-public class Profile
-{
-    public GameObject selectButton;
-}
 
 [System.Serializable]
 public class Bbools
 {
-    public bool hoverBoard = false;
-    public bool hoverTournament = false;
-    public bool hoverFreeplay = false;
-    public bool hoveringOverSomething = false;
-
-    public bool boardMode;
-    public bool tournamentMode;
-    public bool freeplayMode;
-
     public bool selectedMissile = false;
     public bool selectedDodgeball = false;
     public bool selectedRacing = false;
@@ -73,19 +20,12 @@ public class Bbools
 
     public bool pressSpace = false;
 }
-#endregion
 
 public class MenuManager : MonoBehaviour {
 
     private GameManager gameManager;
 
     public Bbools bools;
-    public Main main;
-    public Credits credits;
-    public Settings settings;
-    public Modes modes;
-    public Lists list;
-    public Profile profile;
 
     public Animator anim;
 
@@ -164,6 +104,10 @@ public class MenuManager : MonoBehaviour {
     public Text thirdPlaceScore;
     public Text fourthPlaceScore;
 
+    public GameObject modeWarning;
+
+    public GameObject backToMenuButton;
+
     public Text roundText;
     public GameObject roundSelect;
     public Dropdown roundsDropdown;
@@ -188,6 +132,8 @@ public class MenuManager : MonoBehaviour {
 
     public int rounds;
     public int currentRound;
+
+    bool aftermathIsOn = false;
 
     public void Start()
     {
@@ -216,15 +162,6 @@ public class MenuManager : MonoBehaviour {
             Fade.SetActive(true);
         }
 
-
-        bools.hoverBoard = false;
-        bools.hoverTournament = false;
-        bools.hoverFreeplay = false;
-
-        bools.boardMode = false;
-        bools.tournamentMode = false;
-        bools.freeplayMode = false;
-
         bools.hasSaved = false;
         bools.changesMade = false;
 
@@ -238,6 +175,8 @@ public class MenuManager : MonoBehaviour {
 
         notSavedPopUp.SetActive(false);
         roundSelect.SetActive(false);
+
+        aftermathIsOn = false;
 
         if (PlayerPrefs.GetInt("controls", 0) == 0)
         {
@@ -253,6 +192,7 @@ public class MenuManager : MonoBehaviour {
         datPopUp.SetActive(false);
 
         tournamentAftermath.SetActive(false);
+        modeWarning.SetActive(false);
 
         graphicsDropdown.value = PlayerPrefs.GetInt("graphics", 3);
         sfxSlider.value = PlayerPrefs.GetFloat("sVolume", -15f);
@@ -360,18 +300,26 @@ public class MenuManager : MonoBehaviour {
 
         RankPlayers();
 
-        if (Input.GetKeyDown(KeyCode.C))
+        /*if (Input.GetKeyDown(KeyCode.C))
         {
             PlayerPrefs.SetInt("activePlayers", 0);
+        }*/
+
+        if (PlayerPrefs.GetInt("Mode") == 1)
+        {
+            mode = GameManager.Mode.Board;
+            gameManager.tournamentMode = false;
         }
-
-        if (PlayerPrefs.GetInt("Mode") == 1) mode = GameManager.Mode.Board;
-        else if (PlayerPrefs.GetInt("Mode") == 2) mode = GameManager.Mode.Tournament;
-        else if (PlayerPrefs.GetInt("Mode") == 3) mode = GameManager.Mode.Freeplay;
-
-        if (bools.boardMode == true && (bools.tournamentMode == false && bools.freeplayMode == false)) mode = GameManager.Mode.Board;
-        if (bools.tournamentMode == true && (bools.boardMode == false && bools.freeplayMode == false)) mode = GameManager.Mode.Tournament;
-        if (bools.freeplayMode == true && (bools.tournamentMode == false && bools.boardMode == false)) mode = GameManager.Mode.Freeplay;
+        else if (PlayerPrefs.GetInt("Mode") == 2)
+        {
+            mode = GameManager.Mode.Tournament;
+            gameManager.tournamentMode = true;
+        }
+        else if (PlayerPrefs.GetInt("Mode") == 3)
+        {
+            mode = GameManager.Mode.Freeplay;
+            gameManager.tournamentMode = false;
+        }
 
         switch (mode)
         {
@@ -389,7 +337,11 @@ public class MenuManager : MonoBehaviour {
                     music.loop = false;
                     music.clip = tournamentWin;
 
-                    tournamentAftermath.SetActive(true);
+                    if (aftermathIsOn == false)
+                    {
+                        tournamentAftermath.SetActive(true);
+                        aftermathIsOn = true;
+                    }
                 }
 
                 break;
@@ -415,32 +367,26 @@ public class MenuManager : MonoBehaviour {
     public void ShowBoardInfo()
     {
         boardModeInfo.SetActive(true);
-        bools.hoverBoard = true;
     }
     public void HideBoardInfo()
     {
         boardModeInfo.SetActive(false);
-        bools.hoverBoard = false;
     }
     public void ShowTournamentInfo()
     {
         tournamentModeInfo.SetActive(true);
-        bools.hoverTournament = true;
     }
     public void HideTournamentInfo()
     {
         tournamentModeInfo.SetActive(false);
-        bools.hoverTournament = false;
     }
     public void ShowFreeplayInfo()
     {
         freeplayModeInfo.SetActive(true);
-        bools.hoverFreeplay = true;
     }
     public void HideFreeplayInfo()
     {
         freeplayModeInfo.SetActive(false);
-        bools.hoverFreeplay = false;
     }
 #endregion
 
@@ -508,17 +454,14 @@ public class MenuManager : MonoBehaviour {
         anim.SetBool("goToMinigames", true);
 
         PlayerPrefs.SetInt("Mode", 1);
-        bools.boardMode = true;
     }
 
     public void OnTournamentModeSelected()
     {
-        //sfx.clip = click;
-        //sfx.Play();
+        PlayerPrefs.SetInt("activePlayers", 0);
         anim.SetBool("goToMinigames", true);
 
         PlayerPrefs.SetInt("Mode", 2);
-        bools.tournamentMode = true;
     }
 
     public void OnFreeplayModeSelected()
@@ -529,7 +472,6 @@ public class MenuManager : MonoBehaviour {
 
         PlayerPrefs.SetInt("activePlayers", 0);
         PlayerPrefs.SetInt("Mode", 3);
-        bools.freeplayMode = true;
     }
     #endregion
 
@@ -654,15 +596,13 @@ public class MenuManager : MonoBehaviour {
 
     public void OnBackToModes()
     {
-        bools.boardMode = false;
-        bools.tournamentMode = false;
-        bools.freeplayMode = false;
+        PlayerPrefs.SetInt("activePlayers", 0);
+        PlayerPrefs.SetInt("Mode", 3);
 
         controlsPopUp.SetActive(false);
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
 
-        sfx.clip = click;
         sfx.Play();
         anim.SetBool("goToMinigames", false);
     }
@@ -766,7 +706,7 @@ public class MenuManager : MonoBehaviour {
         bools.selectedRhythm = false;
         bools.selectedRacing = false;
 
-        minigameName.text = "Dodgeball";
+        minigameName.text = "Space";
         minigamePreview.sprite = dodgeballPreview;
 
         dodgeballInfo.SetActive(true);
@@ -882,12 +822,47 @@ public class MenuManager : MonoBehaviour {
         roundSelect.SetActive(false);
     }
 
+    public void GiveWarning()
+    {
+        if(PlayerPrefs.GetInt("Mode") == 2)
+        {
+            sfx.clip = backClick;
+            sfx.Play();
+
+            modeWarning.SetActive(true);
+        }
+        else
+        {
+            sfx.clip = click;
+            OnBackToModes();
+        }
+    }
+    public void CancelWarning()
+    {
+        sfx.clip = backClick;
+        sfx.Play();
+
+        modeWarning.SetActive(false);
+    }
+    public void ProceedToLeave()
+    {
+        sfx.clip = backClick;
+
+        OnBackToModes();
+        modeWarning.SetActive(false);
+    }
+
     public void ReturnToMenu()
     {
-        music.loop = true;
         music.clip = menuMusic;
+        music.loop = true;
 
-        tournamentAftermath.SetActive(false);
+        PlayerPrefs.SetInt("Mode", 3);
+        PlayerPrefs.SetInt("activePlayers", 0);
+
+        gameManager.currentRound = 0;
+
+        backToMenuButton.transform.parent.gameObject.SetActive(false);
     }
 
     public void PrePlayMinigame()
