@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class CharSelectManager : MonoBehaviour
 {
+    private GameManager manager;
     private PlayerProfile[] players;
     public Button startButton;
 
+    public AudioSource music;
+    public AudioSource boopSound;
+    public AudioSource selectSound;
+    public AudioSource cancelSound;
+
     private void Awake()
     {
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         players = GameObject.FindGameObjectWithTag("GameManager").GetComponents<PlayerProfile>();
     }
 
@@ -24,6 +31,7 @@ public class CharSelectManager : MonoBehaviour
     public bool CanStartGame()
     {
         int playerCount = 0;
+
         foreach (PlayerProfile player in players)
         {
             if (player.playerPrefab != null)
@@ -32,9 +40,13 @@ public class CharSelectManager : MonoBehaviour
             }
         }
 
-        if (playerCount == 0)
-            return false;
-        else
+        if (playerCount > 0 && !manager.tournamentMode)
             return true;
+
+        if (playerCount > 1 && manager.tournamentMode)
+            return true;
+
+        else
+            return false;
     }
 }

@@ -12,14 +12,15 @@ public class GameManager : MonoBehaviour
     public int gameTimer;
     public int gameLaps;
     public int difficultyIndex;
-    
+    public bool tournamentMode = false;
+
     public enum Mode
     {
         Board,
         Tournament,
         Freeplay
     };
-    Mode mode;
+    public Mode mode;
 
     public bool returningToMenus = false;
 
@@ -71,11 +72,11 @@ public class GameManager : MonoBehaviour
     {
         startPositions = GameObject.FindGameObjectWithTag("StartPositions").GetComponentsInChildren<Transform>();
 
-        if (profiles != null && startPositions != null)
+        for (int i = 0; i < ActivePlayerCount(); i++)
         {
-            for (int i = 0; i < ActivePlayerCount(); i++)
+            if (profiles[i].isActive)
             {
-                if (profiles[i].isActive)
+                if (profiles[i].playerPrefab != null)
                 {
                     Instantiate(profiles[i].playerPrefab, startPositions[i + 1]);
                     profiles[i].UpdatePlayerNumbers();
