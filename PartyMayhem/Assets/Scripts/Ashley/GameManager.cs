@@ -19,12 +19,17 @@ public class GameManager : MonoBehaviour
         Tournament,
         Freeplay
     };
+    Mode mode;
+
     public bool returningToMenus = false;
 
     public int player1Score;
     public int player2Score;
     public int player3Score;
-    public int player4Score;    
+    public int player4Score;
+
+    public int rounds;
+    public int currentRound;
 
     private Transform[] startPositions;
 
@@ -35,9 +40,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (activePlayerCount >= PlayerPrefs.GetInt("activePlayers"))
-            PlayerPrefs.SetInt("activePlayers", activePlayerCount);
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             returningToMenus = false;
@@ -59,7 +61,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        activePlayerCount = i;
+        if (i >= PlayerPrefs.GetInt("activePlayers"))
+            PlayerPrefs.SetInt("activePlayers", i);
+
         return i;
     }
 

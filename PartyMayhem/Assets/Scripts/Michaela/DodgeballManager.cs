@@ -39,6 +39,8 @@ public class DodgeballManager : MonoBehaviour {
 
     public AudioClip deathClip;
 
+    public GameManager.Mode mode;
+
     private void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -109,6 +111,10 @@ public class DodgeballManager : MonoBehaviour {
             }
         }
 
+        if (PlayerPrefs.GetInt("Mode") == 1) mode = GameManager.Mode.Board;
+        else if (PlayerPrefs.GetInt("Mode") == 2) mode = GameManager.Mode.Tournament;
+        else if (PlayerPrefs.GetInt("Mode") == 3) mode = GameManager.Mode.Freeplay;
+
         if (allPlayersHit == true)
         {
             endGame = true;
@@ -119,7 +125,6 @@ public class DodgeballManager : MonoBehaviour {
             winMessage.SetActive(false);
             loseMessage.SetActive(true);
             optionButtons.SetActive(true);
-            gameManager.returningToMenus = true;
         }
 
         if (gameTime <= 0 && allPlayersHit == false)
@@ -132,7 +137,6 @@ public class DodgeballManager : MonoBehaviour {
             winMessage.SetActive(true);
             loseMessage.SetActive(false);
             optionButtons.SetActive(true);
-            gameManager.returningToMenus = true;
         }
 
         GameTimer();
@@ -170,11 +174,19 @@ public class DodgeballManager : MonoBehaviour {
 
     public void OnPlayAgain()
     {
+        if (mode == GameManager.Mode.Tournament) gameManager.currentRound += 1;
         SceneManager.LoadScene("DodgeballDojo");
     }
 
     public void OnMainMenu()
     {
+        if (mode == GameManager.Mode.Tournament) gameManager.currentRound += 1;
+
+        if (mode == GameManager.Mode.Tournament && gameManager.currentRound == gameManager.rounds)
+            gameManager.returningToMenus = false;
+        else
+            gameManager.returningToMenus = true;
+
         SceneManager.LoadScene("Menus");
     }
 }
