@@ -63,10 +63,10 @@ public class RacingGameManager : MonoBehaviour {
             Time.timeScale = 0.5F;
             Invoke("ResetTimeScale", 1);
             MiddleText.text = CheckPointScripts.CurrentLeader + " Has Won!";
-            if (CheckPointScripts.CurrentLeader == "Player 1" && PointsAwarded == true) { Debug.Log("Awarded Points to Player 1"); manager.player1Score += 500; PointsAwarded = false; }
-            if (CheckPointScripts.CurrentLeader == "Player 2" && PointsAwarded == true) { Debug.Log("Awarded Points to Player 2"); manager.player2Score += 500; PointsAwarded = false; }
-            if (CheckPointScripts.CurrentLeader == "Player 3" && PointsAwarded == true) { Debug.Log("Awarded Points to Player 3"); manager.player3Score += 500; PointsAwarded = false; }
-            if (CheckPointScripts.CurrentLeader == "Player 4" && PointsAwarded == true) { Debug.Log("Awarded Points to Player 4"); manager.player4Score += 500; PointsAwarded = false; }
+            if (CheckPointScripts.CurrentLeader == "Player 1" && PointsAwarded == true) { Debug.Log("Awarded Winner Points to Player 1"); manager.player1Score += 500; PointsAwarded = false; }
+            if (CheckPointScripts.CurrentLeader == "Player 2" && PointsAwarded == true) { Debug.Log("Awarded Winner Points to Player 2"); manager.player2Score += 500; PointsAwarded = false; }
+            if (CheckPointScripts.CurrentLeader == "Player 3" && PointsAwarded == true) { Debug.Log("Awarded Winner Points to Player 3"); manager.player3Score += 500; PointsAwarded = false; }
+            if (CheckPointScripts.CurrentLeader == "Player 4" && PointsAwarded == true) { Debug.Log("Awarded Winner Points to Player 4"); manager.player4Score += 500; PointsAwarded = false; }
             Invoke("BackToMainMenu", 3);
         }
         Countdown -= Time.deltaTime;

@@ -25,11 +25,11 @@ public class SpeedBoost : MonoBehaviour {
         if (SpeedCollision.gameObject.tag == "Player") //When a Player collides with the speed pad it triggers a boost in the players speed and sends a Debug Log Message.
         {
             SpeedCollision.GetComponent<PlayerMovement>().speed = BoostedSpeed;
-            //.GetComponent<PlayerMovement>().playerScore = 25;
-            if (CheckPointScripts.CurrentLeader == "Player 1") { Debug.Log("Awarded Points to Player 1"); manager.player1Score += 25;}
-            if (CheckPointScripts.CurrentLeader == "Player 2") { Debug.Log("Awarded Points to Player 2"); manager.player2Score += 25;}
-            if (CheckPointScripts.CurrentLeader == "Player 3") { Debug.Log("Awarded Points to Player 3"); manager.player3Score += 25;}
-            if (CheckPointScripts.CurrentLeader == "Player 4") { Debug.Log("Awarded Points to Player 4"); manager.player4Score += 25;}
+            //SpeedCollision.GetComponent<PlayerMovement>().playerScore += 25;
+            if (SpeedCollision.gameObject.name == "Player 1") { Debug.Log("SpeedBoostPoints to Player 1"); manager.player1Score += 25;}
+            if (SpeedCollision.gameObject.name == "Player 2") { Debug.Log("SpeedBoostPoints to Player 2"); manager.player2Score += 25;}
+            if (SpeedCollision.gameObject.name == "Player 3") { Debug.Log("SpeedBoostPoints to Player 3"); manager.player3Score += 25;}
+            if (SpeedCollision.gameObject.name == "Player 4") { Debug.Log("SpeedBoostPoints to Player 4"); manager.player4Score += 25;}
         }
     }
 }

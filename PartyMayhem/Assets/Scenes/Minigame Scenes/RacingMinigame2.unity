@@ -698,7 +698,7 @@ MonoBehaviour:
   activePlayerCount: 0
   minigameToLoad: 
   gameTimer: 0
-  gameLaps: 1
+  gameLaps: 2
   difficultyIndex: 0
   tournamentMode: 0
   mode: 0
