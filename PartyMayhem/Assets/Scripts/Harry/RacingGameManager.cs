@@ -48,6 +48,10 @@ public class RacingGameManager : MonoBehaviour {
         EndColor = new Color(StartingColor.r, StartingColor.g, StartingColor.b, 0f);
         MiddleTextCleared = true;
         PointsAwarded = true;
+        manager.player1Score += 25;
+        manager.player2Score += 25;
+        manager.player3Score += 25;
+        manager.player4Score += 25;
     }
 
     void Update () {
