@@ -4020,7 +4020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &429307655
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7191,8 +7191,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33.9, y: -30.500042}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: -71.427, y: -30.500042}
+  m_SizeDelta: {x: 84.945, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &656950827
 MonoBehaviour:
@@ -7816,8 +7816,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 86.9, y: -25.9}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 66.44, y: -25.9}
+  m_SizeDelta: {x: 119.09, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699800581
 MonoBehaviour:
@@ -8223,9 +8223,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Avoid plasma ball attacks from enemy space tanks for as long you can! \n\nWhy
-    are there tanks in space you may ask? You may even ask why are there are dogs
-    in space. The answer is simple, really.\n\nThey just are."
+  m_Text: "Avoid plasma ball attacks from enemy space tanks for as long you can! \n\nSpace
+    tanks will target random players and shoot every few seconds. Do you think you
+    can react fast enough?"
 --- !u!222 &729057483
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11953,8 +11953,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33.90017, y: 15.099956}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: -71.43, y: 15.099956}
+  m_SizeDelta: {x: 84.95, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1035991532
 MonoBehaviour:
@@ -13540,7 +13540,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Space
+  m_Text: Tanks In Space
 --- !u!222 &1114350198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17133,8 +17133,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 86.90014, y: -3.2999477}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 64.53, y: -3.2999477}
+  m_SizeDelta: {x: 115.25, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1350001736
 MonoBehaviour:
@@ -22562,7 +22562,7 @@ MonoBehaviour:
   minigamePreview: {fileID: 456299859}
   missilePreview: {fileID: 21300000, guid: 1d3208ae180bf374ca0c35b6bdd761da, type: 3}
   dodgeballPreview: {fileID: 21300000, guid: 8eddc999ae4859841bb75642724ec0eb, type: 3}
-  racingPreview: {fileID: 21300000, guid: 773b22a4d1b6b794290332426dbc7c1c, type: 3}
+  racingPreview: {fileID: 21300000, guid: 0a5c602cfaa66a84bb8d31a888511ca2, type: 3}
   noPreview: {fileID: 0}
   graphicsDropdown: {fileID: 448437298}
   resolutionDropdown: {fileID: 830088436}
@@ -24971,8 +24971,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: -0.5}
-  m_SizeDelta: {x: -28, y: -3}
+  m_AnchoredPosition: {x: -28.84, y: -0.5}
+  m_SizeDelta: {x: -103.68, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1996732875
 MonoBehaviour:
@@ -26666,7 +26666,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Racing
+  m_Text: Rampant Racers
 --- !u!222 &2110852058
 CanvasRenderer:
   m_ObjectHideFlags: 0
