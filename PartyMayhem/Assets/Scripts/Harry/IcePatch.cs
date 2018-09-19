@@ -10,7 +10,7 @@ public class IcePatch : MonoBehaviour {
 
     public void Start()
     {
-        MoveSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        //MoveSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         Player = GameObject.FindGameObjectsWithTag("Player");
         Player = new GameObject[4];
     }
@@ -23,15 +23,16 @@ public class IcePatch : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            MoveSpeed.speed = 160f;
+            collision.gameObject.GetComponent<PlayerMovement>().speed = 140f;
+            //MoveSpeed.speed = 160f;
             SpeedDelayOn = true;
             Debug.Log("IceCollisionDetected");
         }
     }
 
     public void OnTriggerExit2D(Collider2D collision)
-    {       
-        MoveSpeed.speed = 200f; 
+    {
+        collision.gameObject.GetComponent<PlayerMovement>().speed = 200f; 
     }
 
 }

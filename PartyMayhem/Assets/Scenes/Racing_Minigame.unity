@@ -2001,6 +2001,8 @@ MonoBehaviour:
   Player: []
   BoostedSpeed: 0
   DefaultSpeed: 0
+  CheckPointScripts: {fileID: 182838608}
+  manager: {fileID: 0}
 --- !u!50 &595615899
 Rigidbody2D:
   serializedVersion: 4
@@ -2530,7 +2532,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1b5b0e30409c5bc4f913618b0b318240, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2a6ca86dbd0a8a4ca51f8ce60019f37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2824,6 +2826,7 @@ MonoBehaviour:
   Countdown: 3
   Laps1: 0
   MiddleTextCleared: 0
+  PointsAwarded: 0
   StartingColor: {r: 0, g: 0, b: 0, a: 0}
   EndColor: {r: 0, g: 0, b: 0, a: 0}
   LapCounter1: {fileID: 315123555}
@@ -3167,7 +3170,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1b5b0e30409c5bc4f913618b0b318240, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2a6ca86dbd0a8a4ca51f8ce60019f37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3897,7 +3900,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1b5b0e30409c5bc4f913618b0b318240, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2a6ca86dbd0a8a4ca51f8ce60019f37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3955,6 +3958,8 @@ MonoBehaviour:
   Player: []
   BoostedSpeed: 0
   DefaultSpeed: 0
+  CheckPointScripts: {fileID: 182838608}
+  manager: {fileID: 0}
 --- !u!50 &1151650441
 Rigidbody2D:
   serializedVersion: 4
@@ -4985,7 +4990,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1b5b0e30409c5bc4f913618b0b318240, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a2a6ca86dbd0a8a4ca51f8ce60019f37, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
