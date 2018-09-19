@@ -706,7 +706,7 @@ public class MenuManager : MonoBehaviour {
         bools.selectedRhythm = false;
         bools.selectedRacing = false;
 
-        minigameName.text = "Space";
+        minigameName.text = "Tanks In Space";
         minigamePreview.sprite = dodgeballPreview;
 
         dodgeballInfo.SetActive(true);
@@ -729,7 +729,7 @@ public class MenuManager : MonoBehaviour {
         bools.selectedRhythm = false;
         bools.selectedRacing = true;
 
-        minigameName.text = "Racing";
+        minigameName.text = "Rampant Racers";
         minigamePreview.sprite = racingPreview;
 
         dodgeballInfo.SetActive(false);
@@ -1022,6 +1022,7 @@ public class MenuManager : MonoBehaviour {
 
     public void CheckPlayerOrder()
     {
+#region Player One
         //Player one: First Place
         if(gameManager.player1Score > gameManager.player2Score && ((gameManager.player1Score > gameManager.player3Score) && (gameManager.player1Score > gameManager.player4Score)))
         {
@@ -1126,8 +1127,13 @@ public class MenuManager : MonoBehaviour {
             firstPlace.text = "Player 1 Won!";
             firstPlaceScore.text = "with a score of " + gameManager.player1Score.ToString();
         }
+        else if(gameManager.player1Score == gameManager.player2Score && ((gameManager.player1Score < gameManager.player3Score) && (gameManager.player1Score < gameManager.player4Score)))
+        {
 
+        }
+        #endregion
 
+#region Player Two
         //Player two: First Place
         if (gameManager.player2Score > gameManager.player1Score && ((gameManager.player2Score > gameManager.player3Score) && (gameManager.player2Score > gameManager.player4Score)))
         {
@@ -1232,7 +1238,9 @@ public class MenuManager : MonoBehaviour {
             secondPlace.text = "Player 2";
             secondPlaceScore.text = gameManager.player2Score.ToString();
         }
+        #endregion
 
+#region Player Three
         //Player three: First Place
         if (gameManager.player3Score > gameManager.player1Score && ((gameManager.player3Score > gameManager.player2Score) && (gameManager.player3Score > gameManager.player4Score)))
         {
@@ -1337,7 +1345,9 @@ public class MenuManager : MonoBehaviour {
             thirdPlace.text = "Player 3";
             thirdPlaceScore.text = gameManager.player3Score.ToString();
         }
+        #endregion
 
+#region Player Four
         //Player four: First Place
         if (gameManager.player4Score > gameManager.player1Score && ((gameManager.player4Score > gameManager.player2Score) && (gameManager.player4Score > gameManager.player3Score)))
         {
@@ -1443,4 +1453,5 @@ public class MenuManager : MonoBehaviour {
             fourthPlaceScore.text = gameManager.player4Score.ToString();
         }
     }
+#endregion
 }
