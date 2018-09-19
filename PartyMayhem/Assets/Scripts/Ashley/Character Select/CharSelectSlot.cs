@@ -213,6 +213,8 @@ public class CharSelectSlot : MonoBehaviour
     {
         player.playerPrefab = ChosenCharacter();
         player.playerPortrait = currentPortrait.sprite;
+        player.characterID = characterIdx;
+        player.flavourID = flavourIdx;
     }
 
     private void DisplayUnselectableCharacter() //Greys out portrait if it has been chosen by another player.
@@ -247,6 +249,8 @@ public class CharSelectSlot : MonoBehaviour
     {
         player.playerPrefab = null;
         player.playerPortrait = null;
+        player.characterID = 0;
+        player.flavourID = 0;
         choiceConfirmed = false;
         confirmText.SetActive(true);
         readyText.SetActive(false);

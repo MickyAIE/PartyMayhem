@@ -10,9 +10,11 @@ public class PlayerProfile : MonoBehaviour
 
     public GameObject playerPrefab; //prefab to spawn in minigames
     public Sprite playerPortrait; //portrait to display
+    public int characterID;
+    public int flavourID;
 
     public int playerNumber; //set in inspector
-    public bool isActive; //set in inspector
+    public bool isActive; //set initially in inspector, updated in CSS
 
     public float score; //does nothing yet, store player scores here
 
