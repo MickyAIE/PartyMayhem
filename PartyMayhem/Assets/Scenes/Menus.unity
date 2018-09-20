@@ -214,9 +214,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Controller: Left Stick to move and RB to Punch
-
-    menus do not work with controllers yet, so Keyboard is recommened'
+  m_Text: 'Controller: Left Stick to move and RB to Punch'
 --- !u!222 &11840336
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -947,7 +945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &72443558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4890,7 +4888,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 1347692674}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 2026799938}
+    m_SelectOnRight: {fileID: 40860956}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5683,9 +5681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Controller: Left Stick to move and RB to Punch
-
-    menus do not work with controllers yet, so Keyboard is recommened'
+  m_Text: 'Controller: Left Stick to move and RB to Punch'
 --- !u!222 &549700851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8797,7 +8793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &801939020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8833,7 +8829,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 827978761}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 1837373584}
+    m_SelectOnRight: {fileID: 1722181534}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -21115,9 +21111,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Controller: Left Stick to move and RB to Punch
-
-    menus do not work with controllers yet, so Keyboard is recommened'
+  m_Text: 'Controller: Left Stick to move and RB to Punch'
 --- !u!222 &1658040112
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22500,7 +22494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1722181533
 RectTransform:
   m_ObjectHideFlags: 0
