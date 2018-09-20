@@ -143,7 +143,7 @@ public class MissileMadness : MonoBehaviour
                     if (PlayerPrefs.GetInt("Mode") == 2)
                         manager.currentRound++;
 
-                    if (PlayerPrefs.GetInt("Mode") == 2 && manager.currentRound == manager.rounds)
+                    if (PlayerPrefs.GetInt("Mode") == 2 && manager.currentRound >= manager.rounds)
                         manager.returningToMenus = false;
                     else
                         manager.returningToMenus = true;
