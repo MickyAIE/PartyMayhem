@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CharSelectManager : MonoBehaviour
 {
     private GameManager manager;
     private PlayerProfile[] players;
     public Button startButton;
+    public EventSystem eventSystem;
 
     public AudioSource music;
     public AudioSource boopSound;
@@ -18,6 +20,7 @@ public class CharSelectManager : MonoBehaviour
     {
         manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         players = GameObject.FindGameObjectWithTag("GameManager").GetComponents<PlayerProfile>();
+        eventSystem = EventSystem.current;
     }
 
     private void Update()
