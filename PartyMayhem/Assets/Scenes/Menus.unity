@@ -22224,6 +22224,7 @@ MonoBehaviour:
   controls3Back: {fileID: 607275731}
   rankBack: {fileID: 1965867545}
   rank2Back: {fileID: 1299851698}
+  afterBack: {fileID: 899215049}
   mode: 0
   Fade: {fileID: 849998090}
   rounds: 0
