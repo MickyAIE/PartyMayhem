@@ -299,7 +299,7 @@ public class DodgeballManager : MonoBehaviour {
 
             if (PlayerPrefs.GetInt("Mode") == 2) gameManager.currentRound += 1;
 
-            if (PlayerPrefs.GetInt("Mode") == 2 && gameManager.currentRound == gameManager.rounds)
+            if (PlayerPrefs.GetInt("Mode") == 2 && gameManager.currentRound >= gameManager.rounds)
                 gameManager.returningToMenus = false;
             else
                 gameManager.returningToMenus = true;

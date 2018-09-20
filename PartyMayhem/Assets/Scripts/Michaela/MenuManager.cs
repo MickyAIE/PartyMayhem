@@ -175,6 +175,8 @@ public class MenuManager : MonoBehaviour {
             anim.SetBool("goToMinigameInfo", false);
             anim.SetBool("startScreen", true);
             Fade.SetActive(false);
+
+            eventSystem.SetSelectedGameObject(startButton);
         }
         else
         {
@@ -185,6 +187,8 @@ public class MenuManager : MonoBehaviour {
             anim.SetBool("goToMinigames", true);
             anim.SetBool("startScreen", false);
             Fade.SetActive(true);
+
+            eventSystem.SetSelectedGameObject(missileMadnessButton);
         }
 
         bools.hasSaved = false;
@@ -263,8 +267,6 @@ public class MenuManager : MonoBehaviour {
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.value = PlayerPrefs.GetInt("resolution", currentResolutionIndex);
-
-        eventSystem.SetSelectedGameObject(startButton);
     }
 
     private bool track1 = true;
