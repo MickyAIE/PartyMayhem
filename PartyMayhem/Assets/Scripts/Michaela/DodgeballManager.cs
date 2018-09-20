@@ -28,7 +28,6 @@ public class DodgeballManager : MonoBehaviour {
     public int maxEnemies;
 
     public float gameTime;
-    public Text timerText;
 
     public bool allPlayersHit = false;
     public bool endGame = false;
@@ -43,11 +42,22 @@ public class DodgeballManager : MonoBehaviour {
     public bool playerThreeHasBeenHit = false;
     public bool playerFourHasBeenHit = false;
 
-    public AudioClip deathClip;
+    public Text timerText;
+    public Slider timerBar;
+
+    public GameObject playerInfoPrefab;
+    public GameObject[] playerInfoPositions;
+    GameObject player1Info;
+    GameObject player2Info;
+    GameObject player3Info;
+    GameObject player4Info;
+
+    public Component[] playerProfiles;
 
     private void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        playerProfiles = gameManager.GetComponents(typeof(PlayerProfile));
     }
 
     private void Start()
@@ -72,7 +82,43 @@ public class DodgeballManager : MonoBehaviour {
             enemySpawnStartTime = 5;
         }
 
+        if(gameManager.ActivePlayerCount() == 1)
+        {
+            player1Info = Instantiate(playerInfoPrefab, playerInfoPositions[0].transform.position, Quaternion.identity, playerInfoPositions[0].transform);
+            player1Info.transform.GetChild(3).GetComponent<Text>().text = "Player 1";
+        }
+        else if (gameManager.ActivePlayerCount() == 2)
+        {
+            player1Info = Instantiate(playerInfoPrefab, playerInfoPositions[0].transform.position, Quaternion.identity, playerInfoPositions[0].transform);
+            player1Info.transform.GetChild(3).GetComponent<Text>().text = "Player 1";
+            player2Info = Instantiate(playerInfoPrefab, playerInfoPositions[1].transform.position, Quaternion.identity, playerInfoPositions[1].transform);
+            player2Info.transform.GetChild(3).GetComponent<Text>().text = "Player 2";
+        }
+        else if (gameManager.ActivePlayerCount() == 3)
+        {
+            player1Info = Instantiate(playerInfoPrefab, playerInfoPositions[0].transform.position, Quaternion.identity, playerInfoPositions[0].transform);
+            player1Info.transform.GetChild(3).GetComponent<Text>().text = "Player 1";
+            player2Info = Instantiate(playerInfoPrefab, playerInfoPositions[1].transform.position, Quaternion.identity, playerInfoPositions[1].transform);
+            player2Info.transform.GetChild(3).GetComponent<Text>().text = "Player 2";
+            player3Info = Instantiate(playerInfoPrefab, playerInfoPositions[2].transform.position, Quaternion.identity, playerInfoPositions[2].transform);
+            player3Info.transform.GetChild(3).GetComponent<Text>().text = "Player 3";
+        }
+        else if (gameManager.ActivePlayerCount() == 4)
+        {
+            player1Info = Instantiate(playerInfoPrefab, playerInfoPositions[0].transform.position, Quaternion.identity, playerInfoPositions[0].transform);
+            player1Info.transform.GetChild(3).GetComponent<Text>().text = "Player 1";
+            player2Info = Instantiate(playerInfoPrefab, playerInfoPositions[1].transform.position, Quaternion.identity, playerInfoPositions[1].transform);
+            player2Info.transform.GetChild(3).GetComponent<Text>().text = "Player 2";
+            player3Info = Instantiate(playerInfoPrefab, playerInfoPositions[2].transform.position, Quaternion.identity, playerInfoPositions[2].transform);
+            player3Info.transform.GetChild(3).GetComponent<Text>().text = "Player 3";
+            player4Info = Instantiate(playerInfoPrefab, playerInfoPositions[3].transform.position, Quaternion.identity, playerInfoPositions[3].transform);
+            player4Info.transform.GetChild(3).GetComponent<Text>().text = "Player 4";
+        }
+
         gameManager.SpawnPlayers();
+
+        timerBar.minValue = 0;
+        timerBar.maxValue = gameTime;
 
         //Instantiate(enemyPrefab, enemySpawnPoints[Random.Range(0, 3)].transform.position, Quaternion.identity);
         enemies.Add(enemyPrefab);
@@ -100,9 +146,10 @@ public class DodgeballManager : MonoBehaviour {
             else if (player == players[2]) player.gameObject.name = "Player3";
             else if (player == players[3]) player.gameObject.name = "Player4";
 
-            //player.AddComponent<AudioSource>();
-            //player.GetComponent<AudioSource>().playOnAwake = false;
-            //player.GetComponent<AudioSource>().clip = deathClip;
+            if (player.name == "Player1") gameManager.player1Score += 25;
+            else if (player.name == "Player2") gameManager.player2Score += 25;
+            else if (player.name == "Player3") gameManager.player3Score += 25;
+            else if (player.name == "Player4") gameManager.player4Score += 25;
         }
     }
 
@@ -186,7 +233,11 @@ public class DodgeballManager : MonoBehaviour {
             endGame = true;
             shouldSpawnEnemy = false;
 
-            foreach (GameObject player in players) player.GetComponent<PlayerMovement>().enabled = false;
+            foreach (GameObject player in players)
+            {
+                player.GetComponent<PlayerMovement>().enabled = false;
+                player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            }
 
             winMessage.SetActive(true);
             loseMessage.SetActive(false);
@@ -194,6 +245,7 @@ public class DodgeballManager : MonoBehaviour {
             ReturnToMainMenu();
         }
 
+        PlayerInfos();
         GameTimer();
 
         enemyCount = enemies.Count;
@@ -225,21 +277,23 @@ public class DodgeballManager : MonoBehaviour {
         if(beginningCountdown == false) gameTime -= Time.deltaTime;
         int seconds = Mathf.RoundToInt(gameTime);
         timerText.text = string.Format("{0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
+        timerBar.value = gameTime;
+
     }
 
     public void ReturnToMainMenu()
     {
         waitToReturn -= Time.deltaTime;
-        if(waitToReturn <= 0)
+        if (waitToReturn <= 0)
         {
-            foreach(GameObject player in players)
+            foreach (GameObject player in players)
             {
-                if(player.activeInHierarchy == true)
+                if (player.activeInHierarchy == true)
                 {
-                    if (player.name == "Player1") gameManager.player1Score += 100;
-                    else if (player.name == "Player2") gameManager.player2Score += 100;
-                    else if (player.name == "Player3") gameManager.player3Score += 100;
-                    else if (player.name == "Player4") gameManager.player4Score += 100;
+                    if (player.name == "Player1") gameManager.player1Score += 500;
+                    else if (player.name == "Player2") gameManager.player2Score += 500;
+                    else if (player.name == "Player3") gameManager.player3Score += 500;
+                    else if (player.name == "Player4") gameManager.player4Score += 500;
                 }
             }
 
@@ -253,4 +307,65 @@ public class DodgeballManager : MonoBehaviour {
             SceneManager.LoadScene("Menus");
         }
     }
+
+    public void PlayerInfos()
+    {
+        if(PlayerPrefs.GetInt("Mode") == 2)
+        {
+            if (player1Info != null)
+                player1Info.transform.GetChild(2).GetComponent<Text>().text = gameManager.player1Score.ToString();
+            if (player2Info != null)
+                player2Info.transform.GetChild(2).GetComponent<Text>().text = gameManager.player2Score.ToString();
+            if (player3Info != null)
+                player3Info.transform.GetChild(2).GetComponent<Text>().text = gameManager.player3Score.ToString();
+            if (player4Info != null)
+                player4Info.transform.GetChild(2).GetComponent<Text>().text = gameManager.player4Score.ToString();
+        }
+        else
+        {
+            if (player1Info != null)        
+                player1Info.transform.GetChild(2).gameObject.SetActive(false);
+            if (player2Info != null)
+                player2Info.transform.GetChild(2).gameObject.SetActive(false);
+            if (player3Info != null)
+                player3Info.transform.GetChild(2).gameObject.SetActive(false);
+            if (player4Info != null)
+                player4Info.transform.GetChild(2).gameObject.SetActive(false);
+        }
+
+        if (player1Info != null)
+        {
+            foreach(PlayerProfile pp in playerProfiles)
+            {
+                if(pp.playerNumber == 1)              
+                    player1Info.transform.GetChild(1).GetComponent<Image>().sprite = pp.playerPortrait;                
+            }
+        }
+        if (player2Info != null)
+        {
+            foreach (PlayerProfile pp in playerProfiles)
+            {
+                if (pp.playerNumber == 2)               
+                    player2Info.transform.GetChild(1).GetComponent<Image>().sprite = pp.playerPortrait;     
+            }          
+        }
+        if (player3Info != null)
+        {
+            foreach (PlayerProfile pp in playerProfiles)
+            {
+                if (pp.playerNumber == 3)
+                    player3Info.transform.GetChild(1).GetComponent<Image>().sprite = pp.playerPortrait;
+            }
+        }
+        if (player4Info != null)
+        {
+            foreach (PlayerProfile pp in playerProfiles)
+            {
+                if (pp.playerNumber == 4)
+                    player4Info.transform.GetChild(1).GetComponent<Image>().sprite = pp.playerPortrait;
+            }
+        }
+    }
 }
+
+

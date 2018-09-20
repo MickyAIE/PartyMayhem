@@ -304,7 +304,7 @@ public class MenuManager : MonoBehaviour {
         {
             PlayerPrefs.SetInt("activePlayers", 0);
         }*/
-        Debug.Log(mode);
+        //Debug.Log(mode);
         if (PlayerPrefs.GetInt("Mode") == 1)
         {
             mode = GameManager.Mode.Board;
@@ -406,7 +406,7 @@ public class MenuManager : MonoBehaviour {
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
-        Debug.Log("Quality Level: " + qualityIndex);
+        //Debug.Log("Quality Level: " + qualityIndex);
 
         bools.changesMade = true;
     }
@@ -414,7 +414,7 @@ public class MenuManager : MonoBehaviour {
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
-        Debug.Log("Is fullscreen: " + isFullscreen);
+        //Debug.Log("Is fullscreen: " + isFullscreen);
 
         bools.changesMade = true;
     }
@@ -423,7 +423,7 @@ public class MenuManager : MonoBehaviour {
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        Debug.Log("Resolution: " + resolution);
+        //Debug.Log("Resolution: " + resolution);
 
         bools.changesMade = true;
     }
@@ -442,7 +442,7 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = specialClick;
         sfx.Play();
 
-        Debug.Log("Saved");
+        //Debug.Log("Saved");
     }
     #endregion
 
@@ -459,6 +459,11 @@ public class MenuManager : MonoBehaviour {
     public void OnTournamentModeSelected()
     {
         PlayerPrefs.SetInt("activePlayers", 0);
+        gameManager.player1Score = 0;
+        gameManager.player2Score = 0;
+        gameManager.player3Score = 0;
+        gameManager.player4Score = 0;
+
         anim.SetBool("goToMinigames", true);
 
         PlayerPrefs.SetInt("Mode", 2);
@@ -598,6 +603,11 @@ public class MenuManager : MonoBehaviour {
     {
         PlayerPrefs.SetInt("activePlayers", 0);
         PlayerPrefs.SetInt("Mode", 3);
+
+        gameManager.player1Score = 0;
+        gameManager.player2Score = 0;
+        gameManager.player3Score = 0;
+        gameManager.player4Score = 0;
 
         controlsPopUp.SetActive(false);
         controlsPopUp2.SetActive(false);
@@ -855,11 +865,15 @@ public class MenuManager : MonoBehaviour {
     public void ReturnToMenu()
     {
         music.clip = menuMusic;
-        music.loop = true;
+        //music.loop = true;
 
         PlayerPrefs.SetInt("Mode", 3);
         PlayerPrefs.SetInt("activePlayers", 0);
 
+        gameManager.player1Score = 0;
+        gameManager.player2Score = 0;
+        gameManager.player3Score = 0;
+        gameManager.player4Score = 0;
         gameManager.currentRound = 0;
 
         backToMenuButton.transform.parent.gameObject.SetActive(false);
@@ -1116,7 +1130,7 @@ public class MenuManager : MonoBehaviour {
             fourthPlaceScore.text = gameManager.player1Score.ToString();
         }
         //Player one: Has 0 points
-        else if(gameManager.player1Score == 0)
+        else
         {
             firstRankSpot.GetComponent<Text>().text = "Player 1";
             firstRankSpot2.GetComponent<Text>().text = "Player 1";
@@ -1126,10 +1140,6 @@ public class MenuManager : MonoBehaviour {
 
             firstPlace.text = "Player 1 Won!";
             firstPlaceScore.text = "with a score of " + gameManager.player1Score.ToString();
-        }
-        else if(gameManager.player1Score == gameManager.player2Score && ((gameManager.player1Score < gameManager.player3Score) && (gameManager.player1Score < gameManager.player4Score)))
-        {
-
         }
         #endregion
 
@@ -1227,7 +1237,7 @@ public class MenuManager : MonoBehaviour {
             fourthPlaceScore.text = gameManager.player2Score.ToString();
         }
         //Player two: Has 0 points
-        else if (gameManager.player2Score == 0)
+        else
         {
             secondRankSpot.GetComponent<Text>().text = "Player 2";
             secondRankSpot2.GetComponent<Text>().text = "Player 2";
@@ -1334,7 +1344,7 @@ public class MenuManager : MonoBehaviour {
             fourthPlaceScore.text = gameManager.player3Score.ToString();
         }
         //Player three: Has 0 points
-        else if (gameManager.player3Score == 0)
+        else
         {
             thirdRankSpot.GetComponent<Text>().text = "Player 3";
             thirdRankSpot2.GetComponent<Text>().text = "Player 3";
@@ -1441,7 +1451,7 @@ public class MenuManager : MonoBehaviour {
             fourthPlaceScore.text = gameManager.player4Score.ToString();
         }
         //Player four: Has 0 points
-        else if (gameManager.player4Score == 0)
+        else
         {
             fourthRankSpot.GetComponent<Text>().text = "Player 4";
             fourthRankSpot2.GetComponent<Text>().text = "Player 4";
