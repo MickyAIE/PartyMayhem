@@ -77,6 +77,21 @@ public class MissileMadness : MonoBehaviour
 
         timerBar.maxValue = timeLimit;
         HUDSpawn();
+
+        foreach (GameObject player in players)
+        {
+            if (player.activeInHierarchy == true)
+            {
+                if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 1)
+                    manager.player1Score += 25;
+                if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 2)
+                    manager.player2Score += 25;
+                if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 3)
+                    manager.player3Score += 25;
+                if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 4)
+                    manager.player4Score += 25;
+            }
+        }
     }
 
     private void Update()
