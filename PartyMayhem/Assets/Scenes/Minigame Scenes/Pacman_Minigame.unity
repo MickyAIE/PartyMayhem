@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 250582311}
   - component: {fileID: 250582313}
   - component: {fileID: 250582312}
+  - component: {fileID: 250582314}
   m_Layer: 11
   m_Name: colourchangercheck (1)
   m_TagString: p1
@@ -334,6 +335,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &250582314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 250582310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &293007892
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &329062871
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +540,7 @@ GameObject:
   - component: {fileID: 410584901}
   - component: {fileID: 410584903}
   - component: {fileID: 410584902}
+  - component: {fileID: 410584904}
   m_Layer: 13
   m_Name: colourchangercheck 3 (2)
   m_TagString: p3
@@ -602,6 +617,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &410584904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 410584900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &515027540
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &542322995
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +790,7 @@ GameObject:
   - component: {fileID: 542322997}
   - component: {fileID: 542322996}
   - component: {fileID: 542322998}
+  - component: {fileID: 542322999}
   m_Layer: 13
   m_Name: colourchangercheck 3
   m_TagString: p3
@@ -838,6 +867,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &542322999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542322995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!4 &597684574 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4906327650854782, guid: ffb99bcaa08cf1e48ac8add248f6a818,
@@ -1364,6 +1405,7 @@ GameObject:
   - component: {fileID: 1008461610}
   - component: {fileID: 1008461612}
   - component: {fileID: 1008461611}
+  - component: {fileID: 1008461613}
   m_Layer: 11
   m_Name: colourchangercheck (2)
   m_TagString: p1
@@ -1440,6 +1482,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1008461613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1008461609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1017727262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1504,7 @@ GameObject:
   - component: {fileID: 1017727263}
   - component: {fileID: 1017727265}
   - component: {fileID: 1017727264}
+  - component: {fileID: 1017727266}
   m_Layer: 12
   m_Name: colourchangercheck 2 (2)
   m_TagString: p2
@@ -1526,6 +1581,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1017727266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1017727262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1038528909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1603,7 @@ GameObject:
   - component: {fileID: 1038528911}
   - component: {fileID: 1038528910}
   - component: {fileID: 1038528912}
+  - component: {fileID: 1038528913}
   m_Layer: 12
   m_Name: colourchangercheck 2
   m_TagString: p2
@@ -1612,6 +1680,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1038528913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1038528909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1092860431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1521177401
 GameObject:
   m_ObjectHideFlags: 0
@@ -3718,6 +3799,7 @@ GameObject:
   - component: {fileID: 1521177402}
   - component: {fileID: 1521177404}
   - component: {fileID: 1521177403}
+  - component: {fileID: 1521177405}
   m_Layer: 13
   m_Name: colourchangercheck 3 (1)
   m_TagString: p3
@@ -3794,6 +3876,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1521177405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1521177401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1531530774
 GameObject:
   m_ObjectHideFlags: 0
@@ -3980,6 +4074,7 @@ GameObject:
   - component: {fileID: 1601435376}
   - component: {fileID: 1601435378}
   - component: {fileID: 1601435377}
+  - component: {fileID: 1601435379}
   m_Layer: 12
   m_Name: colourchangercheck 2 (1)
   m_TagString: p2
@@ -4056,6 +4151,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1601435379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601435375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1730108672
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,6 +4321,7 @@ GameObject:
   - component: {fileID: 1824137451}
   - component: {fileID: 1824137453}
   - component: {fileID: 1824137452}
+  - component: {fileID: 1824137454}
   m_Layer: 14
   m_Name: colourchangercheck 4 (1)
   m_TagString: p4
@@ -4290,6 +4398,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1824137454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1824137450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1826706797
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,6 +4560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &1888785450
 GameObject:
   m_ObjectHideFlags: 0
@@ -4531,6 +4652,7 @@ GameObject:
   - component: {fileID: 2029601168}
   - component: {fileID: 2029601170}
   - component: {fileID: 2029601169}
+  - component: {fileID: 2029601171}
   m_Layer: 14
   m_Name: colourchangercheck 4 (2)
   m_TagString: p4
@@ -4607,6 +4729,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &2029601171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029601167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &2071866483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4617,6 +4751,7 @@ GameObject:
   - component: {fileID: 2071866485}
   - component: {fileID: 2071866484}
   - component: {fileID: 2071866486}
+  - component: {fileID: 2071866487}
   m_Layer: 14
   m_Name: colourchangercheck 4
   m_TagString: p4
@@ -4693,6 +4828,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2071866487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2071866483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &2101817519
 GameObject:
   m_ObjectHideFlags: 0
@@ -4703,6 +4850,7 @@ GameObject:
   - component: {fileID: 2101817521}
   - component: {fileID: 2101817520}
   - component: {fileID: 2101817522}
+  - component: {fileID: 2101817523}
   m_Layer: 11
   m_Name: colourchangercheck
   m_TagString: p1
@@ -4779,6 +4927,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2101817523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2101817519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38090098d303346993a296b88a41ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatPLAYER: 
 --- !u!1 &2109317478
 GameObject:
   m_ObjectHideFlags: 0
