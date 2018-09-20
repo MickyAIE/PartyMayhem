@@ -49,6 +49,12 @@ public class CharSelectSlot : MonoBehaviour
             confirmText.SetActive(true);
         }
 
+        if (player.isActive == true)
+        {
+            joinText.SetActive(false);
+            confirmText.SetActive(true);
+        }
+
         if (player.isActive == false)
         {
             playerSlot.color = Color.black;
@@ -64,8 +70,8 @@ public class CharSelectSlot : MonoBehaviour
 
     private void Update()
     {
-        PortraitToBeDisplayed();
         Inputs();
+        PortraitToBeDisplayed();
     }
 
     private void PortraitToBeDisplayed() //Determines portrait to display in the player's square on the character select screen.
@@ -192,7 +198,11 @@ public class CharSelectSlot : MonoBehaviour
             readyText.SetActive(true);
 
             SetCharacterChoice();
-            DisplayUnselectableCharacter();
+
+            if (slotNumber == 1)
+            {
+                cssManager.eventSystem.SetSelectedGameObject(cssManager.startButton.gameObject);
+            }
         }
     }
 
@@ -215,20 +225,6 @@ public class CharSelectSlot : MonoBehaviour
         player.playerPortrait = currentPortrait.sprite;
         player.characterID = characterIdx;
         player.flavourID = flavourIdx;
-    }
-
-    private void DisplayUnselectableCharacter() //Greys out portrait if it has been chosen by another player.
-    {
-        foreach (PlayerProfile p in players)
-        {
-            if (p.playerPortrait != null && p.isActive == true)
-            {
-                if (p.playerPortrait == currentPortrait.sprite && p.playerNumber != slotNumber)
-                {
-                    currentPortrait.color = new Color(0, 0, 0, 0.5f);
-                }
-            }
-        }
     }
 
     private GameObject ChosenCharacter() //Uses the player's chosen character and flavour to determine prefab to spawn.
@@ -255,6 +251,11 @@ public class CharSelectSlot : MonoBehaviour
         confirmText.SetActive(true);
         readyText.SetActive(false);
         ReenableUnselectableCharacter();
+
+        if (slotNumber == 1)
+        {
+            cssManager.eventSystem.SetSelectedGameObject(null);
+        }
     }
 
     private void ReenableUnselectableCharacter() //Undoes greying out of portraits.

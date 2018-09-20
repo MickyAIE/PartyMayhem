@@ -866,6 +866,7 @@ public class MenuManager : MonoBehaviour {
     {
         music.clip = menuMusic;
         //music.loop = true;
+        music.Play();
 
         PlayerPrefs.SetInt("Mode", 3);
         PlayerPrefs.SetInt("activePlayers", 0);
