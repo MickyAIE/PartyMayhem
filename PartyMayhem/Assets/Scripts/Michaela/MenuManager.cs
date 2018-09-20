@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 
 [System.Serializable]
@@ -24,6 +25,7 @@ public class Bbools
 public class MenuManager : MonoBehaviour {
 
     private GameManager gameManager;
+    EventSystem eventSystem;
 
     public Bbools bools;
 
@@ -124,6 +126,21 @@ public class MenuManager : MonoBehaviour {
     public Toggle normal;
     public Toggle hard;
 
+    public GameObject startButton;
+    public GameObject freeplayButton;
+    public GameObject missileMadnessButton;
+    public GameObject saveButton;
+    public GameObject confirmButton;
+    public GameObject playButton;
+    public GameObject selButton;
+    public GameObject creditsBack;
+    public GameObject proceedButton;
+    public GameObject controlsBack;
+    public GameObject controls2Back;
+    public GameObject controls3Back;
+    public GameObject rankBack;
+    public GameObject rank2Back;
+
     Resolution[] resolutions;
 
     public GameManager.Mode mode;
@@ -135,9 +152,17 @@ public class MenuManager : MonoBehaviour {
 
     bool aftermathIsOn = false;
 
+    bool inModes = false;
+    bool inMinigames = false;
+    bool inMinigameInfo = false;
+
+    bool controlsOpen = false;
+    bool ranksOpen = false;
+
     public void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        eventSystem = EventSystem.current;
 
         //PlayerPrefs.SetInt("activePlayers", 0);
 
@@ -238,6 +263,8 @@ public class MenuManager : MonoBehaviour {
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.value = PlayerPrefs.GetInt("resolution", currentResolutionIndex);
+
+        eventSystem.SetSelectedGameObject(startButton);
     }
 
     private bool track1 = true;
@@ -300,11 +327,6 @@ public class MenuManager : MonoBehaviour {
 
         RankPlayers();
 
-        /*if (Input.GetKeyDown(KeyCode.C))
-        {
-            PlayerPrefs.SetInt("activePlayers", 0);
-        }*/
-        //Debug.Log(mode);
         if (PlayerPrefs.GetInt("Mode") == 1)
         {
             mode = GameManager.Mode.Board;
@@ -451,8 +473,13 @@ public class MenuManager : MonoBehaviour {
     {
         sfx.clip = click;
         sfx.Play();
-        anim.SetBool("goToMinigames", true);
 
+        inModes = false;
+        inMinigames = true;
+        inMinigameInfo = false;
+
+        anim.SetBool("goToMinigames", true);
+        eventSystem.SetSelectedGameObject(missileMadnessButton);
         PlayerPrefs.SetInt("Mode", 1);
     }
 
@@ -464,8 +491,12 @@ public class MenuManager : MonoBehaviour {
         gameManager.player3Score = 0;
         gameManager.player4Score = 0;
 
-        anim.SetBool("goToMinigames", true);
+        inModes = false;
+        inMinigames = true;
+        inMinigameInfo = false;
 
+        anim.SetBool("goToMinigames", true);
+        eventSystem.SetSelectedGameObject(missileMadnessButton);
         PlayerPrefs.SetInt("Mode", 2);
     }
 
@@ -475,6 +506,11 @@ public class MenuManager : MonoBehaviour {
         sfx.Play();
         anim.SetBool("goToMinigames", true);
 
+        inModes = false;
+        inMinigames = true;
+        inMinigameInfo = false;
+
+        eventSystem.SetSelectedGameObject(missileMadnessButton);
         PlayerPrefs.SetInt("activePlayers", 0);
         PlayerPrefs.SetInt("Mode", 3);
     }
@@ -486,6 +522,9 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = click;
         sfx.Play();
 
+        inModes = true;
+
+        eventSystem.SetSelectedGameObject(freeplayButton);
         anim.SetBool("goToModes", true);
     }
 
@@ -498,6 +537,11 @@ public class MenuManager : MonoBehaviour {
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
 
+        inModes = false;
+        inMinigames = false;
+        inMinigameInfo = false;
+
+        eventSystem.SetSelectedGameObject(startButton);
         anim.SetBool("goToModes", false);
     }
 
@@ -506,6 +550,7 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = click;
         sfx.Play();
 
+        eventSystem.SetSelectedGameObject(musicSlider.gameObject);
         anim.SetBool("goToSettings", true);
     }
 
@@ -524,12 +569,14 @@ public class MenuManager : MonoBehaviour {
             notSavedPopUp.SetActive(false);
             bools.hasSaved = false;
             bools.changesMade = false;
+            eventSystem.SetSelectedGameObject(startButton);
         }
         else if(bools.hasSaved == false && bools.changesMade == true)
         {
             notSavedPopUp.SetActive(true);
             sfx.clip = backClick;
             sfx.Play();
+            eventSystem.SetSelectedGameObject(saveButton);
         }
         else
         {
@@ -537,6 +584,7 @@ public class MenuManager : MonoBehaviour {
             notSavedPopUp.SetActive(false);
             bools.hasSaved = false;
             bools.changesMade = false;
+            eventSystem.SetSelectedGameObject(startButton);
         }
     }
 
@@ -545,6 +593,7 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = click;
         sfx.Play();
 
+        eventSystem.SetSelectedGameObject(musicSlider.gameObject);
         notSavedPopUp.SetActive(false);
     }
 
@@ -556,6 +605,7 @@ public class MenuManager : MonoBehaviour {
         bools.changesMade = false;
         bools.hasSaved = false;
 
+        eventSystem.SetSelectedGameObject(startButton);
         anim.SetBool("goToSettings", false);
         notSavedPopUp.SetActive(false);
     }
@@ -568,6 +618,7 @@ public class MenuManager : MonoBehaviour {
         bools.changesMade = false;
         bools.hasSaved = false;
 
+        eventSystem.SetSelectedGameObject(startButton);
         anim.SetBool("goToSettings", false);
         notSavedPopUp.SetActive(false);
     }
@@ -576,6 +627,8 @@ public class MenuManager : MonoBehaviour {
     {
         sfx.clip = click;
         sfx.Play();
+
+        eventSystem.SetSelectedGameObject(creditsBack);
         anim.SetBool("goToCredits", true);
     }
 
@@ -588,6 +641,7 @@ public class MenuManager : MonoBehaviour {
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
 
+        eventSystem.SetSelectedGameObject(startButton);
         anim.SetBool("goToCredits", false);
     }
 
@@ -613,6 +667,11 @@ public class MenuManager : MonoBehaviour {
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
 
+        inModes = true;
+        inMinigames = false;
+        inMinigameInfo = false;
+
+        eventSystem.SetSelectedGameObject(freeplayButton);
         sfx.Play();
         anim.SetBool("goToMinigames", false);
     }
@@ -626,10 +685,16 @@ public class MenuManager : MonoBehaviour {
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
         datPopUp.SetActive(false);
+
+        inModes = false;
+        inMinigames = true;
+        inMinigameInfo = false;
+
         selectButton.GetComponent<Button>().enabled = true;
         controlButton.GetComponent<Button>().enabled = true;
         playerRanksButton2.GetComponent<Button>().enabled = true;
 
+        eventSystem.SetSelectedGameObject(missileMadnessButton);
         anim.SetBool("goToMinigameInfo", false);
     }
 
@@ -645,6 +710,19 @@ public class MenuManager : MonoBehaviour {
         roundSelect.SetActive(false);
         playerRanksPage.SetActive(false);
         playerRanksPage2.SetActive(false);
+
+        if(inModes == true)
+        {
+            eventSystem.SetSelectedGameObject(controlsBack);
+        }
+        else if (inMinigames == true)
+        {
+            eventSystem.SetSelectedGameObject(controls2Back);
+        }
+        else if (inMinigameInfo == true)
+        {
+            eventSystem.SetSelectedGameObject(controls3Back);
+        }
     }
 
     public void ControlsBack()
@@ -656,6 +734,19 @@ public class MenuManager : MonoBehaviour {
         controlsPopUp.SetActive(false);
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
+
+        if (inModes == true)
+        {
+            eventSystem.SetSelectedGameObject(freeplayButton);
+        }
+        else if (inMinigames == true)
+        {
+            eventSystem.SetSelectedGameObject(missileMadnessButton);
+        }
+        else if (inMinigameInfo == true)
+        {
+            eventSystem.SetSelectedGameObject(selButton);
+        }
     }
 
     public void OnRanksPressed()
@@ -669,14 +760,35 @@ public class MenuManager : MonoBehaviour {
         controlsPopUp.SetActive(false);
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
+
+        if (inMinigames == true)
+        {
+            eventSystem.SetSelectedGameObject(rankBack);
+        }
+        else if (inMinigameInfo == true)
+        {
+            eventSystem.SetSelectedGameObject(rank2Back);
+        }
     }
     public void OnRanksBack()
     {
         sfx.clip = backClick;
         sfx.Play();
 
+        controlsOpen = false;
+        ranksOpen = false;
+
         playerRanksPage.SetActive(false);
         playerRanksPage2.SetActive(false);
+
+        if (inMinigames == true)
+        {
+            eventSystem.SetSelectedGameObject(missileMadnessButton);
+        }
+        else if (inMinigameInfo == true)
+        {
+            eventSystem.SetSelectedGameObject(selButton);
+        }
     }
 #endregion
 
@@ -702,6 +814,11 @@ public class MenuManager : MonoBehaviour {
         geoInfo.SetActive(false);
         rhythmInfo.SetActive(false);
 
+        inModes = false;
+        inMinigames = false;
+        inMinigameInfo = true;
+
+        eventSystem.SetSelectedGameObject(selButton);
         anim.SetBool("goToMinigameInfo", true);
     }
 
@@ -716,7 +833,11 @@ public class MenuManager : MonoBehaviour {
         bools.selectedRhythm = false;
         bools.selectedRacing = false;
 
-        minigameName.text = "Tanks In Space";
+        inModes = false;
+        inMinigames = false;
+        inMinigameInfo = true;
+
+        minigameName.text = "Laser Lunacy";
         minigamePreview.sprite = dodgeballPreview;
 
         dodgeballInfo.SetActive(true);
@@ -725,6 +846,7 @@ public class MenuManager : MonoBehaviour {
         geoInfo.SetActive(false);
         rhythmInfo.SetActive(false);
 
+        eventSystem.SetSelectedGameObject(selButton);
         anim.SetBool("goToMinigameInfo", true);
     }
 
@@ -748,6 +870,11 @@ public class MenuManager : MonoBehaviour {
         geoInfo.SetActive(false);
         rhythmInfo.SetActive(false);
 
+        inModes = false;
+        inMinigames = false;
+        inMinigameInfo = true;
+
+        eventSystem.SetSelectedGameObject(selButton);
         anim.SetBool("goToMinigameInfo", true);
     }
 
@@ -771,6 +898,11 @@ public class MenuManager : MonoBehaviour {
         geoInfo.SetActive(true);
         rhythmInfo.SetActive(false);
 
+        inModes = false;
+        inMinigames = false;
+        inMinigameInfo = true;
+
+        eventSystem.SetSelectedGameObject(selButton);
         anim.SetBool("goToMinigameInfo", true);
     }
 
@@ -794,6 +926,11 @@ public class MenuManager : MonoBehaviour {
         geoInfo.SetActive(false);
         rhythmInfo.SetActive(true);
 
+        inModes = false;
+        inMinigames = false;
+        inMinigameInfo = true;
+
+        eventSystem.SetSelectedGameObject(selButton);
         anim.SetBool("goToMinigameInfo", true);
     }
 #endregion
@@ -807,6 +944,7 @@ public class MenuManager : MonoBehaviour {
         controlsPopUp2.SetActive(false);
         controlsPopUp3.SetActive(false);
 
+        eventSystem.SetSelectedGameObject(confirmButton);
         roundSelect.SetActive(true);
     }
     public void ConfirmRound()
@@ -839,6 +977,7 @@ public class MenuManager : MonoBehaviour {
             sfx.clip = backClick;
             sfx.Play();
 
+            eventSystem.SetSelectedGameObject(proceedButton);
             modeWarning.SetActive(true);
         }
         else
@@ -852,6 +991,7 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = backClick;
         sfx.Play();
 
+        eventSystem.SetSelectedGameObject(missileMadnessButton);
         modeWarning.SetActive(false);
     }
     public void ProceedToLeave()
@@ -865,7 +1005,8 @@ public class MenuManager : MonoBehaviour {
     public void ReturnToMenu()
     {
         music.clip = menuMusic;
-        //music.loop = true;
+        music.loop = true;
+        music.Play();
 
         PlayerPrefs.SetInt("Mode", 3);
         PlayerPrefs.SetInt("activePlayers", 0);
@@ -876,6 +1017,7 @@ public class MenuManager : MonoBehaviour {
         gameManager.player4Score = 0;
         gameManager.currentRound = 0;
 
+        eventSystem.SetSelectedGameObject(startButton);
         backToMenuButton.transform.parent.gameObject.SetActive(false);
     }
 
@@ -884,6 +1026,7 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = specialClick;
         sfx.Play();
 
+        eventSystem.SetSelectedGameObject(playButton);
         datPopUp.SetActive(true);
         selectButton.GetComponent<Button>().enabled = false;
         controlButton.GetComponent<Button>().enabled = false;
@@ -894,6 +1037,7 @@ public class MenuManager : MonoBehaviour {
         sfx.clip = backClick;
         sfx.Play();
 
+        eventSystem.SetSelectedGameObject(selButton);
         datPopUp.SetActive(false);
         selectButton.GetComponent<Button>().enabled = true;
         controlButton.GetComponent<Button>().enabled = true;
