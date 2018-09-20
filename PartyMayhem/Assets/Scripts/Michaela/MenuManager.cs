@@ -49,7 +49,7 @@ public class MenuManager : MonoBehaviour {
     public Image minigamePreview;
     public Sprite missilePreview;
     public Sprite dodgeballPreview;
-    //public Sprite geoPreview;
+    public Sprite geoPreview;
     public Sprite racingPreview;
     //public Sprite rhythmPreview;
     public Sprite noPreview;
@@ -894,7 +894,7 @@ public class MenuManager : MonoBehaviour {
         bools.selectedRacing = false;
 
         minigameName.text = "Geochase";
-        minigamePreview.sprite = noPreview;
+        minigamePreview.sprite = geoPreview;
 
         dodgeballInfo.SetActive(false);
         missileInfo.SetActive(false);

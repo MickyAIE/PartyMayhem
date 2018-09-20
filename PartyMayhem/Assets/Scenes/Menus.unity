@@ -2306,7 +2306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &201813676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9795,7 +9795,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "GeoChase is a game where 1 - 4 players fight it out to collect their coloured
+    tiles first before another player does.\r\n\r\nFor a player to win the game, they
+    need to collect all their colour tiles first before other players collect there's,
+    power ups can be used to make collecting the tiles easier for you and harder for
+    everyone else"
 --- !u!222 &890095896
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16150,7 +16154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1312309963
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22148,6 +22152,7 @@ MonoBehaviour:
   minigamePreview: {fileID: 456299859}
   missilePreview: {fileID: 21300000, guid: 1d3208ae180bf374ca0c35b6bdd761da, type: 3}
   dodgeballPreview: {fileID: 21300000, guid: 8eddc999ae4859841bb75642724ec0eb, type: 3}
+  geoPreview: {fileID: 21300000, guid: 04740c8511f27e34bab77b3425acf300, type: 3}
   racingPreview: {fileID: 21300000, guid: 0a5c602cfaa66a84bb8d31a888511ca2, type: 3}
   noPreview: {fileID: 0}
   graphicsDropdown: {fileID: 448437298}
