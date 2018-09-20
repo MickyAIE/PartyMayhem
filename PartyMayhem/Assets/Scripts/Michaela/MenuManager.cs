@@ -140,6 +140,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject controls3Back;
     public GameObject rankBack;
     public GameObject rank2Back;
+    public GameObject afterBack;
 
     Resolution[] resolutions;
 
@@ -364,6 +365,7 @@ public class MenuManager : MonoBehaviour {
                     if (aftermathIsOn == false)
                     {
                         tournamentAftermath.SetActive(true);
+                        eventSystem.SetSelectedGameObject(afterBack);
                         aftermathIsOn = true;
                     }
                 }
