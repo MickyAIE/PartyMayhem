@@ -133,21 +133,6 @@ public class MissileMadness : MonoBehaviour
                     else
                         manager.returningToMenus = true;
 
-                    foreach (GameObject player in players)
-                    {
-                        if (player.activeInHierarchy == true)
-                        {
-                            if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 1)
-                                manager.player1Score += 500;
-                            if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 2)
-                                manager.player2Score += 500;
-                            if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 3)
-                                manager.player3Score += 500;
-                            if (player.GetComponent<CharacterMoveTransitions>().playerNumber == 4)
-                                manager.player4Score += 500;
-                        }
-                    }
-
                     SceneManager.LoadScene("Menus");
                 }
                 break;
