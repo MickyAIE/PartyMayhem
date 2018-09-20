@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Minigame Scenes/DodgeballDojo.unity
     guid: 07a95e4b407226c48b03321b84a312fa
   - enabled: 1
+    path: Assets/Scenes/Minigame Scenes/RacingMinigame2.unity
+    guid: bb95276c906aa7e48bc6dee7266eb6c4
+  - enabled: 1
     path: Assets/Scenes/Racing_Minigame.unity
     guid: a80a8ec31d7683040ae8de75fd523804
   - enabled: 1
     path: Assets/Scenes/Char Select Menu.unity
     guid: 8130ce15d24b200499ff32c56e7a6f54
-  - enabled: 1
-    path: Assets/Scenes/Minigame Scenes/RacingMinigame2.unity
-    guid: bb95276c906aa7e48bc6dee7266eb6c4
