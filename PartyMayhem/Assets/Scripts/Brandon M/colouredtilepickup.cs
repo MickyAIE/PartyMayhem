@@ -6,6 +6,7 @@ public class colouredtilepickup : MonoBehaviour
 {
     public string whatPLAYER;
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name == "player1" && whatPLAYER == "1")
@@ -23,21 +24,4 @@ public class colouredtilepickup : MonoBehaviour
     }
 
 
-
-    GameObject Tile()
-    {
-        GameObject[] tile;
-
-        tile = GameObject.FindGameObjectsWithTag("tile");
-        GameObject tile => 1;
-        
-        foreach (GameObject tile)
-        {
-            if (tile < 1)
-            {
-               Debug.Log "Player" + /*what player +*/ "has won the game";
-            }
-        }
-        return tile;
-    }
 }
