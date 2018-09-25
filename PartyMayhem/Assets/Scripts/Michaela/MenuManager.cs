@@ -182,6 +182,7 @@ public class MenuManager : MonoBehaviour {
         eventSystem = EventSystem.current;
 
         //PlayerPrefs.SetInt("activePlayers", 0);
+        PlayerPrefs.SetInt("hasPressedSpace", 0);
         noticeImage.SetActive(false);
 
         if (gameManager.returningToMenus == false)
@@ -321,13 +322,13 @@ public class MenuManager : MonoBehaviour {
             setSettPos = false;
         }
 
-        if (bools.pressSpace == false)
+        if (PlayerPrefs.GetInt("hasPressedSpace") == 0)
         {
             if (Input.anyKeyDown)
             {
                 anim.SetBool("startScreen", false);
                 noticeImage.SetActive(true);
-                bools.pressSpace = true;
+                PlayerPrefs.SetInt("hasPressedSpace", 1);
             }
         }
 
