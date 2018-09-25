@@ -181,9 +181,9 @@ public class MenuManager : MonoBehaviour {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         eventSystem = EventSystem.current;
 
-        //PlayerPrefs.SetInt("activePlayers", 0);
         PlayerPrefs.SetInt("hasPressedSpace", 0);
         noticeImage.SetActive(false);
+        bools.pressSpace = false;
 
         if (gameManager.returningToMenus == false)
         {
@@ -321,13 +321,16 @@ public class MenuManager : MonoBehaviour {
 
             setSettPos = false;
         }
-
-        if (PlayerPrefs.GetInt("hasPressedSpace") == 0)
+        Debug.Log(PlayerPrefs.GetInt("hasPressedSpace"));
+        if (PlayerPrefs.GetInt("hasPressedSpace") <= 0 && bools.pressSpace == false)
         {
             if (Input.anyKeyDown)
             {
+                noticeImage.SetActive(true);             
+                Debug.Log("Is active");
+
                 anim.SetBool("startScreen", false);
-                noticeImage.SetActive(true);
+                bools.pressSpace = true;
                 PlayerPrefs.SetInt("hasPressedSpace", 1);
             }
         }
