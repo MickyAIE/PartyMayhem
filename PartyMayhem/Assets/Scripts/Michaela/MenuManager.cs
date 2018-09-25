@@ -182,6 +182,7 @@ public class MenuManager : MonoBehaviour {
         eventSystem = EventSystem.current;
 
         PlayerPrefs.SetInt("hasPressedSpace", 0);
+
         noticeImage.SetActive(false);
         bools.pressSpace = false;
 
@@ -321,8 +322,7 @@ public class MenuManager : MonoBehaviour {
 
             setSettPos = false;
         }
-        Debug.Log(PlayerPrefs.GetInt("hasPressedSpace"));
-        if (PlayerPrefs.GetInt("hasPressedSpace") <= 0 && bools.pressSpace == false)
+        if (gameManager.noticeImageAppear == true)
         {
             if (Input.anyKeyDown)
             {
@@ -330,7 +330,7 @@ public class MenuManager : MonoBehaviour {
                 Debug.Log("Is active");
 
                 anim.SetBool("startScreen", false);
-                bools.pressSpace = true;
+                gameManager.noticeImageAppear = false;
                 PlayerPrefs.SetInt("hasPressedSpace", 1);
             }
         }
@@ -418,7 +418,6 @@ public class MenuManager : MonoBehaviour {
 
                         if (usingController == true)
                             eventSystem.SetSelectedGameObject(afterBack);
-
                     }
                 }
 
@@ -725,6 +724,7 @@ public class MenuManager : MonoBehaviour {
     {
         sfx.clip = backClick;
         sfx.Play();
+
         PlayerPrefs.SetInt("activePlayers", 0);
         Application.Quit();
     }

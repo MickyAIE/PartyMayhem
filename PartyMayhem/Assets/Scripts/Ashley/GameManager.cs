@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Mode mode;
 
     public bool returningToMenus = false;
+    public bool noticeImageAppear = true;
 
     public int player1Score;
     public int player2Score;
